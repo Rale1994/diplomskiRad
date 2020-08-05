@@ -137,6 +137,11 @@ public class Advokat extends OpstiDomenskiObjkat{
     public String vratiParametre() {
         return String.format("'%d','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s'", advokatID,jmbg,ime, prezime, ulica, broj,kontaktTelefon,korisnickoIme,lozinka, prebivaliste.getPrebivalisteID(), sertifikat.getSertifikatID());
     }
+
+    @Override
+    public int vratiVrednostPK() {
+        return advokatID;
+    }
     
 
 }
