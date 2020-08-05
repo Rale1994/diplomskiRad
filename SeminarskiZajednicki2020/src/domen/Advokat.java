@@ -9,7 +9,7 @@ package domen;
  *
  * @author Rados
  */
-public class Advokat {
+public class Advokat extends OpstiDomenskiObjkat{
     
     private int advokatID;
     private String jmbg;
@@ -127,5 +127,16 @@ public class Advokat {
     public void setPrebivaliste(Prebivaliste prebivaliste) {
         this.prebivaliste = prebivaliste;
     }
+
+    @Override
+    public String vratiImeTabele() {
+        return "advokat";
+    }
+
+    @Override
+    public String vratiParametre() {
+        return String.format("'%d','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s'", advokatID,jmbg,ime, prezime, ulica, broj,kontaktTelefon,korisnickoIme,lozinka, prebivaliste.getPrebivalisteID(), sertifikat.getSertifikatID());
+    }
+    
 
 }
