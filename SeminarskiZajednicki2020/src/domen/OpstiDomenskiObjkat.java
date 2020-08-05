@@ -14,5 +14,7 @@ public abstract class OpstiDomenskiObjkat {
     public abstract String vratiImeTabele();
 
     public abstract String vratiParametre();
+    
+    public abstract int vratiVrednostPK();
 
 }
