@@ -78,7 +78,7 @@ public class Arhiva extends OpstiDomenskiObjkat {
     @Override
     public String vratiSlozenPK() {
 
-        return String.format("advokat='%d' AND sertifikatID='%d' AND arhivaID=%d" , advokat.getAdvokatID(), sertifikatID, arhivaID);
+        return String.format("advokat='%d' AND sertifikatID='%d' AND arhivaID='%d'" , advokat.getAdvokatID(), sertifikatID, arhivaID);
     }
 
 }
