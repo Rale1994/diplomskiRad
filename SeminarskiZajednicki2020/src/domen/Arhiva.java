@@ -11,7 +11,8 @@ import java.util.Date;
  *
  * @author Rados
  */
-public class Arhiva {
+public class Arhiva extends OpstiDomenskiObjkat {
+
     private Advokat advokat;
     private int sertifikatID;
     private int arhivaID;
@@ -58,6 +59,26 @@ public class Arhiva {
     public void setArhivaID(int arhivaID) {
         this.arhivaID = arhivaID;
     }
-     
+
+    @Override
+    public String vratiImeTabele() {
+        return "arhiva";
+    }
+
+    @Override
+    public String vratiParametre() {
+        return String.format("%d,%d,%d,%d", advokat.getAdvokatID(), sertifikatID, arhivaID, datumDobijanjaSertifikata);
+    }
+
+    @Override
+    public int vratiVrednostPK() {
+        return 0;
+    }
+
+    @Override
+    public String vratiSlozenPK() {
+
+        return String.format("advokat='%d' AND sertifikatID='%d' AND arhivaID=%d" , advokat.getAdvokatID(), sertifikatID, arhivaID);
+    }
 
 }
