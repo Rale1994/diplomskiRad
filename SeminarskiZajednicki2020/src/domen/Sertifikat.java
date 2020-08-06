@@ -14,8 +14,6 @@ public class Sertifikat extends OpstiDomenskiObjkat {
     private int sertifikatID;
     private String nazivSertifikata;
 
-    
-
     public Sertifikat() {
     }
 
@@ -44,7 +42,8 @@ public class Sertifikat extends OpstiDomenskiObjkat {
     public String toString() {
         return nazivSertifikata;
     }
-@Override
+
+    @Override
     public String vratiImeTabele() {
         return "sertifikat";
     }
@@ -60,12 +59,13 @@ public class Sertifikat extends OpstiDomenskiObjkat {
     }
 
     @Override
+    public String vratiPk() {
+        return "sertifikatID";
+    }
+
+    @Override
     public String vratiSlozenPK() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public String vratiPk() {
-        return "sertifikatID";
-    }
 }

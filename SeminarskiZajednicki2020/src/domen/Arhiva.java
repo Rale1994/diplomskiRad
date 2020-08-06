@@ -70,7 +70,7 @@ public class Arhiva extends OpstiDomenskiObjkat {
     public String vratiParametre() {
         SimpleDateFormat sdf= new SimpleDateFormat("dd.MM.yyyy");
         String datum=sdf.format(datumDobijanjaSertifikata);
-        return String.format("'%d','%d','%d','%d'", advokat.getAdvokatID(), sertifikatID, arhivaID, datumDobijanjaSertifikata);
+        return String.format("'%d','%d','%d','%d'", advokat.getAdvokatID(), sertifikatID, arhivaID, datum);
     }
 
     @Override
