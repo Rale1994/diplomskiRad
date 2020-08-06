@@ -15,6 +15,10 @@ public abstract class OpstiDomenskiObjkat {
 
     public abstract String vratiParametre();
     
+    public abstract  String vratiPk();
+    
     public abstract int vratiVrednostPK();
+    
+    public abstract String vratiSlozenPK();
 
 }

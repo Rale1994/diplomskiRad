@@ -9,8 +9,8 @@ package domen;
  *
  * @author Rados
  */
-public class PredmetSudjenja {
-    
+public class PredmetSudjenja extends OpstiDomenskiObjkat {
+
     private int predmetSudjenjaID;
     private String nazivPredmetSudjenja;
 
@@ -36,6 +36,31 @@ public class PredmetSudjenja {
 
     public void setPredmetSudjenjaID(int predmetSudjenjaID) {
         this.predmetSudjenjaID = predmetSudjenjaID;
+    }
+
+    @Override
+    public String vratiImeTabele() {
+        return "predmetsudjenja";
+    }
+
+    @Override
+    public String vratiParametre() {
+        return String.format("'%d', '%s'", predmetSudjenjaID, nazivPredmetSudjenja);
+    }
+
+    @Override
+    public int vratiVrednostPK() {
+        return predmetSudjenjaID;
+    }
+
+    @Override
+    public String vratiPk() {
+        return "predmetSudjenjaID";
+    }
+
+    @Override
+    public String vratiSlozenPK() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

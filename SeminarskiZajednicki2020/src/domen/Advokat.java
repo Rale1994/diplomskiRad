@@ -9,8 +9,8 @@ package domen;
  *
  * @author Rados
  */
-public class Advokat extends OpstiDomenskiObjkat{
-    
+public class Advokat extends OpstiDomenskiObjkat {
+
     private int advokatID;
     private String jmbg;
     private String ime;
@@ -135,7 +135,12 @@ public class Advokat extends OpstiDomenskiObjkat{
 
     @Override
     public String vratiParametre() {
-        return String.format("'%d','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s'", advokatID,jmbg,ime, prezime, ulica, broj,kontaktTelefon,korisnickoIme,lozinka, prebivaliste.getPrebivalisteID(), sertifikat.getSertifikatID());
+        return String.format("'%d','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s'", advokatID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, korisnickoIme, lozinka, prebivaliste.getPrebivalisteID(), sertifikat.getSertifikatID());
+    }
+
+    @Override
+    public String vratiPk() {
+        return "advokatID";
     }
 
     @Override
@@ -147,6 +152,5 @@ public class Advokat extends OpstiDomenskiObjkat{
     public String vratiSlozenPK() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 
 }

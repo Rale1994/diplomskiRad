@@ -5,20 +5,21 @@
  */
 package domen;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  *
  * @author Rados
  */
-public class Sudjenje {
-    
-    private Advokat advokat;
-    private Klijent klijent;
+public class Sudjenje extends OpstiDomenskiObjkat {
+
     private int sudjenjeID;
     private Date datum;
     private int duzinaTrajanja;
     private PredmetSudjenja predmetSudjenja;
+    private Advokat advokat;
+    private Klijent klijent;
 
     public Sudjenje() {
     }
@@ -78,6 +79,33 @@ public class Sudjenje {
 
     public void setDuzinaTrajanja(int duzinaTrajanja) {
         this.duzinaTrajanja = duzinaTrajanja;
+    }
+
+    @Override
+    public String vratiImeTabele() {
+        return "sudjenje";
+    }
+
+    @Override
+    public String vratiParametre() {
+        SimpleDateFormat sdf= new SimpleDateFormat("dd.MM.yyyy");
+        String datums=sdf.format(datum);
+        return String.format("'%d', '%d', '%d', '%d', '%d', '%d'", sudjenjeID, datums, duzinaTrajanja, predmetSudjenja.getPredmetSudjenjaID(), advokat.getAdvokatID(), klijent.getKlijentID());
+    }
+
+    @Override
+    public int vratiVrednostPK() {
+        return sudjenjeID;
+    }
+
+    @Override
+    public String vratiPk() {
+        return "sudjenjeID";
+    }
+
+    @Override
+    public String vratiSlozenPK() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

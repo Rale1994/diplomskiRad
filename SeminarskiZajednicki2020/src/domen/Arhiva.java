@@ -5,6 +5,7 @@
  */
 package domen;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -67,12 +68,18 @@ public class Arhiva extends OpstiDomenskiObjkat {
 
     @Override
     public String vratiParametre() {
-        return String.format("%d,%d,%d,%d", advokat.getAdvokatID(), sertifikatID, arhivaID, datumDobijanjaSertifikata);
+        SimpleDateFormat sdf= new SimpleDateFormat("dd.MM.yyyy");
+        String datum=sdf.format(datumDobijanjaSertifikata);
+        return String.format("'%d','%d','%d','%d'", advokat.getAdvokatID(), sertifikatID, arhivaID, datumDobijanjaSertifikata);
     }
 
     @Override
     public int vratiVrednostPK() {
         return 0;
+    }
+    @Override
+    public String vratiPk() {
+        return null;
     }
 
     @Override
@@ -80,5 +87,7 @@ public class Arhiva extends OpstiDomenskiObjkat {
 
         return String.format("advokat='%d' AND sertifikatID='%d' AND arhivaID='%d'" , advokat.getAdvokatID(), sertifikatID, arhivaID);
     }
+
+    
 
 }

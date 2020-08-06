@@ -9,8 +9,8 @@ package domen;
  *
  * @author Rados
  */
-public class Klijent {
-    
+public class Klijent extends OpstiDomenskiObjkat {
+
     private int klijentID;
     private String jmbg;
     private String ime;
@@ -96,6 +96,31 @@ public class Klijent {
 
     public void setKontaktTelefon(String kontaktTelefon) {
         this.kontaktTelefon = kontaktTelefon;
+    }
+
+    @Override
+    public String vratiImeTabele() {
+        return "klijent";
+    }
+
+    @Override
+    public String vratiParametre() {
+        return String.format("'%d','%s', '%s', '%s', '%s', '%s', '%s', '%d'", klijentID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, prebivaliste.getPrebivalisteID());
+    }
+
+    @Override
+    public int vratiVrednostPK() {
+        return klijentID;
+    }
+
+    @Override
+    public String vratiPk() {
+        return "klijentID";
+    }
+
+    @Override
+    public String vratiSlozenPK() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

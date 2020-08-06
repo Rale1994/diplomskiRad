@@ -9,7 +9,8 @@ package domen;
  *
  * @author Rados
  */
-public class Prebivaliste {
+public class Prebivaliste extends OpstiDomenskiObjkat {
+
     private int prebivalisteID;
     private int postanskiBroj;
     private String naziv;
@@ -50,6 +51,31 @@ public class Prebivaliste {
     @Override
     public String toString() {
         return naziv;
+    }
+
+    @Override
+    public String vratiImeTabele() {
+        return "prebivaliste";
+    }
+
+    @Override
+    public String vratiParametre() {
+        return String.format("'%d', '%d', '%s'", prebivalisteID, postanskiBroj, naziv);
+    }
+
+    @Override
+    public int vratiVrednostPK() {
+        return prebivalisteID;
+    }
+
+    @Override
+    public String vratiPk() {
+        return "prebivalisteID";
+    }
+
+    @Override
+    public String vratiSlozenPK() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
