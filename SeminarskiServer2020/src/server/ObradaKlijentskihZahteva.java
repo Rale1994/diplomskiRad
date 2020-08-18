@@ -37,9 +37,12 @@ public class ObradaKlijentskihZahteva extends Thread {
         try {
             in = new ObjectInputStream(socket.getInputStream());
             out = new ObjectOutputStream(socket.getOutputStream());
-            while (true) {                
-                KlijentskiZahtev kz= (KlijentskiZahtev) in.readUnshared();
-                ServerskiOdgovor so= new ServerskiOdgovor();
+            while (true) {
+                KlijentskiZahtev kz = (KlijentskiZahtev) in.readUnshared();
+                ServerskiOdgovor so = new ServerskiOdgovor();
+                switch (kz.getOperacija()) {
+
+                }
             }
         } catch (IOException ex) {
             Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);
