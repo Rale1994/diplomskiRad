@@ -68,26 +68,25 @@ public class Arhiva extends OpstiDomenskiObjkat {
 
     @Override
     public String vratiParametre() {
-        SimpleDateFormat sdf= new SimpleDateFormat("dd.MM.yyyy");
-        String datum=sdf.format(datumDobijanjaSertifikata);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        String datum = sdf.format(datumDobijanjaSertifikata);
         return String.format("'%d','%d','%d','%d'", advokat.getAdvokatID(), sertifikatID, arhivaID, datum);
     }
 
     @Override
     public int vratiVrednostPK() {
-        return 0;
+        return sertifikatID;
     }
+
     @Override
     public String vratiPk() {
-        return null;
+        return "sertifikatID";
     }
 
     @Override
     public String vratiSlozenPK() {
-
-        return String.format("advokat='%d' AND sertifikatID='%d' AND arhivaID='%d'" , advokat.getAdvokatID(), sertifikatID, arhivaID);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
-
 }

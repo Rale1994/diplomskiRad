@@ -21,12 +21,12 @@ public class Advokat extends OpstiDomenskiObjkat {
     private String korisnickoIme;
     private String lozinka;
     private Prebivaliste prebivaliste;
-    private Sertifikat sertifikat;
+    
 
     public Advokat() {
     }
 
-    public Advokat(int advokatID, String jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, String korisnickoIme, String lozinka, Prebivaliste prebivaliste, Sertifikat sertifikat) {
+    public Advokat(int advokatID, String jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, String korisnickoIme, String lozinka, Prebivaliste prebivaliste) {
         this.advokatID = advokatID;
         this.jmbg = jmbg;
         this.ime = ime;
@@ -37,16 +37,10 @@ public class Advokat extends OpstiDomenskiObjkat {
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
         this.prebivaliste = prebivaliste;
-        this.sertifikat = sertifikat;
+        
     }
 
-    public Sertifikat getSertifikat() {
-        return sertifikat;
-    }
-
-    public void setSertifikat(Sertifikat sertifikat) {
-        this.sertifikat = sertifikat;
-    }
+    
 
     public int getAdvokatID() {
         return advokatID;
@@ -135,7 +129,7 @@ public class Advokat extends OpstiDomenskiObjkat {
 
     @Override
     public String vratiParametre() {
-        return String.format("'%d','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s'", advokatID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, korisnickoIme, lozinka, prebivaliste.getPrebivalisteID(), sertifikat.getSertifikatID());
+        return String.format("'%d','%s','%s','%s','%s','%s','%s','%s','%s','%s'", advokatID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, korisnickoIme, lozinka, prebivaliste.getPrebivalisteID());
     }
 
     @Override
