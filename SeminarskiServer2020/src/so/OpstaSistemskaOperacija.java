@@ -11,7 +11,7 @@ import db.DBBroker;
  *
  * @author Rados
  */
-public class OpstaSistemskaOperacija {
+public abstract class OpstaSistemskaOperacija {
 
     protected DBBroker db;
 
