@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class Sudjenje extends OpstiDomenskiObjkat {
 
-    private int sudjenjeID;
+    private String sudjenjeID;
     private Date datum;
     private int duzinaTrajanja;
     private PredmetSudjenja predmetSudjenja;
@@ -24,14 +24,16 @@ public class Sudjenje extends OpstiDomenskiObjkat {
     public Sudjenje() {
     }
 
-    public Sudjenje(Advokat advokat, Klijent klijent, int sudjenjeID, Date datum, int duzinaTrajanja, PredmetSudjenja predmetSudjenja) {
-        this.advokat = advokat;
-        this.klijent = klijent;
+    public Sudjenje(String sudjenjeID, Date datum, int duzinaTrajanja, PredmetSudjenja predmetSudjenja, Advokat advokat, Klijent klijent) {
         this.sudjenjeID = sudjenjeID;
         this.datum = datum;
         this.duzinaTrajanja = duzinaTrajanja;
         this.predmetSudjenja = predmetSudjenja;
+        this.advokat = advokat;
+        this.klijent = klijent;
     }
+
+   
 
     public PredmetSudjenja getPredmetSudjenja() {
         return predmetSudjenja;
@@ -57,13 +59,15 @@ public class Sudjenje extends OpstiDomenskiObjkat {
         this.klijent = klijent;
     }
 
-    public int getSudjenjeID() {
+    public String getSudjenjeID() {
         return sudjenjeID;
     }
 
-    public void setSudjenjeID(int sudjenjeID) {
+    public void setSudjenjeID(String sudjenjeID) {
         this.sudjenjeID = sudjenjeID;
     }
+
+    
 
     public Date getDatum() {
         return datum;
@@ -90,11 +94,11 @@ public class Sudjenje extends OpstiDomenskiObjkat {
     public String vratiParametre() {
         SimpleDateFormat sdf= new SimpleDateFormat("dd.MM.yyyy");
         String datums=sdf.format(datum);
-        return String.format("'%d', '%d', '%d', '%d', '%d', '%d'", sudjenjeID, datums, duzinaTrajanja, predmetSudjenja.getPredmetSudjenjaID(), advokat.getAdvokatID(), klijent.getKlijentID());
+        return String.format("'%s', '%s', '%d', '%s', '%s', '%s'", sudjenjeID, datums, duzinaTrajanja, predmetSudjenja.getPredmetSudjenjaID(), advokat.getAdvokatID(), klijent.getKlijentID());
     }
 
     @Override
-    public int vratiVrednostPK() {
+    public String vratiVrednostPK() {
         return sudjenjeID;
     }
 

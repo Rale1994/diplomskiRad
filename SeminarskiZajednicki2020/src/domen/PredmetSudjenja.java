@@ -11,16 +11,18 @@ package domen;
  */
 public class PredmetSudjenja extends OpstiDomenskiObjkat {
 
-    private int predmetSudjenjaID;
+    private String predmetSudjenjaID;
     private String nazivPredmetSudjenja;
 
     public PredmetSudjenja() {
     }
 
-    public PredmetSudjenja(int predmetSudjenjaID, String nazivPredmetSudjenja) {
+    public PredmetSudjenja(String predmetSudjenjaID, String nazivPredmetSudjenja) {
         this.predmetSudjenjaID = predmetSudjenjaID;
         this.nazivPredmetSudjenja = nazivPredmetSudjenja;
     }
+
+    
 
     public String getNazivPredmetSudjenja() {
         return nazivPredmetSudjenja;
@@ -30,13 +32,15 @@ public class PredmetSudjenja extends OpstiDomenskiObjkat {
         this.nazivPredmetSudjenja = nazivPredmetSudjenja;
     }
 
-    public int getPredmetSudjenjaID() {
+    public String getPredmetSudjenjaID() {
         return predmetSudjenjaID;
     }
 
-    public void setPredmetSudjenjaID(int predmetSudjenjaID) {
+    public void setPredmetSudjenjaID(String predmetSudjenjaID) {
         this.predmetSudjenjaID = predmetSudjenjaID;
     }
+
+    
 
     @Override
     public String vratiImeTabele() {
@@ -45,11 +49,11 @@ public class PredmetSudjenja extends OpstiDomenskiObjkat {
 
     @Override
     public String vratiParametre() {
-        return String.format("'%d', '%s'", predmetSudjenjaID, nazivPredmetSudjenja);
+        return String.format("'%s', '%s'", predmetSudjenjaID, nazivPredmetSudjenja);
     }
 
     @Override
-    public int vratiVrednostPK() {
+    public String vratiVrednostPK() {
         return predmetSudjenjaID;
     }
 

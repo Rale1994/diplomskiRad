@@ -11,18 +11,20 @@ package domen;
  */
 public class Prebivaliste extends OpstiDomenskiObjkat {
 
-    private int prebivalisteID;
-    private int postanskiBroj;
+    private String prebivalisteID;
+    private String postanskiBroj;
     private String naziv;
 
     public Prebivaliste() {
     }
 
-    public Prebivaliste(int prebivalisteID, int postanskiBroj, String naziv) {
+    public Prebivaliste(String prebivalisteID, String postanskiBroj, String naziv) {
         this.prebivalisteID = prebivalisteID;
         this.postanskiBroj = postanskiBroj;
         this.naziv = naziv;
     }
+
+  
 
     public String getNaziv() {
         return naziv;
@@ -32,21 +34,23 @@ public class Prebivaliste extends OpstiDomenskiObjkat {
         this.naziv = naziv;
     }
 
-    public int getPrebivalisteID() {
+    public String getPrebivalisteID() {
         return prebivalisteID;
     }
 
-    public void setPrebivalisteID(int prebivalisteID) {
+    public void setPrebivalisteID(String prebivalisteID) {
         this.prebivalisteID = prebivalisteID;
     }
 
-    public int getPostanskiBroj() {
+    public String getPostanskiBroj() {
         return postanskiBroj;
     }
 
-    public void setPostanskiBroj(int postanskiBroj) {
+    public void setPostanskiBroj(String postanskiBroj) {
         this.postanskiBroj = postanskiBroj;
     }
+
+
 
     @Override
     public String toString() {
@@ -60,11 +64,11 @@ public class Prebivaliste extends OpstiDomenskiObjkat {
 
     @Override
     public String vratiParametre() {
-        return String.format("'%d', '%d', '%s'", prebivalisteID, postanskiBroj, naziv);
+        return String.format("'%s', '%s', '%s'", prebivalisteID, postanskiBroj, naziv);
     }
 
     @Override
-    public int vratiVrednostPK() {
+    public String vratiVrednostPK() {
         return prebivalisteID;
     }
 

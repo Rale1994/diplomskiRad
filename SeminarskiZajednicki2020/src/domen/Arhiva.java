@@ -15,19 +15,21 @@ import java.util.Date;
 public class Arhiva extends OpstiDomenskiObjkat {
 
     private Advokat advokat;
-    private int sertifikatID;
-    private int arhivaID;
+    private String sertifikatID;
+    private String arhivaID;
     private Date datumDobijanjaSertifikata;
 
     public Arhiva() {
     }
 
-    public Arhiva(Advokat advokat, int sertifikatID, int arhivaID, Date datumDobijanjaSertifikata) {
+    public Arhiva(Advokat advokat, String sertifikatID, String arhivaID, Date datumDobijanjaSertifikata) {
         this.advokat = advokat;
         this.sertifikatID = sertifikatID;
         this.arhivaID = arhivaID;
         this.datumDobijanjaSertifikata = datumDobijanjaSertifikata;
     }
+
+   
 
     public Date getDatumDobijanjaSertifikata() {
         return datumDobijanjaSertifikata;
@@ -45,19 +47,21 @@ public class Arhiva extends OpstiDomenskiObjkat {
         this.advokat = advokat;
     }
 
-    public int getSertifikatID() {
+    public String getSertifikatID() {
         return sertifikatID;
     }
 
-    public void setSertifikatID(int sertifikatID) {
+    public void setSertifikatID(String sertifikatID) {
         this.sertifikatID = sertifikatID;
     }
 
-    public int getArhivaID() {
+    
+
+    public String getArhivaID() {
         return arhivaID;
     }
 
-    public void setArhivaID(int arhivaID) {
+    public void setArhivaID(String arhivaID) {
         this.arhivaID = arhivaID;
     }
 
@@ -70,17 +74,17 @@ public class Arhiva extends OpstiDomenskiObjkat {
     public String vratiParametre() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String datum = sdf.format(datumDobijanjaSertifikata);
-        return String.format("'%d','%d','%d','%d'", advokat.getAdvokatID(), sertifikatID, arhivaID, datum);
+        return String.format("'%s','%s','%s','%s'", advokat.getAdvokatID(), sertifikatID, arhivaID, datum);
     }
 
     @Override
-    public int vratiVrednostPK() {
-        return sertifikatID;
+    public String vratiVrednostPK() {
+        return arhivaID;
     }
 
     @Override
     public String vratiPk() {
-        return "sertifikatID";
+        return "arhiva";
     }
 
     @Override
@@ -88,5 +92,4 @@ public class Arhiva extends OpstiDomenskiObjkat {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
 }

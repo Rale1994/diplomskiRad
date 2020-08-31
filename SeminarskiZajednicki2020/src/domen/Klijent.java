@@ -11,7 +11,7 @@ package domen;
  */
 public class Klijent extends OpstiDomenskiObjkat {
 
-    private int klijentID;
+    private String klijentID;
     private String jmbg;
     private String ime;
     private String prezime;
@@ -23,7 +23,7 @@ public class Klijent extends OpstiDomenskiObjkat {
     public Klijent() {
     }
 
-    public Klijent(int klijentID, String jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, Prebivaliste prebivaliste) {
+    public Klijent(String klijentID, String jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, Prebivaliste prebivaliste) {
         this.klijentID = klijentID;
         this.jmbg = jmbg;
         this.ime = ime;
@@ -34,6 +34,8 @@ public class Klijent extends OpstiDomenskiObjkat {
         this.prebivaliste = prebivaliste;
     }
 
+  
+
     public Prebivaliste getPrebivaliste() {
         return prebivaliste;
     }
@@ -42,13 +44,15 @@ public class Klijent extends OpstiDomenskiObjkat {
         this.prebivaliste = prebivaliste;
     }
 
-    public int getKlijentID() {
+    public String getKlijentID() {
         return klijentID;
     }
 
-    public void setKlijentID(int klijentID) {
+    public void setKlijentID(String klijentID) {
         this.klijentID = klijentID;
     }
+
+ 
 
     public String getJmbg() {
         return jmbg;
@@ -109,7 +113,7 @@ public class Klijent extends OpstiDomenskiObjkat {
     }
 
     @Override
-    public int vratiVrednostPK() {
+    public String vratiVrednostPK() {
         return klijentID;
     }
 

@@ -11,16 +11,18 @@ package domen;
  */
 public class Sertifikat extends OpstiDomenskiObjkat {
 
-    private int sertifikatID;
+    private String sertifikatID;
     private String nazivSertifikata;
 
     public Sertifikat() {
     }
 
-    public Sertifikat(int sertifikatID, String nazivSertifikata) {
+    public Sertifikat(String sertifikatID, String nazivSertifikata) {
         this.sertifikatID = sertifikatID;
         this.nazivSertifikata = nazivSertifikata;
     }
+
+  
 
     public String getNazivSertifikata() {
         return nazivSertifikata;
@@ -30,13 +32,15 @@ public class Sertifikat extends OpstiDomenskiObjkat {
         this.nazivSertifikata = nazivSertifikata;
     }
 
-    public int getSertifikatID() {
+    public String getSertifikatID() {
         return sertifikatID;
     }
 
-    public void setSertifikatID(int sertifikatID) {
+    public void setSertifikatID(String sertifikatID) {
         this.sertifikatID = sertifikatID;
     }
+
+   
 
     @Override
     public String toString() {
@@ -50,11 +54,11 @@ public class Sertifikat extends OpstiDomenskiObjkat {
 
     @Override
     public String vratiParametre() {
-        return String.format("'%d','%d'", sertifikatID, nazivSertifikata);
+        return String.format("'%s','%s'", sertifikatID, nazivSertifikata);
     }
 
     @Override
-    public int vratiVrednostPK() {
+    public String vratiVrednostPK() {
         return sertifikatID;
     }
 

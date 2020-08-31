@@ -23,7 +23,11 @@ public abstract class OpstaSistemskaOperacija {
         otvoriKonekciju();
         izvrsiKonkretnuOperaciju();
         potvrdiTransakciju();
+        
+        
     }
+    
+    
 
     private void otvoriKonekciju() {
         db.otvoriKonekciju();

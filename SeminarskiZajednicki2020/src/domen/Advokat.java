@@ -11,7 +11,7 @@ package domen;
  */
 public class Advokat extends OpstiDomenskiObjkat {
 
-    private int advokatID;
+    private String advokatID;
     private String jmbg;
     private String ime;
     private String prezime;
@@ -26,7 +26,7 @@ public class Advokat extends OpstiDomenskiObjkat {
     public Advokat() {
     }
 
-    public Advokat(int advokatID, String jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, String korisnickoIme, String lozinka, Prebivaliste prebivaliste) {
+    public Advokat(String advokatID, String jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, String korisnickoIme, String lozinka, Prebivaliste prebivaliste) {
         this.advokatID = advokatID;
         this.jmbg = jmbg;
         this.ime = ime;
@@ -37,18 +37,13 @@ public class Advokat extends OpstiDomenskiObjkat {
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
         this.prebivaliste = prebivaliste;
-        
     }
+
+ 
 
     
 
-    public int getAdvokatID() {
-        return advokatID;
-    }
-
-    public void setAdvokatID(int advokatID) {
-        this.advokatID = advokatID;
-    }
+   
 
     public String getJmbg() {
         return jmbg;
@@ -129,7 +124,7 @@ public class Advokat extends OpstiDomenskiObjkat {
 
     @Override
     public String vratiParametre() {
-        return String.format("'%d','%s','%s','%s','%s','%s','%s','%s','%s','%s'", advokatID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, korisnickoIme, lozinka, prebivaliste.getPrebivalisteID());
+        return String.format("'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s'", advokatID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, korisnickoIme, lozinka, prebivaliste.getPrebivalisteID());
     }
 
     @Override
@@ -138,13 +133,21 @@ public class Advokat extends OpstiDomenskiObjkat {
     }
 
     @Override
-    public int vratiVrednostPK() {
+    public String vratiVrednostPK() {
         return advokatID;
     }
 
     @Override
     public String vratiSlozenPK() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getAdvokatID() {
+        return advokatID;
+    }
+
+    public void setAdvokatID(String advokatID) {
+        this.advokatID = advokatID;
     }
 
 }
