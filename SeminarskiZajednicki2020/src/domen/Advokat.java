@@ -5,14 +5,16 @@
  */
 package domen;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rados
  */
-public class Advokat extends OpstiDomenskiObjkat {
+public class Advokat extends OpstiDomenskiObjkat implements Serializable {
 
     private String advokatID;
-    private String jmbg;
+    private int jmbg;
     private String ime;
     private String prezime;
     private String ulica;
@@ -21,12 +23,12 @@ public class Advokat extends OpstiDomenskiObjkat {
     private String korisnickoIme;
     private String lozinka;
     private Prebivaliste prebivaliste;
-    
+    private Arhiva arhiva;
 
     public Advokat() {
     }
 
-    public Advokat(String advokatID, String jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, String korisnickoIme, String lozinka, Prebivaliste prebivaliste) {
+    public Advokat(String advokatID, int jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, String korisnickoIme, String lozinka, Prebivaliste prebivaliste, Arhiva arhiva) {
         this.advokatID = advokatID;
         this.jmbg = jmbg;
         this.ime = ime;
@@ -37,19 +39,24 @@ public class Advokat extends OpstiDomenskiObjkat {
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
         this.prebivaliste = prebivaliste;
+        this.arhiva = arhiva;
     }
 
- 
+    public Arhiva getArhiva() {
+        return arhiva;
+    }
 
-    
+    public void setArhiva(Arhiva arhiva) {
+        this.arhiva = arhiva;
+    }
 
-   
+  
 
-    public String getJmbg() {
+    public int getJmbg() {
         return jmbg;
     }
 
-    public void setJmbg(String jmbg) {
+    public void setJmbg(int jmbg) {
         this.jmbg = jmbg;
     }
 
@@ -124,7 +131,7 @@ public class Advokat extends OpstiDomenskiObjkat {
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s'", advokatID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, korisnickoIme, lozinka, prebivaliste.getPrebivalisteID());
+        return String.format("'%s','%d','%s','%s','%s','%s','%s','%s','%s','%s','%s'", advokatID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, korisnickoIme, lozinka, prebivaliste.getPrebivalisteID(),arhiva.getArhivaID());
     }
 
     @Override

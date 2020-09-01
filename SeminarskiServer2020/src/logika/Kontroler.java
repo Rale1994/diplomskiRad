@@ -5,6 +5,11 @@
  */
 package logika;
 
+import domen.Advokat;
+import exception.ServerskiException;
+import java.util.ArrayList;
+import so.SOUlogujAdvokata;
+
 /**
  *
  * @author Rados
@@ -21,6 +26,13 @@ public class Kontroler {
             instanca = new Kontroler();
         }
         return instanca;
+    }
+
+    public Advokat uloguj(Advokat advokat) throws ServerskiException {
+        SOUlogujAdvokata so = new SOUlogujAdvokata();
+        so.setParametar(advokat);
+        so.izvrsiOperaciju();
+        return so.getAdvokat();
     }
 
 }

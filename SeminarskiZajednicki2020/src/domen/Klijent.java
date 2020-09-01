@@ -5,14 +5,16 @@
  */
 package domen;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rados
  */
-public class Klijent extends OpstiDomenskiObjkat {
+public class Klijent extends OpstiDomenskiObjkat implements Serializable{
 
     private String klijentID;
-    private String jmbg;
+    private int jmbg;
     private String ime;
     private String prezime;
     private String ulica;
@@ -23,7 +25,7 @@ public class Klijent extends OpstiDomenskiObjkat {
     public Klijent() {
     }
 
-    public Klijent(String klijentID, String jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, Prebivaliste prebivaliste) {
+    public Klijent(String klijentID, int jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, Prebivaliste prebivaliste) {
         this.klijentID = klijentID;
         this.jmbg = jmbg;
         this.ime = ime;
@@ -33,6 +35,8 @@ public class Klijent extends OpstiDomenskiObjkat {
         this.kontaktTelefon = kontaktTelefon;
         this.prebivaliste = prebivaliste;
     }
+
+  
 
   
 
@@ -52,15 +56,15 @@ public class Klijent extends OpstiDomenskiObjkat {
         this.klijentID = klijentID;
     }
 
- 
-
-    public String getJmbg() {
+    public int getJmbg() {
         return jmbg;
     }
 
-    public void setJmbg(String jmbg) {
+    public void setJmbg(int jmbg) {
         this.jmbg = jmbg;
     }
+
+ 
 
     public String getIme() {
         return ime;
@@ -109,7 +113,7 @@ public class Klijent extends OpstiDomenskiObjkat {
 
     @Override
     public String vratiParametre() {
-        return String.format("'%d','%s', '%s', '%s', '%s', '%s', '%s', '%d'", klijentID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, prebivaliste.getPrebivalisteID());
+        return String.format("'%s','%d', '%s', '%s', '%s', '%s', '%s', '%d'", klijentID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, prebivaliste.getPrebivalisteID());
     }
 
     @Override

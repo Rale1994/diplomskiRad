@@ -5,6 +5,7 @@
  */
 package domen;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @author Rados
  */
-public class Arhiva extends OpstiDomenskiObjkat {
+public class Arhiva extends OpstiDomenskiObjkat implements Serializable{
 
     private Advokat advokat;
     private String sertifikatID;

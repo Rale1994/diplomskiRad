@@ -5,11 +5,13 @@
  */
 package domen;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rados
  */
-public abstract class OpstiDomenskiObjkat {
+public abstract class OpstiDomenskiObjkat implements Serializable {
 
     public abstract String vratiImeTabele();
 

@@ -6,6 +6,13 @@
 package logika;
 
 import domen.Advokat;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import komunikacija.KomunikacijaSaServerom;
+import op.Operacije;
+import transfer.KlijentskiZahtev;
+import transfer.ServerskiOdgovor;
 
 /**
  *
@@ -25,9 +32,27 @@ public class KontrolerKlijent {
         return instanca;
     }
 
-    public Advokat ulogujuAdvokata(String korisnickoIme, String lozinka) {
-        Advokat advokat = new Advokat(null, null, null, null, null, null, null, korisnickoIme, lozinka, null);
-        return advokat;
+    private Object posaljiZahtev(int operacija, Object parametar) throws Exception {
+
+        KlijentskiZahtev kz = new KlijentskiZahtev();
+        kz.setOperacija(operacija);
+        kz.setParametar(parametar);
+        KomunikacijaSaServerom.getInstanca().posaljiZahtev(kz);
+        ServerskiOdgovor so = KomunikacijaSaServerom.getInstanca().primiOdgovor();
+        if (so.getUspesnost() == 1) {
+            return so.getOdgovor();
+        } else {
+            Exception e = so.getException();
+            throw e;
+        }
+    }
+
+    public Advokat ulogujuAdvokata(String korisnickoIme, String lozinka) throws Exception {
+        Advokat advokat = new Advokat();
+        advokat.setKorisnickoIme(korisnickoIme);
+        advokat.setLozinka(lozinka);
+        Advokat ulogova = (Advokat) posaljiZahtev(Operacije.ULOGUJ, advokat);
+        return ulogova;
     }
 
 }

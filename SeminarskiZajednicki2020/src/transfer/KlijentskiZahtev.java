@@ -5,11 +5,13 @@
  */
 package transfer;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rados
  */
-public class KlijentskiZahtev {
+public class KlijentskiZahtev implements Serializable{
     
 
     private int operacija;

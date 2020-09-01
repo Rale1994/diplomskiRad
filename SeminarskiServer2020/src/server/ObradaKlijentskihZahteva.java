@@ -5,6 +5,8 @@
  */
 package server;
 
+import domen.Advokat;
+import exception.ServerskiException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -12,6 +14,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import logika.Kontroler;
+import op.Operacije;
 import transfer.KlijentskiZahtev;
 import transfer.ServerskiOdgovor;
 
@@ -41,12 +45,19 @@ public class ObradaKlijentskihZahteva extends Thread {
                 KlijentskiZahtev kz = (KlijentskiZahtev) in.readUnshared();
                 ServerskiOdgovor so = new ServerskiOdgovor();
                 switch (kz.getOperacija()) {
+                    case Operacije.ULOGUJ:
+                        Advokat advokat = (Advokat) kz.getParametar();
+                        Advokat ulogovaniAdvokat = Kontroler.getInstanca().uloguj(advokat);
+                        so.setOdgovor(advokat);
+                        break;
 
                 }
             }
         } catch (IOException ex) {
             Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ServerskiException ex) {
             Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

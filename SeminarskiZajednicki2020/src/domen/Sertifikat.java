@@ -5,11 +5,13 @@
  */
 package domen;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rados
  */
-public class Sertifikat extends OpstiDomenskiObjkat {
+public class Sertifikat extends OpstiDomenskiObjkat implements Serializable {
 
     private String sertifikatID;
     private String nazivSertifikata;

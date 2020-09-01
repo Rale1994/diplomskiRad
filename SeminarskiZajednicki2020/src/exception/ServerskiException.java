@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package op;
+package exception;
 
 /**
  *
  * @author Rados
  */
-public class Operacije {
+public class ServerskiException extends Exception{
 
-    public static final int ULOGUJ = 1;
+    public ServerskiException(String message) {
+        super(message);
+    }
+    
 }

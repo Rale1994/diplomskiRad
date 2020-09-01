@@ -21,13 +21,16 @@ import logika.KontrolerKlijent;
  * @author Rados
  */
 public class Login extends javax.swing.JFrame {
+
     private Advokat advokat;
+
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,15 +114,24 @@ public class Login extends javax.swing.JFrame {
         String korisnickoIme = txtKorisnickoIme.getText();
         char[] lozinka1 = txtLozinka.getPassword();
         String lozinka = String.copyValueOf(lozinka1);
-        if(korisnickoIme.isEmpty()){
+        if (korisnickoIme.isEmpty()) {
             txtKorisnickoIme.setBorder(new LineBorder(Color.red));
         }
-        if(lozinka.isEmpty()){
+        if (lozinka.isEmpty()) {
             txtLozinka.setBorder(new LineBorder(Color.RED));
         }
-        if(!korisnickoIme.isEmpty() && !lozinka.isEmpty()){
-            advokat= KontrolerKlijent.getInstanca().ulogujuAdvokata(korisnickoIme, lozinka);
-        
+        if (!korisnickoIme.isEmpty() && !lozinka.isEmpty()) {
+            try {
+                advokat = KontrolerKlijent.getInstanca().ulogujuAdvokata(korisnickoIme, lozinka);
+                if (advokat != null) {
+                    GlavnaForma gf = new GlavnaForma();
+                    gf.setVisible(true);
+                    this.dispose();
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
     }//GEN-LAST:event_btnPrijaviSeActionPerformed
 

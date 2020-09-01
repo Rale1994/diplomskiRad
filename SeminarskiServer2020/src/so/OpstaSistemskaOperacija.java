@@ -6,6 +6,7 @@
 package so;
 
 import db.DBBroker;
+import exception.ServerskiException;
 
 /**
  *
@@ -16,27 +17,48 @@ public abstract class OpstaSistemskaOperacija {
     protected DBBroker db;
 
     public OpstaSistemskaOperacija() {
-        db = new DBBroker();
+        this.db = new DBBroker();
     }
 
-    synchronized public void izvrsiOperaciju() {
+        synchronized public void izvrsiOperaciju() throws ServerskiException {
         otvoriKonekciju();
-        izvrsiKonkretnuOperaciju();
-        potvrdiTransakciju();
-        
-        
+        try {
+            izvrsiKonkretnuOperaciju();
+            potvrdiTransakciju();
+        } catch (ServerskiException e) {
+            ponistiTranskaciju();
+            throw e;
+        } finally {
+            zatvoriKonekciju();
+        }
+
     }
-    
-    
 
-    private void otvoriKonekciju() {
-        db.otvoriKonekciju();
-    }
+    protected abstract void izvrsiKonkretnuOperaciju() throws ServerskiException;
 
-    protected abstract void izvrsiKonkretnuOperaciju();
+    protected abstract void izvrsiValidaciju();
 
-    private void potvrdiTransakciju() {
+    private void potvrdiTransakciju() throws ServerskiException {
         db.commit();
     }
 
+    private void ponistiTranskaciju() throws ServerskiException {
+        db.rollback();
+    }
+
+    private void otvoriKonekciju() throws ServerskiException {
+        db.otvoriKonekciju();
+    }
+
+    private void zatvoriKonekciju() throws ServerskiException {
+        db.zatvoriKonekciju();
+    }
+
+    public DBBroker getDb() {
+        return db;
+    }
+
+    public void setDb(DBBroker db) {
+        this.db = db;
+    }
 }

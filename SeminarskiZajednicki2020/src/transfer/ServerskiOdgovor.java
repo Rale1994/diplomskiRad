@@ -5,28 +5,27 @@
  */
 package transfer;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rados
  */
-public class ServerskiOdgovor {
+public class ServerskiOdgovor implements Serializable{
+
     private Object odgovor;
-    private String poruka;
+    private int uspesnost;
+    private Exception exception;
 
     public ServerskiOdgovor() {
     }
 
-    public ServerskiOdgovor(Object odgovor, String poruka) {
-        this.odgovor = odgovor;
-        this.poruka = poruka;
+    public int getUspesnost() {
+        return uspesnost;
     }
 
-    public String getPoruka() {
-        return poruka;
-    }
-
-    public void setPoruka(String poruka) {
-        this.poruka = poruka;
+    public void setUspesnost(int uspesnost) {
+        this.uspesnost = uspesnost;
     }
 
     public Object getOdgovor() {
@@ -35,6 +34,14 @@ public class ServerskiOdgovor {
 
     public void setOdgovor(Object odgovor) {
         this.odgovor = odgovor;
+    }
+
+    public Exception getException() {
+        return exception;
+    }
+
+    public void setException(Exception exception) {
+        this.exception = exception;
     }
 
 }
