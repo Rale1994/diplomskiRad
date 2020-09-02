@@ -19,7 +19,7 @@ public abstract class OpstiDomenskiObjkat implements Serializable {
     
     public abstract  String vratiPk();
     
-    public abstract String vratiVrednostPK();
+    public abstract int vratiVrednostPK();
     
     public abstract String vratiSlozenPK();
 

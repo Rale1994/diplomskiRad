@@ -13,20 +13,20 @@ import java.util.Date;
  *
  * @author Rados
  */
-public class Arhiva extends OpstiDomenskiObjkat implements Serializable{
+public class Arhiva extends OpstiDomenskiObjkat implements Serializable {
 
+    private int arhivaID;
+    private Sertifikat sertifikatID;
     private Advokat advokat;
-    private String sertifikatID;
-    private String arhivaID;
     private Date datumDobijanjaSertifikata;
 
     public Arhiva() {
     }
 
-    public Arhiva(Advokat advokat, String sertifikatID, String arhivaID, Date datumDobijanjaSertifikata) {
-        this.advokat = advokat;
-        this.sertifikatID = sertifikatID;
+    public Arhiva(int arhivaID, Sertifikat sertifikatID, Advokat advokat, Date datumDobijanjaSertifikata) {
         this.arhivaID = arhivaID;
+        this.sertifikatID = sertifikatID;
+        this.advokat = advokat;
         this.datumDobijanjaSertifikata = datumDobijanjaSertifikata;
     }
 
@@ -48,21 +48,21 @@ public class Arhiva extends OpstiDomenskiObjkat implements Serializable{
         this.advokat = advokat;
     }
 
-    public String getSertifikatID() {
+    public Sertifikat getSertifikatID() {
         return sertifikatID;
     }
 
-    public void setSertifikatID(String sertifikatID) {
+    public void setSertifikatID(Sertifikat sertifikatID) {
         this.sertifikatID = sertifikatID;
     }
 
-    
+  
 
-    public String getArhivaID() {
+    public int getArhivaID() {
         return arhivaID;
     }
 
-    public void setArhivaID(String arhivaID) {
+    public void setArhivaID(int arhivaID) {
         this.arhivaID = arhivaID;
     }
 
@@ -75,11 +75,11 @@ public class Arhiva extends OpstiDomenskiObjkat implements Serializable{
     public String vratiParametre() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String datum = sdf.format(datumDobijanjaSertifikata);
-        return String.format("'%s','%s','%s','%s'", advokat.getAdvokatID(), sertifikatID, arhivaID, datum);
+        return String.format("'%d','%d','%d','%s'", advokat.getAdvokatID(), sertifikatID, arhivaID, datum);
     }
 
     @Override
-    public String vratiVrednostPK() {
+    public int vratiVrednostPK() {
         return arhivaID;
     }
 

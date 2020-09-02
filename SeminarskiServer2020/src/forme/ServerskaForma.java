@@ -5,6 +5,7 @@
  */
 package forme;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import server.PokretanjeServera;
 
@@ -22,6 +23,11 @@ public class ServerskaForma extends javax.swing.JFrame {
      */
     public ServerskaForma() {
         initComponents();
+        Toolkit tk=Toolkit.getDefaultToolkit();
+        int xsize=(int) tk.getScreenSize().getWidth();
+        int ysize=(int) tk.getScreenSize().getHeight();
+        this.setSize(xsize,ysize);
+        
     }
 
     /**

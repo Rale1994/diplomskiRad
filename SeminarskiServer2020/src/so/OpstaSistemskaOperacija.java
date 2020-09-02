@@ -23,6 +23,7 @@ public abstract class OpstaSistemskaOperacija {
         synchronized public void izvrsiOperaciju() throws ServerskiException {
         otvoriKonekciju();
         try {
+            izvrsiValidaciju();
             izvrsiKonkretnuOperaciju();
             potvrdiTransakciju();
         } catch (ServerskiException e) {

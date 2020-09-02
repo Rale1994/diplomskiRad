@@ -6,6 +6,7 @@
 package so;
 
 import domen.Advokat;
+import domen.OpstiDomenskiObjkat;
 import exception.ServerskiException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,21 +20,24 @@ import logika.Kontroler;
  */
 public class SOUlogujAdvokata extends OpstaSistemskaOperacija {
 
+    private OpstiDomenskiObjkat od;
     private Advokat advokat;
     private Advokat parametar;
 
     @Override
-    protected void izvrsiKonkretnuOperaciju()throws ServerskiException {
+    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
         try {
-            advokat =db.ulogujAdvokata(parametar);
+            advokat = db.ulogujAdvokata(parametar);
+            
         } catch (SQLException ex) {
-            Logger.getLogger(SOUlogujAdvokata.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new ServerskiException((ex.getMessage()));
         }
     }
 
     @Override
     protected void izvrsiValidaciju() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TODO validacija
     }
 
     public Advokat getAdvokat() {

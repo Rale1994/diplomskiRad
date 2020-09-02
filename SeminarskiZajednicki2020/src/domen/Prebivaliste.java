@@ -13,18 +13,20 @@ import java.io.Serializable;
  */
 public class Prebivaliste extends OpstiDomenskiObjkat implements Serializable{
 
-    private String prebivalisteID;
+    private int prebivalisteID;
     private String postanskiBroj;
     private String naziv;
 
     public Prebivaliste() {
     }
 
-    public Prebivaliste(String prebivalisteID, String postanskiBroj, String naziv) {
+    public Prebivaliste(int prebivalisteID, String postanskiBroj, String naziv) {
         this.prebivalisteID = prebivalisteID;
         this.postanskiBroj = postanskiBroj;
         this.naziv = naziv;
     }
+
+    
 
   
 
@@ -36,13 +38,15 @@ public class Prebivaliste extends OpstiDomenskiObjkat implements Serializable{
         this.naziv = naziv;
     }
 
-    public String getPrebivalisteID() {
+    public int getPrebivalisteID() {
         return prebivalisteID;
     }
 
-    public void setPrebivalisteID(String prebivalisteID) {
+    public void setPrebivalisteID(int prebivalisteID) {
         this.prebivalisteID = prebivalisteID;
     }
+
+   
 
     public String getPostanskiBroj() {
         return postanskiBroj;
@@ -66,11 +70,11 @@ public class Prebivaliste extends OpstiDomenskiObjkat implements Serializable{
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s', '%s', '%s'", prebivalisteID, postanskiBroj, naziv);
+        return String.format("'%d', '%s', '%s'", prebivalisteID, postanskiBroj, naziv);
     }
 
     @Override
-    public String vratiVrednostPK() {
+    public int vratiVrednostPK() {
         return prebivalisteID;
     }
 

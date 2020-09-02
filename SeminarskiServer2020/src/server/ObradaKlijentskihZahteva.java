@@ -48,10 +48,12 @@ public class ObradaKlijentskihZahteva extends Thread {
                     case Operacije.ULOGUJ:
                         Advokat advokat = (Advokat) kz.getParametar();
                         Advokat ulogovaniAdvokat = Kontroler.getInstanca().uloguj(advokat);
-                        so.setOdgovor(advokat);
+                        so.setOdgovor(ulogovaniAdvokat);
+                        so.setUspesnost(1);
                         break;
 
                 }
+                out.writeObject(so);
             }
         } catch (IOException ex) {
             Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);

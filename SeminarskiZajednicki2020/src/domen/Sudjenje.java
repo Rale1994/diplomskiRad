@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
 
-    private String sudjenjeID;
+    private int sudjenjeID;
     private Date datum;
     private int duzinaTrajanja;
     private PredmetSudjenja predmetSudjenja;
@@ -25,7 +25,7 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
     public Sudjenje() {
     }
 
-    public Sudjenje(String sudjenjeID, Date datum, int duzinaTrajanja, PredmetSudjenja predmetSudjenja, Advokat advokat, Klijent klijent) {
+    public Sudjenje(int sudjenjeID, Date datum, int duzinaTrajanja, PredmetSudjenja predmetSudjenja, Advokat advokat, Klijent klijent) {
         this.sudjenjeID = sudjenjeID;
         this.datum = datum;
         this.duzinaTrajanja = duzinaTrajanja;
@@ -33,6 +33,8 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
         this.advokat = advokat;
         this.klijent = klijent;
     }
+
+   
 
    
 
@@ -60,13 +62,15 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
         this.klijent = klijent;
     }
 
-    public String getSudjenjeID() {
+    public int getSudjenjeID() {
         return sudjenjeID;
     }
 
-    public void setSudjenjeID(String sudjenjeID) {
+    public void setSudjenjeID(int sudjenjeID) {
         this.sudjenjeID = sudjenjeID;
     }
+
+   
 
     
 
@@ -95,11 +99,11 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
     public String vratiParametre() {
         SimpleDateFormat sdf= new SimpleDateFormat("dd.MM.yyyy");
         String datums=sdf.format(datum);
-        return String.format("'%s', '%s', '%d', '%s', '%s', '%s'", sudjenjeID, datums, duzinaTrajanja, predmetSudjenja.getPredmetSudjenjaID(), advokat.getAdvokatID(), klijent.getKlijentID());
+        return String.format("'%d', '%s', '%d', '%s', '%s', '%s'", sudjenjeID, datums, duzinaTrajanja, predmetSudjenja.getPredmetSudjenjaID(), advokat.getAdvokatID(), klijent.getKlijentID());
     }
 
     @Override
-    public String vratiVrednostPK() {
+    public int vratiVrednostPK() {
         return sudjenjeID;
     }
 

@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class Advokat extends OpstiDomenskiObjkat implements Serializable {
 
-    private String advokatID;
+    private int advokatID;
     private int jmbg;
     private String ime;
     private String prezime;
@@ -28,7 +28,7 @@ public class Advokat extends OpstiDomenskiObjkat implements Serializable {
     public Advokat() {
     }
 
-    public Advokat(String advokatID, int jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, String korisnickoIme, String lozinka, Prebivaliste prebivaliste, Arhiva arhiva) {
+    public Advokat(int advokatID, int jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, String korisnickoIme, String lozinka, Prebivaliste prebivaliste, Arhiva arhiva) {
         this.advokatID = advokatID;
         this.jmbg = jmbg;
         this.ime = ime;
@@ -41,6 +41,8 @@ public class Advokat extends OpstiDomenskiObjkat implements Serializable {
         this.prebivaliste = prebivaliste;
         this.arhiva = arhiva;
     }
+
+  
 
     public Arhiva getArhiva() {
         return arhiva;
@@ -131,7 +133,7 @@ public class Advokat extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s','%d','%s','%s','%s','%s','%s','%s','%s','%s','%s'", advokatID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, korisnickoIme, lozinka, prebivaliste.getPrebivalisteID(),arhiva.getArhivaID());
+        return String.format("'%d','%d','%s','%s','%s','%s','%s','%s','%s','%s','%s'", advokatID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, korisnickoIme, lozinka, prebivaliste.getPrebivalisteID(),arhiva.getArhivaID());
     }
 
     @Override
@@ -140,7 +142,7 @@ public class Advokat extends OpstiDomenskiObjkat implements Serializable {
     }
 
     @Override
-    public String vratiVrednostPK() {
+    public int vratiVrednostPK() {
         return advokatID;
     }
 
@@ -149,12 +151,14 @@ public class Advokat extends OpstiDomenskiObjkat implements Serializable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public String getAdvokatID() {
+    public int getAdvokatID() {
         return advokatID;
     }
 
-    public void setAdvokatID(String advokatID) {
+    public void setAdvokatID(int advokatID) {
         this.advokatID = advokatID;
     }
+
+    
 
 }

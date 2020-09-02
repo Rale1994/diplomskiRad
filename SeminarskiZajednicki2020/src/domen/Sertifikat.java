@@ -13,16 +13,18 @@ import java.io.Serializable;
  */
 public class Sertifikat extends OpstiDomenskiObjkat implements Serializable {
 
-    private String sertifikatID;
+    private int sertifikatID;
     private String nazivSertifikata;
 
     public Sertifikat() {
     }
 
-    public Sertifikat(String sertifikatID, String nazivSertifikata) {
+    public Sertifikat(int sertifikatID, String nazivSertifikata) {
         this.sertifikatID = sertifikatID;
         this.nazivSertifikata = nazivSertifikata;
     }
+
+   
 
   
 
@@ -34,14 +36,15 @@ public class Sertifikat extends OpstiDomenskiObjkat implements Serializable {
         this.nazivSertifikata = nazivSertifikata;
     }
 
-    public String getSertifikatID() {
+    public int getSertifikatID() {
         return sertifikatID;
     }
 
-    public void setSertifikatID(String sertifikatID) {
+    public void setSertifikatID(int sertifikatID) {
         this.sertifikatID = sertifikatID;
     }
 
+ 
    
 
     @Override
@@ -56,11 +59,11 @@ public class Sertifikat extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s','%s'", sertifikatID, nazivSertifikata);
+        return String.format("'%d','%s'", sertifikatID, nazivSertifikata);
     }
 
     @Override
-    public String vratiVrednostPK() {
+    public int vratiVrednostPK() {
         return sertifikatID;
     }
 

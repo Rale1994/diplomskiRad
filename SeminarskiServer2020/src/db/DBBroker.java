@@ -7,6 +7,7 @@ package db;
 
 import domen.Advokat;
 import domen.Arhiva;
+import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
 import exception.ServerskiException;
 import java.io.IOException;
@@ -80,7 +81,7 @@ public class DBBroker {
         ps.setString(2, advokat.getLozinka());
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            advokat.setAdvokatID(rs.getString("AdvokatID"));
+            advokat.setAdvokatID(rs.getInt("AdvokatID"));
             advokat.setJmbg(rs.getInt("JMBG"));
             advokat.setIme(rs.getString("Ime"));
             advokat.setPrezime(rs.getString("Prezime"));
@@ -91,10 +92,10 @@ public class DBBroker {
             advokat.setLozinka(rs.getString("Lozinka"));
 
             Prebivaliste prebivaliste = new Prebivaliste();
-            prebivaliste.setPrebivalisteID(rs.getString("PrebivalisteID"));
+            prebivaliste.setPrebivalisteID(rs.getInt("PrebivalisteID"));
 
             Arhiva arhiva = new Arhiva();
-            arhiva.setArhivaID(rs.getString("ArhivaID"));
+            arhiva.setArhivaID(rs.getInt("ArhivaID"));
 
             advokat.setPrebivaliste(prebivaliste);
             advokat.setArhiva(arhiva);

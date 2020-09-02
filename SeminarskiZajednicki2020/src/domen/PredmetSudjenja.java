@@ -13,16 +13,17 @@ import java.io.Serializable;
  */
 public class PredmetSudjenja extends OpstiDomenskiObjkat implements Serializable {
 
-    private String predmetSudjenjaID;
+    private int predmetSudjenjaID;
     private String nazivPredmetSudjenja;
 
     public PredmetSudjenja() {
     }
 
-    public PredmetSudjenja(String predmetSudjenjaID, String nazivPredmetSudjenja) {
+    public PredmetSudjenja(int predmetSudjenjaID, String nazivPredmetSudjenja) {
         this.predmetSudjenjaID = predmetSudjenjaID;
         this.nazivPredmetSudjenja = nazivPredmetSudjenja;
     }
+
 
     
 
@@ -34,13 +35,15 @@ public class PredmetSudjenja extends OpstiDomenskiObjkat implements Serializable
         this.nazivPredmetSudjenja = nazivPredmetSudjenja;
     }
 
-    public String getPredmetSudjenjaID() {
+    public int getPredmetSudjenjaID() {
         return predmetSudjenjaID;
     }
 
-    public void setPredmetSudjenjaID(String predmetSudjenjaID) {
+    public void setPredmetSudjenjaID(int predmetSudjenjaID) {
         this.predmetSudjenjaID = predmetSudjenjaID;
     }
+
+   
 
     
 
@@ -51,11 +54,11 @@ public class PredmetSudjenja extends OpstiDomenskiObjkat implements Serializable
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s', '%s'", predmetSudjenjaID, nazivPredmetSudjenja);
+        return String.format("'%d', '%s'", predmetSudjenjaID, nazivPredmetSudjenja);
     }
 
     @Override
-    public String vratiVrednostPK() {
+    public int vratiVrednostPK() {
         return predmetSudjenjaID;
     }
 

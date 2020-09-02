@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class Klijent extends OpstiDomenskiObjkat implements Serializable{
 
-    private String klijentID;
+    private int klijentID;
     private int jmbg;
     private String ime;
     private String prezime;
@@ -25,7 +25,7 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable{
     public Klijent() {
     }
 
-    public Klijent(String klijentID, int jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, Prebivaliste prebivaliste) {
+    public Klijent(int klijentID, int jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, Prebivaliste prebivaliste) {
         this.klijentID = klijentID;
         this.jmbg = jmbg;
         this.ime = ime;
@@ -40,6 +40,8 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable{
 
   
 
+  
+
     public Prebivaliste getPrebivaliste() {
         return prebivaliste;
     }
@@ -48,13 +50,15 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable{
         this.prebivaliste = prebivaliste;
     }
 
-    public String getKlijentID() {
+    public int getKlijentID() {
         return klijentID;
     }
 
-    public void setKlijentID(String klijentID) {
+    public void setKlijentID(int klijentID) {
         this.klijentID = klijentID;
     }
+
+   
 
     public int getJmbg() {
         return jmbg;
@@ -113,11 +117,11 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable{
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s','%d', '%s', '%s', '%s', '%s', '%s', '%d'", klijentID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, prebivaliste.getPrebivalisteID());
+        return String.format("'%d','%d', '%s', '%s', '%s', '%s', '%s', '%d'", klijentID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, prebivaliste.getPrebivalisteID());
     }
 
     @Override
-    public String vratiVrednostPK() {
+    public int vratiVrednostPK() {
         return klijentID;
     }
 
