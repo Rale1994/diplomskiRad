@@ -6,6 +6,8 @@
 package domen;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,7 +16,7 @@ import java.io.Serializable;
 public class Klijent extends OpstiDomenskiObjkat implements Serializable{
 
     private int klijentID;
-    private int jmbg;
+    private String jmbg;
     private String ime;
     private String prezime;
     private String ulica;
@@ -25,7 +27,7 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable{
     public Klijent() {
     }
 
-    public Klijent(int klijentID, int jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, Prebivaliste prebivaliste) {
+    public Klijent(int klijentID, String jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, Prebivaliste prebivaliste) {
         this.klijentID = klijentID;
         this.jmbg = jmbg;
         this.ime = ime;
@@ -35,6 +37,8 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable{
         this.kontaktTelefon = kontaktTelefon;
         this.prebivaliste = prebivaliste;
     }
+
+  
 
   
 
@@ -58,15 +62,17 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable{
         this.klijentID = klijentID;
     }
 
-   
-
-    public int getJmbg() {
+    public String getJmbg() {
         return jmbg;
     }
 
-    public void setJmbg(int jmbg) {
+    public void setJmbg(String jmbg) {
         this.jmbg = jmbg;
     }
+
+   
+
+   
 
  
 
@@ -117,7 +123,7 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable{
 
     @Override
     public String vratiParametre() {
-        return String.format("'%d','%d', '%s', '%s', '%s', '%s', '%s', '%d'", klijentID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, prebivaliste.getPrebivalisteID());
+        return String.format("'%d','%s', '%s', '%s', '%s', '%s', '%s', '%d'", klijentID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, prebivaliste.getPrebivalisteID());
     }
 
     @Override
@@ -132,6 +138,11 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable{
 
     @Override
     public String vratiSlozenPK() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<OpstiDomenskiObjkat> RSuTabelu(ResultSet rs) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

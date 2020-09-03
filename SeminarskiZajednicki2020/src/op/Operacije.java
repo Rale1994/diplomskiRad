@@ -12,4 +12,7 @@ package op;
 public class Operacije {
 
     public static final int ULOGUJ = 1;
+    public static final int UCITAJ_ADVOKATE = 2;
+    public static final int UCITAJ_PREBIVALISTA = 3;
+    public static final int UNSEI_NOVOG_KLIJENTA = 4;
 }

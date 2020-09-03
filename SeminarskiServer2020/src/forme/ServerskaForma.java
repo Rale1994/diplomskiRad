@@ -23,10 +23,7 @@ public class ServerskaForma extends javax.swing.JFrame {
      */
     public ServerskaForma() {
         initComponents();
-        Toolkit tk=Toolkit.getDefaultToolkit();
-        int xsize=(int) tk.getScreenSize().getWidth();
-        int ysize=(int) tk.getScreenSize().getHeight();
-        this.setSize(xsize,ysize);
+       
         
     }
 
@@ -179,4 +176,6 @@ public class ServerskaForma extends javax.swing.JFrame {
     private javax.swing.JLabel lblPokretanjeServera;
     private javax.swing.JLabel lblZaustavi;
     // End of variables declaration//GEN-END:variables
+
+   
 }

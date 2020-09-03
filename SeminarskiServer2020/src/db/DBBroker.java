@@ -16,6 +16,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -82,7 +84,7 @@ public class DBBroker {
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             advokat.setAdvokatID(rs.getInt("AdvokatID"));
-            advokat.setJmbg(rs.getInt("JMBG"));
+            advokat.setJmbg(rs.getString("JMBG"));
             advokat.setIme(rs.getString("Ime"));
             advokat.setPrezime(rs.getString("Prezime"));
             advokat.setUlica(rs.getString("Ulica"));
@@ -104,5 +106,21 @@ public class DBBroker {
         return advokat;
 
     }
+
+    public ArrayList<OpstiDomenskiObjkat> vratiSveObjekte(OpstiDomenskiObjkat o) throws ServerskiException {
+        try {
+            String upit = "SELECT * FROM " + o.vratiImeTabele();
+            Statement s = konekcija.createStatement();
+            ResultSet rs = s.executeQuery(upit);
+            ArrayList<OpstiDomenskiObjkat> listaObjekata = o.RSuTabelu(rs);
+            s.close();
+            return listaObjekata;
+        } catch (SQLException ex) {
+            throw new ServerskiException("Server ne moze da prikaze podatke o " + o.getClass().getName() + "!");
+        }
+
+    }
+
+    
 
 }

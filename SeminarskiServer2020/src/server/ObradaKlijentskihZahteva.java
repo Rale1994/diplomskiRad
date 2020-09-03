@@ -6,6 +6,8 @@
 package server;
 
 import domen.Advokat;
+import domen.OpstiDomenskiObjkat;
+import domen.Prebivaliste;
 import exception.ServerskiException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -44,11 +46,23 @@ public class ObradaKlijentskihZahteva extends Thread {
             while (true) {
                 KlijentskiZahtev kz = (KlijentskiZahtev) in.readUnshared();
                 ServerskiOdgovor so = new ServerskiOdgovor();
+                ArrayList<Advokat> listaAdvokata;
+                ArrayList<Prebivaliste> listaPrebivalista;
                 switch (kz.getOperacija()) {
                     case Operacije.ULOGUJ:
                         Advokat advokat = (Advokat) kz.getParametar();
                         Advokat ulogovaniAdvokat = Kontroler.getInstanca().uloguj(advokat);
                         so.setOdgovor(ulogovaniAdvokat);
+                        so.setUspesnost(1);
+                        break;
+                    case Operacije.UCITAJ_ADVOKATE:
+                        listaAdvokata = Kontroler.getInstanca().sviAdvokati();
+                        so.setOdgovor(listaAdvokata);
+                        so.setUspesnost(1);
+                        break;
+                    case Operacije.UCITAJ_PREBIVALISTA:
+                        listaPrebivalista = Kontroler.getInstanca().svaPrebivalista();
+                        so.setOdgovor(listaPrebivalista);
                         so.setUspesnost(1);
                         break;
 

@@ -6,12 +6,17 @@
 package domen;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Rados
  */
-public class Prebivaliste extends OpstiDomenskiObjkat implements Serializable{
+public class Prebivaliste extends OpstiDomenskiObjkat implements Serializable {
 
     private int prebivalisteID;
     private String postanskiBroj;
@@ -25,10 +30,6 @@ public class Prebivaliste extends OpstiDomenskiObjkat implements Serializable{
         this.postanskiBroj = postanskiBroj;
         this.naziv = naziv;
     }
-
-    
-
-  
 
     public String getNaziv() {
         return naziv;
@@ -46,8 +47,6 @@ public class Prebivaliste extends OpstiDomenskiObjkat implements Serializable{
         this.prebivalisteID = prebivalisteID;
     }
 
-   
-
     public String getPostanskiBroj() {
         return postanskiBroj;
     }
@@ -55,8 +54,6 @@ public class Prebivaliste extends OpstiDomenskiObjkat implements Serializable{
     public void setPostanskiBroj(String postanskiBroj) {
         this.postanskiBroj = postanskiBroj;
     }
-
-
 
     @Override
     public String toString() {
@@ -86,6 +83,24 @@ public class Prebivaliste extends OpstiDomenskiObjkat implements Serializable{
     @Override
     public String vratiSlozenPK() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<OpstiDomenskiObjkat> RSuTabelu(ResultSet rs) {
+        ArrayList<OpstiDomenskiObjkat> ListaPrebivalista = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                prebivalisteID = rs.getInt("PrebivalisteID");
+                String postanskiBroj = rs.getString("PostanskiBroj");
+                String naziv = rs.getString("Naziv");
+
+                Prebivaliste prebivaliste = new Prebivaliste(prebivalisteID, postanskiBroj, naziv);
+                ListaPrebivalista.add(prebivaliste);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Prebivaliste.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ListaPrebivalista;
     }
 
 }

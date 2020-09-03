@@ -6,6 +6,8 @@
 package domen;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,5 +24,7 @@ public abstract class OpstiDomenskiObjkat implements Serializable {
     public abstract int vratiVrednostPK();
     
     public abstract String vratiSlozenPK();
+    
+    public abstract ArrayList<OpstiDomenskiObjkat> RSuTabelu(ResultSet rs);
 
 }

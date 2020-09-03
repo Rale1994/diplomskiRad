@@ -6,6 +6,8 @@
 package domen;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -69,6 +71,11 @@ public class PredmetSudjenja extends OpstiDomenskiObjkat implements Serializable
 
     @Override
     public String vratiSlozenPK() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<OpstiDomenskiObjkat> RSuTabelu(ResultSet rs) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

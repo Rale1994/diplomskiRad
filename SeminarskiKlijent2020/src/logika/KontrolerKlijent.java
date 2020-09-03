@@ -6,7 +6,10 @@
 package logika;
 
 import domen.Advokat;
+import domen.OpstiDomenskiObjkat;
+import domen.Prebivaliste;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import komunikacija.KomunikacijaSaServerom;
@@ -53,6 +56,16 @@ public class KontrolerKlijent {
         advokat.setLozinka(lozinka);
         Advokat ulogova = (Advokat) posaljiZahtev(Operacije.ULOGUJ, advokat);
         return ulogova;
+    }
+
+    public ArrayList<Advokat> sviAdvokati() throws Exception {
+        ArrayList<Advokat> listaAdvokata = (ArrayList<Advokat>) posaljiZahtev(Operacije.UCITAJ_ADVOKATE, null);
+        return listaAdvokata;
+    }
+
+    public ArrayList<Prebivaliste> svaPrebivalista() throws Exception {
+        ArrayList<Prebivaliste> listaPrebivalista = (ArrayList<Prebivaliste>) posaljiZahtev(Operacije.UCITAJ_PREBIVALISTA, null);
+        return listaPrebivalista;
     }
 
 }

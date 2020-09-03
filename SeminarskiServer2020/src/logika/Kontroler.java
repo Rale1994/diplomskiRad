@@ -5,9 +5,14 @@
  */
 package logika;
 
+import db.DBBroker;
 import domen.Advokat;
+import domen.OpstiDomenskiObjkat;
+import domen.Prebivaliste;
 import exception.ServerskiException;
 import java.util.ArrayList;
+import so.SOUcitajAdvokate;
+import so.SOUcitajPrebivalista;
 import so.SOUlogujAdvokata;
 
 /**
@@ -17,8 +22,10 @@ import so.SOUlogujAdvokata;
 public class Kontroler {
 
     private static Kontroler instanca;
+    DBBroker db;
 
     public Kontroler() {
+        db = new DBBroker();
     }
 
     public static Kontroler getInstanca() {
@@ -33,6 +40,18 @@ public class Kontroler {
         so.setParametar(advokat);
         so.izvrsiOperaciju();
         return so.getAdvokat();
+    }
+
+    public ArrayList<Advokat> sviAdvokati() throws ServerskiException {
+        SOUcitajAdvokate soa = new SOUcitajAdvokate();
+        soa.izvrsiOperaciju();
+        return soa.getAdvokati();
+    }
+
+    public ArrayList<Prebivaliste> svaPrebivalista() throws ServerskiException {
+        SOUcitajPrebivalista sop= new SOUcitajPrebivalista();
+        sop.izvrsiOperaciju();
+        return sop.getListaPrebivalista();
     }
 
 }
