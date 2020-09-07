@@ -5,55 +5,49 @@
  */
 package so;
 
-import domen.Advokat;
+import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import exception.ServerskiException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import logika.Kontroler;
 
 /**
  *
  * @author Rados
  */
-public class SOUlogujAdvokata extends OpstaSistemskaOperacija {
+public class SOSacuvajKlijenta extends OpstaSistemskaOperacija {
 
-    private OpstiDomenskiObjkat od;
-    private Advokat advokat;
-    private Advokat parametar;
+    private Klijent klijent;
+    private ArrayList<Klijent> klijenti;
+
+    public SOSacuvajKlijenta() {
+        klijenti = new ArrayList<>();
+    }
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
         try {
-            advokat = getDb().ulogujAdvokata(parametar);
+            klijent = (Klijent)db.sacuvajObjekat(klijent);
             
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            throw new ServerskiException((ex.getMessage()));
+            Logger.getLogger(SOSacuvajKlijenta.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     @Override
     protected void izvrsiValidaciju(OpstiDomenskiObjkat o) {
-        //TODO validacija
+    //
     }
 
-    public Advokat getAdvokat() {
-        return advokat;
+    public Klijent getKlijent() {
+        return klijent;
     }
 
-    public void setAdvokat(Advokat advokat) {
-        this.advokat = advokat;
-    }
-
-    public Advokat getParametar() {
-        return parametar;
-    }
-
-    public void setParametar(Advokat parametar) {
-        this.parametar = parametar;
+    public void setKlijent(Klijent klijent) {
+        this.klijent = klijent;
     }
 
 }

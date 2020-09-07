@@ -26,14 +26,14 @@ public class SOUcitajPrebivalista extends OpstaSistemskaOperacija {
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        ArrayList<OpstiDomenskiObjkat> listaP = db.vratiSveObjekte(new Prebivaliste());
+        ArrayList<OpstiDomenskiObjkat> listaP = getDb().vratiSveObjekte(new Prebivaliste());
         for (OpstiDomenskiObjkat prebivaliste : listaP) {
             listaPrebivalista.add((Prebivaliste) prebivaliste);
         }
     }
 
     @Override
-    protected void izvrsiValidaciju() {
+    protected void izvrsiValidaciju(OpstiDomenskiObjkat o) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -6,6 +6,7 @@
 package forme;
 
 import domen.Advokat;
+import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
 import java.util.ArrayList;
@@ -130,6 +131,11 @@ public class UnosNovogKlijenta extends javax.swing.JDialog {
         });
 
         btnOdustani.setText("Odustani");
+        btnOdustani.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOdustaniActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -201,23 +207,57 @@ public class UnosNovogKlijenta extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajActionPerformed
-        String ime = txtIme.getText();
-        String prezime = txtPrezime.getText();
+        try {
 
-        String JMBG = txtJMBG.getText();
-        if (txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty() || txtJMBG.getText().isEmpty() || txtUlica.getText().isEmpty() || txtBroj.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Sva polja moraju biti popunjena!");
-            return;
+            String ime = txtIme.getText();
+            String prezime = txtPrezime.getText();
+            String JMBG = txtJMBG.getText();
+            String ulica = txtUlica.getText();
+            String broj = txtBroj.getText();
+            String kontaktTelefon = txtKontaktTelefon.getText();
+            if (txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty() || txtJMBG.getText().isEmpty() || txtUlica.getText().isEmpty() || txtBroj.getText().isEmpty() || txtKontaktTelefon.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Sva polja moraju biti popunjena!");
+                return;
 
+            }
+            if (JMBG.length() > 13 || JMBG.length() < 13) {
+                JOptionPane.showMessageDialog(this, "Jedinstveni maticni broj mora biti u formatu od 13 cifara!");
+                return;
+            }
+
+            Prebivaliste prebivaliste = (Prebivaliste) comboPrebivaliste.getSelectedItem();
+            Advokat advokat = (Advokat) comboAdvokat.getSelectedItem();
+            int brojac = 0;
+            Klijent klijent = new Klijent(JMBG, ime, prezime, ulica, broj, kontaktTelefon, prebivaliste, advokat);
+
+            ArrayList<Klijent> listaKlijenata = KontrolerKlijent.getInstanca().sviKlijenti();
+            for (Klijent klijent1 : listaKlijenata) {
+                if (klijent.getJmbg().equals(klijent1.getJmbg())) {
+                    JOptionPane.showMessageDialog(this, "Klijent sa jmbg vec postoji!");
+                    return;
+                } else {
+                    brojac++;
+                }
+
+            }
+            if (listaKlijenata.size() == brojac) {
+                Klijent zaCuvanje = KontrolerKlijent.getInstanca().sacuvajKlijenta(klijent);
+                if (zaCuvanje != null) {
+                    JOptionPane.showMessageDialog(this, "Usepsno!");
+                    
+                } else {
+                    JOptionPane.showMessageDialog(this, "Neuspesno!!");
+                }
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(UnosNovogKlijenta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (JMBG.length() > 13 || JMBG.length() < 13) {
-            JOptionPane.showMessageDialog(this, "Jedinstveni maticni broj mora biti u formatu od 13 cifara!");
-            return;
-        }
-
-        String ulica = txtUlica.getText();
-        String broj = txtBroj.getText();
     }//GEN-LAST:event_btnSacuvajActionPerformed
+
+    private void btnOdustaniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdustaniActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnOdustaniActionPerformed
 
     /**
      * @param args the command line arguments

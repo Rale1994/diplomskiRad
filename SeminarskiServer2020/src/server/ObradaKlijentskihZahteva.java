@@ -6,6 +6,7 @@
 package server;
 
 import domen.Advokat;
+import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
 import exception.ServerskiException;
@@ -48,6 +49,8 @@ public class ObradaKlijentskihZahteva extends Thread {
                 ServerskiOdgovor so = new ServerskiOdgovor();
                 ArrayList<Advokat> listaAdvokata;
                 ArrayList<Prebivaliste> listaPrebivalista;
+                ArrayList<Klijent> listaKlijenata;
+                Klijent klijent;
                 switch (kz.getOperacija()) {
                     case Operacije.ULOGUJ:
                         Advokat advokat = (Advokat) kz.getParametar();
@@ -63,6 +66,23 @@ public class ObradaKlijentskihZahteva extends Thread {
                     case Operacije.UCITAJ_PREBIVALISTA:
                         listaPrebivalista = Kontroler.getInstanca().svaPrebivalista();
                         so.setOdgovor(listaPrebivalista);
+                        so.setUspesnost(1);
+                        break;
+                    case Operacije.UNSEI_NOVOG_KLIJENTA:
+                        klijent = (Klijent) kz.getParametar();
+                        Klijent klijentZaCuvanje = Kontroler.getInstanca().sacuvajKlijenta(klijent);
+                        so.setOdgovor(klijentZaCuvanje);
+                        so.setUspesnost(1);
+                        break;
+                    case Operacije.LISTA_ZA_PRETRAGU_KLIJENATA:
+                        String pretraga = (String) kz.getParametar();
+                        listaKlijenata = Kontroler.getInstanca().pretragaKlijenata(pretraga);
+                        so.setOdgovor(listaKlijenata);
+                        so.setUspesnost(1);
+                        break;
+                    case Operacije.LISTA_SVIH_KLIJENATA:
+                        listaKlijenata=Kontroler.getInstanca().listaSvihKlijenata();
+                        so.setOdgovor(listaKlijenata);
                         so.setUspesnost(1);
                         break;
 

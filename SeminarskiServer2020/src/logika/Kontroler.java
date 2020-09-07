@@ -7,10 +7,14 @@ package logika;
 
 import db.DBBroker;
 import domen.Advokat;
+import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
 import exception.ServerskiException;
 import java.util.ArrayList;
+import so.SOListaSvihKlijenata;
+import so.SOPretragaKlijenata;
+import so.SOSacuvajKlijenta;
 import so.SOUcitajAdvokate;
 import so.SOUcitajPrebivalista;
 import so.SOUlogujAdvokata;
@@ -49,9 +53,29 @@ public class Kontroler {
     }
 
     public ArrayList<Prebivaliste> svaPrebivalista() throws ServerskiException {
-        SOUcitajPrebivalista sop= new SOUcitajPrebivalista();
+        SOUcitajPrebivalista sop = new SOUcitajPrebivalista();
         sop.izvrsiOperaciju();
         return sop.getListaPrebivalista();
+    }
+
+    public Klijent sacuvajKlijenta(Klijent klijent) throws ServerskiException {
+        SOSacuvajKlijenta sok = new SOSacuvajKlijenta();
+        sok.setKlijent(klijent);
+        sok.izvrsiOperaciju();
+        return sok.getKlijent();
+    }
+
+    public ArrayList<Klijent> pretragaKlijenata(String pretraga) throws ServerskiException {
+        SOPretragaKlijenata sop = new SOPretragaKlijenata();
+        sop.setPretraga(pretraga);
+        sop.izvrsiOperaciju();
+        return sop.getKlijenti();
+    }
+
+    public ArrayList<Klijent> listaSvihKlijenata() throws ServerskiException {
+        SOListaSvihKlijenata sol = new SOListaSvihKlijenata();
+        sol.izvrsiOperaciju();
+        return sol.getListaKlijenata();
     }
 
 }

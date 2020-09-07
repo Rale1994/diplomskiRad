@@ -6,6 +6,7 @@
 package so;
 
 import db.DBBroker;
+import domen.OpstiDomenskiObjkat;
 import exception.ServerskiException;
 
 /**
@@ -15,15 +16,17 @@ import exception.ServerskiException;
 public abstract class OpstaSistemskaOperacija {
 
     protected DBBroker db;
+    private OpstiDomenskiObjkat o;
 
     public OpstaSistemskaOperacija() {
         this.db = new DBBroker();
+        this.o = o;
     }
 
-        synchronized public void izvrsiOperaciju() throws ServerskiException {
+    synchronized public void izvrsiOperaciju() throws ServerskiException {
         otvoriKonekciju();
         try {
-            izvrsiValidaciju();
+            izvrsiValidaciju(o);
             izvrsiKonkretnuOperaciju();
             potvrdiTransakciju();
         } catch (ServerskiException e) {
@@ -37,7 +40,7 @@ public abstract class OpstaSistemskaOperacija {
 
     protected abstract void izvrsiKonkretnuOperaciju() throws ServerskiException;
 
-    protected abstract void izvrsiValidaciju();
+    protected abstract void izvrsiValidaciju(OpstiDomenskiObjkat o);
 
     private void potvrdiTransakciju() throws ServerskiException {
         db.commit();
@@ -61,5 +64,13 @@ public abstract class OpstaSistemskaOperacija {
 
     public void setDb(DBBroker db) {
         this.db = db;
+    }
+
+    public OpstiDomenskiObjkat getO() {
+        return o;
+    }
+
+    public void setO(OpstiDomenskiObjkat o) {
+        this.o = o;
     }
 }

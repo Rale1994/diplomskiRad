@@ -25,14 +25,14 @@ public class SOUcitajAdvokate extends OpstaSistemskaOperacija {
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        ArrayList<OpstiDomenskiObjkat> lista = db.vratiSveObjekte(new Advokat());
+        ArrayList<OpstiDomenskiObjkat> lista = getDb().vratiSveObjekte(new Advokat());
         for (OpstiDomenskiObjkat opstiDomenskiObjkat : lista) {
             advokati.add((Advokat) opstiDomenskiObjkat);
         }
     }
 
     @Override
-    protected void izvrsiValidaciju() {
+    protected void izvrsiValidaciju(OpstiDomenskiObjkat o) {
         //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

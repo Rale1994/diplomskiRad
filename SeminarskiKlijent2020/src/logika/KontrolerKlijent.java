@@ -6,6 +6,7 @@
 package logika;
 
 import domen.Advokat;
+import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
 import java.io.IOException;
@@ -66,6 +67,21 @@ public class KontrolerKlijent {
     public ArrayList<Prebivaliste> svaPrebivalista() throws Exception {
         ArrayList<Prebivaliste> listaPrebivalista = (ArrayList<Prebivaliste>) posaljiZahtev(Operacije.UCITAJ_PREBIVALISTA, null);
         return listaPrebivalista;
+    }
+
+    public Klijent sacuvajKlijenta(Klijent klijent) throws Exception {
+        Klijent poslat = (Klijent) posaljiZahtev(Operacije.UNSEI_NOVOG_KLIJENTA, klijent);
+        return poslat;
+    }
+
+    public ArrayList<Klijent> listaZaPretragu(String pretraga) throws Exception {
+        ArrayList<Klijent> listaZaPretragu = (ArrayList<Klijent>) posaljiZahtev(Operacije.LISTA_ZA_PRETRAGU_KLIJENATA, pretraga);
+        return listaZaPretragu;
+    }
+
+    public ArrayList<Klijent> sviKlijenti() throws Exception {
+        ArrayList<Klijent> listaKlijenata = (ArrayList<Klijent>) posaljiZahtev(Operacije.LISTA_SVIH_KLIJENATA, null);
+        return listaKlijenata;
     }
 
 }

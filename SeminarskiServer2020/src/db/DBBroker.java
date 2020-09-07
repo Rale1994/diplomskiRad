@@ -7,6 +7,7 @@ package db;
 
 import domen.Advokat;
 import domen.Arhiva;
+import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
 import exception.ServerskiException;
@@ -121,6 +122,49 @@ public class DBBroker {
 
     }
 
-    
+    public OpstiDomenskiObjkat sacuvajObjekat(OpstiDomenskiObjkat o) throws SQLException {
+        String upit = String.format("INSERT INTO %s VALUES(%s)", o.vratiImeTabele(), o.vratiParametre());
+        Statement s = konekcija.createStatement();
+        s.executeUpdate(upit);
+        s.close();
+        return o;
+    }
+
+    public ArrayList<Klijent> pretragaKlijenata(String pretraga) throws SQLException {
+        ArrayList<Klijent> klijenti = new ArrayList<>();
+        String upit = "SELECT * FROM klijent k  join prebivaliste p on k.PrebivalisteID=p.PrebivalisteID join advokat a on k.AdvokatID=a.AdvokatID WHERE k.Ime LIKE '" + pretraga + "' OR k.Prezime LIKE '" + pretraga + "' OR k.JMBG LIKE'" + pretraga + "'";
+        Statement s = konekcija.createStatement();
+        ResultSet rs = s.executeQuery(upit);
+        /*ArrayList<OpstiDomenskiObjkat> lista = new Klijent().RSuTabelu(rs);
+        for (OpstiDomenskiObjkat opstiDomenskiObjkat : lista) {
+            Klijent kl = (Klijent) opstiDomenskiObjkat;
+            klijenti.add(kl);
+        }
+        s.close();
+        return klijenti;*/
+        while (rs.next()) {
+            int klijentId = rs.getInt("k.KlijentID");
+            String jmbg = rs.getString("k.JMBG");
+            String ime = rs.getString("k.Ime");
+            String prezime = rs.getString("k.Prezime");
+            String ulica = rs.getString("k.Ulica");
+            String broj = rs.getString("k.Broj");
+            String telefon = rs.getString("k.KontaktTelefon");
+
+            Prebivaliste prebivaliste = new Prebivaliste();
+            prebivaliste.setPrebivalisteID(rs.getInt("p.PrebivalisteID"));
+            prebivaliste.setNaziv(rs.getString("p.Naziv"));
+
+            Advokat advokat = new Advokat();
+            advokat.setAdvokatID(rs.getInt("a.AdvokatID"));
+            advokat.setIme(rs.getString("a.Ime"));
+            advokat.setPrezime(rs.getString("a.Prezime"));
+
+            Klijent k = new Klijent(klijentId, jmbg, ime, prezime, ulica, broj, telefon, prebivaliste, advokat);
+            klijenti.add(k);
+        }
+         s.close();
+        return klijenti;
+    }
 
 }
