@@ -9,6 +9,7 @@ import domen.Advokat;
 import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
+import exception.ServerskiException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -227,10 +228,16 @@ public class UnosNovogKlijenta extends javax.swing.JDialog {
 
             Prebivaliste prebivaliste = (Prebivaliste) comboPrebivaliste.getSelectedItem();
             Advokat advokat = (Advokat) comboAdvokat.getSelectedItem();
-            int brojac = 0;
+            //int brojac = 0;
             Klijent klijent = new Klijent(JMBG, ime, prezime, ulica, broj, kontaktTelefon, prebivaliste, advokat);
+            Klijent zaCuvanje = KontrolerKlijent.getInstanca().sacuvajKlijenta(klijent);
+            if (zaCuvanje != null) {
+                JOptionPane.showMessageDialog(this, "Usepsno sacuvano!");
 
-            ArrayList<Klijent> listaKlijenata = KontrolerKlijent.getInstanca().sviKlijenti();
+            } else {
+                JOptionPane.showMessageDialog(this, "Neuspesno sacuvano!");
+            }
+            /* ArrayList<Klijent> listaKlijenata = KontrolerKlijent.getInstanca().sviKlijenti();
             for (Klijent klijent1 : listaKlijenata) {
                 if (klijent.getJmbg().equals(klijent1.getJmbg())) {
                     JOptionPane.showMessageDialog(this, "Klijent sa jmbg vec postoji!");
@@ -248,8 +255,11 @@ public class UnosNovogKlijenta extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(this, "Neuspesno!!");
                 }
-            }
+            }*/
 
+        } catch (ServerskiException ex) {
+           JOptionPane.showMessageDialog(this, ""+ex.getMessage());
+           return;
         } catch (Exception ex) {
             Logger.getLogger(UnosNovogKlijenta.class.getName()).log(Level.SEVERE, null, ex);
         }

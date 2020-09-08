@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import transfer.ServerskiOdgovor;
 
 /**
  *
@@ -24,13 +25,15 @@ public class SOSacuvajKlijenta extends OpstaSistemskaOperacija {
 
     public SOSacuvajKlijenta() {
         klijenti = new ArrayList<>();
+        this.klijent = klijent;
     }
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
         try {
-            klijent = (Klijent)db.sacuvajObjekat(klijent);
-            
+
+            klijent = (Klijent) db.sacuvajObjekat(klijent);
+
         } catch (SQLException ex) {
             Logger.getLogger(SOSacuvajKlijenta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -38,8 +41,16 @@ public class SOSacuvajKlijenta extends OpstaSistemskaOperacija {
     }
 
     @Override
-    protected void izvrsiValidaciju(OpstiDomenskiObjkat o) {
-    //
+    protected void izvrsiValidaciju(OpstiDomenskiObjkat o) throws ServerskiException {
+        try {
+            OpstiDomenskiObjkat opb = db.vratiObjekat(new Klijent());
+            Klijent k = (Klijent) opb;
+            if (klijent.getJmbg().equals(k.getJmbg())) {
+               throw new ServerskiException("Klijent postoji");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SOSacuvajKlijenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public Klijent getKlijent() {

@@ -36,10 +36,6 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
         this.klijent = klijent;
     }
 
-   
-
-   
-
     public PredmetSudjenja getPredmetSudjenja() {
         return predmetSudjenja;
     }
@@ -71,10 +67,6 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
     public void setSudjenjeID(int sudjenjeID) {
         this.sudjenjeID = sudjenjeID;
     }
-
-   
-
-    
 
     public Date getDatum() {
         return datum;
@@ -121,6 +113,11 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public ArrayList<OpstiDomenskiObjkat> RSuTabelu(ResultSet rs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public OpstiDomenskiObjkat vratiObjekte(ResultSet rs) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

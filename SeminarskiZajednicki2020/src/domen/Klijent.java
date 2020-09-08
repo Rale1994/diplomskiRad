@@ -43,8 +43,9 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
         this.prebivaliste = prebivaliste;
         this.advokat = advokat;
     }
-     public Klijent(String jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, Prebivaliste prebivaliste, Advokat advokat) {
-        
+
+    public Klijent(String jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, Prebivaliste prebivaliste, Advokat advokat) {
+
         this.jmbg = jmbg;
         this.ime = ime;
         this.prezime = prezime;
@@ -168,11 +169,9 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
 
                 Prebivaliste prebivaliste = new Prebivaliste();
                 prebivaliste.setPrebivalisteID(rs.getInt("PrebivalisteID"));
-                
 
                 Advokat advokat = new Advokat();
                 advokat.setAdvokatID(rs.getInt("AdvokatID"));
-                
 
                 Klijent klijent = new Klijent(klijentId, jmbg, ime, prezime, ulica, broj, telefon, prebivaliste, advokat);
                 klijenti.add(klijent);
@@ -183,8 +182,6 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
         }
         return klijenti;
     }
-
-  
 
     @Override
     public boolean equals(Object obj) {
@@ -204,4 +201,30 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
         return true;
     }
 
+    @Override
+    public OpstiDomenskiObjkat vratiObjekte(ResultSet rs) {
+        Klijent klijent = null;
+        try {
+            while (rs.next()) {
+                int klijentId = rs.getInt("KlijentID");
+                String jmbg = rs.getString("JMBG");
+                String ime = rs.getString("Ime");
+                String prezime = rs.getString("Prezime");
+                String ulica = rs.getString("Ulica");
+                String broj = rs.getString("Broj");
+                String telefon = rs.getString("KontaktTelefon");
+
+                Prebivaliste prebivaliste = new Prebivaliste();
+                prebivaliste.setPrebivalisteID(rs.getInt("PrebivalisteID"));
+
+                Advokat advokat = new Advokat();
+                advokat.setAdvokatID(rs.getInt("AdvokatID"));
+
+                klijent = new Klijent(klijentId, jmbg, ime, prezime, ulica, broj, telefon, prebivaliste, advokat);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Klijent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return klijent;
+    }
 }

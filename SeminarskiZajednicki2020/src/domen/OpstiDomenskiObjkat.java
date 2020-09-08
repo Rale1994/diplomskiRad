@@ -18,13 +18,15 @@ public abstract class OpstiDomenskiObjkat implements Serializable {
     public abstract String vratiImeTabele();
 
     public abstract String vratiParametre();
-    
-    public abstract  String vratiPk();
-    
+
+    public abstract OpstiDomenskiObjkat vratiObjekte(ResultSet rs);
+
+    public abstract String vratiPk();
+
     public abstract int vratiVrednostPK();
-    
+
     public abstract String vratiSlozenPK();
-    
+
     public abstract ArrayList<OpstiDomenskiObjkat> RSuTabelu(ResultSet rs);
 
 }

@@ -163,8 +163,17 @@ public class DBBroker {
             Klijent k = new Klijent(klijentId, jmbg, ime, prezime, ulica, broj, telefon, prebivaliste, advokat);
             klijenti.add(k);
         }
-         s.close();
+        s.close();
         return klijenti;
+    }
+
+    public OpstiDomenskiObjkat vratiObjekat(OpstiDomenskiObjkat o) throws SQLException {
+        String upit = "SELECT * FROM " + o.vratiImeTabele();
+        Statement s = konekcija.createStatement();
+        ResultSet rs = s.executeQuery(upit);
+        OpstiDomenskiObjkat objekat = o.vratiObjekte(rs);
+        s.close();
+        return objekat;
     }
 
 }
