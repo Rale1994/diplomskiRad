@@ -42,6 +42,7 @@ public class PretragaKlijenata extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblKlijenti = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,22 +75,31 @@ public class PretragaKlijenata extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblKlijenti);
 
+        jButton1.setText("Izmeni podatke");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPretrazi)
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton2)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnPretrazi)
+                            .addGap(32, 32, 32)
+                            .addComponent(jButton2)))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -103,7 +113,9 @@ public class PretragaKlijenata extends javax.swing.JFrame {
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         pack();
@@ -113,16 +125,16 @@ public class PretragaKlijenata extends javax.swing.JFrame {
         try {
             String pretraga = txtPretraga.getText();
             if (txtPretraga.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this,"Morate uneti neki kriterijum pretrage!","Pretraga",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Morate uneti neki kriterijum pretrage!", "Pretraga", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-            ArrayList<Klijent> lista= KontrolerKlijent.getInstanca().listaZaPretragu(pretraga);
-            ModelTabeleKlijenti mtk= new ModelTabeleKlijenti(lista);
+            ArrayList<Klijent> lista = KontrolerKlijent.getInstanca().listaZaPretragu(pretraga);
+            ModelTabeleKlijenti mtk = new ModelTabeleKlijenti(lista);
             tblKlijenti.setModel(mtk);
         } catch (Exception ex) {
             Logger.getLogger(PretragaKlijenata.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btnPretraziActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -132,6 +144,28 @@ public class PretragaKlijenata extends javax.swing.JFrame {
             Logger.getLogger(PretragaKlijenata.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ModelTabeleKlijenti mtk = (ModelTabeleKlijenti) tblKlijenti.getModel();
+        int red = tblKlijenti.getSelectedRow();
+        if (red != -1) {
+            try {
+                ArrayList<Klijent> lista = mtk.getListaKlijenata();
+                Klijent k = lista.get(red);
+                IzmenaPodatakaOKlijentu izmena = new IzmenaPodatakaOKlijentu(this, k, true);
+                izmena.setKlijent(k);
+                izmena.setVisible(true);
+                izmena.pack();
+            } catch (Exception ex) {
+                Logger.getLogger(PretragaKlijenata.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Morate izabrati klijenta");
+            return;
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,6 +208,7 @@ public class PretragaKlijenata extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPretrazi;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -182,7 +217,7 @@ public class PretragaKlijenata extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void podesiTabelu() throws Exception {
-        ArrayList<Klijent> lisaKlijenata= KontrolerKlijent.getInstanca().sviKlijenti();
+        ArrayList<Klijent> lisaKlijenata = KontrolerKlijent.getInstanca().sviKlijenti();
         ModelTabeleKlijenti mtk = new ModelTabeleKlijenti(lisaKlijenata);
         tblKlijenti.setModel(mtk);
     }

@@ -28,5 +28,9 @@ public abstract class OpstiDomenskiObjkat implements Serializable {
     public abstract String vratiSlozenPK();
 
     public abstract ArrayList<OpstiDomenskiObjkat> RSuTabelu(ResultSet rs);
+    
+    public abstract String alijas();
+    
+    public abstract String update();
 
 }

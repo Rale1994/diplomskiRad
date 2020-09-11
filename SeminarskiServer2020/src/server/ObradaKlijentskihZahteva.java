@@ -56,38 +56,42 @@ public class ObradaKlijentskihZahteva extends Thread {
                         Advokat advokat = (Advokat) kz.getParametar();
                         Advokat ulogovaniAdvokat = Kontroler.getInstanca().uloguj(advokat);
                         so.setOdgovor(ulogovaniAdvokat);
-                        so.setUspesnost(1);
                         break;
                     case Operacije.UCITAJ_ADVOKATE:
                         listaAdvokata = Kontroler.getInstanca().sviAdvokati();
                         so.setOdgovor(listaAdvokata);
-                        so.setUspesnost(1);
                         break;
                     case Operacije.UCITAJ_PREBIVALISTA:
                         listaPrebivalista = Kontroler.getInstanca().svaPrebivalista();
                         so.setOdgovor(listaPrebivalista);
-                        so.setUspesnost(1);
                         break;
                     case Operacije.UNSEI_NOVOG_KLIJENTA:
                         klijent = (Klijent) kz.getParametar();
                         Klijent klijentZaCuvanje = Kontroler.getInstanca().sacuvajKlijenta(klijent);
                         so.setOdgovor(klijentZaCuvanje);
-                        so.setUspesnost(1);
+                        if (klijentZaCuvanje != null) {
+                            so.getPoruka();
+                        }
                         break;
                     case Operacije.LISTA_ZA_PRETRAGU_KLIJENATA:
                         String pretraga = (String) kz.getParametar();
                         listaKlijenata = Kontroler.getInstanca().pretragaKlijenata(pretraga);
                         so.setOdgovor(listaKlijenata);
-                        so.setUspesnost(1);
                         break;
                     case Operacije.LISTA_SVIH_KLIJENATA:
-                        listaKlijenata=Kontroler.getInstanca().listaSvihKlijenata();
+                        listaKlijenata = Kontroler.getInstanca().listaSvihKlijenata();
                         so.setOdgovor(listaKlijenata);
-                        so.setUspesnost(1);
+                        break;
+                    case Operacije.IZMENI_KLIJENTA:
+                        klijent = (Klijent) kz.getParametar();
+                        Klijent zaIzmenu = Kontroler.getInstanca().izmeniKlijenta(klijent);
+                        so.setOdgovor(klijent);
                         break;
 
                 }
+                so.setUspesnost(1);
                 out.writeObject(so);
+
             }
         } catch (IOException ex) {
             Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);

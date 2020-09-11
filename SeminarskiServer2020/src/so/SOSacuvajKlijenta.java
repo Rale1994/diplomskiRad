@@ -22,6 +22,7 @@ public class SOSacuvajKlijenta extends OpstaSistemskaOperacija {
 
     private Klijent klijent;
     private ArrayList<Klijent> klijenti;
+    ServerskiOdgovor so = new ServerskiOdgovor();
 
     public SOSacuvajKlijenta() {
         klijenti = new ArrayList<>();
@@ -32,7 +33,7 @@ public class SOSacuvajKlijenta extends OpstaSistemskaOperacija {
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
         try {
 
-            klijent = (Klijent) db.sacuvajObjekat(klijent);
+            klijent = (Klijent) getDb().sacuvajObjekat(klijent);
 
         } catch (SQLException ex) {
             Logger.getLogger(SOSacuvajKlijenta.class.getName()).log(Level.SEVERE, null, ex);
@@ -43,10 +44,10 @@ public class SOSacuvajKlijenta extends OpstaSistemskaOperacija {
     @Override
     protected void izvrsiValidaciju(OpstiDomenskiObjkat o) throws ServerskiException {
         try {
-            OpstiDomenskiObjkat opb = db.vratiObjekat(new Klijent());
+            OpstiDomenskiObjkat opb = getDb().vratiObjekat((Klijent)o);
             Klijent k = (Klijent) opb;
             if (klijent.getJmbg().equals(k.getJmbg())) {
-               throw new ServerskiException("Klijent postoji");
+                throw new ServerskiException("Klijent postoji!");
             }
         } catch (SQLException ex) {
             Logger.getLogger(SOSacuvajKlijenta.class.getName()).log(Level.SEVERE, null, ex);

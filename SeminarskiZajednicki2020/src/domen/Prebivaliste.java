@@ -108,4 +108,14 @@ public class Prebivaliste extends OpstiDomenskiObjkat implements Serializable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public String alijas() {
+        return "p";
+    }
+
+    @Override
+    public String update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

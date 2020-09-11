@@ -12,12 +12,14 @@ import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
 import exception.ServerskiException;
 import java.util.ArrayList;
+import so.SOIzmenaKlijenta;
 import so.SOListaSvihKlijenata;
 import so.SOPretragaKlijenata;
 import so.SOSacuvajKlijenta;
 import so.SOUcitajAdvokate;
 import so.SOUcitajPrebivalista;
 import so.SOUlogujAdvokata;
+import transfer.ServerskiOdgovor;
 
 /**
  *
@@ -76,6 +78,13 @@ public class Kontroler {
         SOListaSvihKlijenata sol = new SOListaSvihKlijenata();
         sol.izvrsiOperaciju();
         return sol.getListaKlijenata();
+    }
+
+    public Klijent izmeniKlijenta(Klijent klijent) throws ServerskiException {
+        SOIzmenaKlijenta soi= new SOIzmenaKlijenta();
+        soi.setKlijent(klijent);
+        soi.izvrsiOperaciju();
+        return soi.getKlijent();
     }
 
 }

@@ -11,11 +11,12 @@ import java.io.Serializable;
  *
  * @author Rados
  */
-public class ServerskiOdgovor implements Serializable{
+public class ServerskiOdgovor implements Serializable {
 
     private Object odgovor;
     private int uspesnost;
     private Exception exception;
+    private String poruka;
 
     public ServerskiOdgovor() {
     }
@@ -42,6 +43,14 @@ public class ServerskiOdgovor implements Serializable{
 
     public void setException(Exception exception) {
         this.exception = exception;
+    }
+
+    public String getPoruka() {
+        return poruka;
+    }
+
+    public void setPoruka(String poruka) {
+        this.poruka = poruka;
     }
 
 }

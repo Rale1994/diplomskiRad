@@ -5,8 +5,10 @@
  */
 package so;
 
+import domen.Advokat;
 import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
+import domen.Prebivaliste;
 import exception.ServerskiException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,21 +23,23 @@ public class SOPretragaKlijenata extends OpstaSistemskaOperacija {
 
     private ArrayList<Klijent> klijenti;
     private String pretraga;
+    OpstiDomenskiObjkat klijent;
+    OpstiDomenskiObjkat advokat;
+    OpstiDomenskiObjkat prebivaliste;
 
     public SOPretragaKlijenata() {
         klijenti = new ArrayList<>();
+        
     }
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
         try {
-            klijenti= getDb().pretragaKlijenata(pretraga);
+            klijenti = getDb().pretragaKlijenata(pretraga);
         } catch (SQLException ex) {
             Logger.getLogger(SOPretragaKlijenata.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
 
     @Override
     protected void izvrsiValidaciju(OpstiDomenskiObjkat o) {

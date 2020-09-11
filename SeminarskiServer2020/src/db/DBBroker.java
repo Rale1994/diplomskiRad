@@ -171,9 +171,22 @@ public class DBBroker {
         String upit = "SELECT * FROM " + o.vratiImeTabele();
         Statement s = konekcija.createStatement();
         ResultSet rs = s.executeQuery(upit);
-        OpstiDomenskiObjkat objekat = o.vratiObjekte(rs);
+        o = o.vratiObjekte(rs);
         s.close();
-        return objekat;
+        return o;
+    }
+
+    public OpstiDomenskiObjkat izmeniPodatke(OpstiDomenskiObjkat o) {
+        String upit = String.format("UPDATE %s SET %s WHERE %s = '%d'", o.vratiImeTabele(), o.update(), o.vratiPk(), o.vratiVrednostPK());
+        try {
+            Statement s = konekcija.createStatement();
+            s.executeUpdate(upit);
+            s.close();
+            return o;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

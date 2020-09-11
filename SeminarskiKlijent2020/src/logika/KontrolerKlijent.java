@@ -84,4 +84,9 @@ public class KontrolerKlijent {
         return listaKlijenata;
     }
 
+    public Klijent izmeniKlijenta(Klijent klijent) throws Exception {
+        Klijent izmenjen = (Klijent) posaljiZahtev(Operacije.IZMENI_KLIJENTA, klijent);
+        return izmenjen;
+    }
+
 }

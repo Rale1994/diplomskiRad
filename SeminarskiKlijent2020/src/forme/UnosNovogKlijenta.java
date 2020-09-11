@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import logika.KontrolerKlijent;
+import transfer.ServerskiOdgovor;
 
 /**
  *
@@ -27,7 +28,7 @@ public class UnosNovogKlijenta extends javax.swing.JDialog {
     /**
      * Creates new form UnosNovogKlijenta
      */
-    public UnosNovogKlijenta(java.awt.Frame parent, boolean modal) throws Exception {
+    public UnosNovogKlijenta(java.awt.Frame parent, boolean modal) throws ServerskiException, Exception {
         super(parent, modal);
         initComponents();
         comboAdvokati();
@@ -229,13 +230,15 @@ public class UnosNovogKlijenta extends javax.swing.JDialog {
             Prebivaliste prebivaliste = (Prebivaliste) comboPrebivaliste.getSelectedItem();
             Advokat advokat = (Advokat) comboAdvokat.getSelectedItem();
             //int brojac = 0;
+            String poruka;
             Klijent klijent = new Klijent(JMBG, ime, prezime, ulica, broj, kontaktTelefon, prebivaliste, advokat);
+
             Klijent zaCuvanje = KontrolerKlijent.getInstanca().sacuvajKlijenta(klijent);
             if (zaCuvanje != null) {
                 JOptionPane.showMessageDialog(this, "Usepsno sacuvano!");
 
             } else {
-                JOptionPane.showMessageDialog(this, "Neuspesno sacuvano!");
+                JOptionPane.showMessageDialog(this, "Neuspsseno");
             }
             /* ArrayList<Klijent> listaKlijenata = KontrolerKlijent.getInstanca().sviKlijenti();
             for (Klijent klijent1 : listaKlijenata) {
@@ -258,9 +261,9 @@ public class UnosNovogKlijenta extends javax.swing.JDialog {
             }*/
 
         } catch (ServerskiException ex) {
-           JOptionPane.showMessageDialog(this, ""+ex.getMessage());
-           return;
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         } catch (Exception ex) {
+
             Logger.getLogger(UnosNovogKlijenta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSacuvajActionPerformed

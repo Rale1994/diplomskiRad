@@ -20,7 +20,7 @@ public abstract class OpstaSistemskaOperacija {
 
     public OpstaSistemskaOperacija() {
         this.db = new DBBroker();
-        this.o = o;
+        this.o =o;
     }
 
     synchronized public void izvrsiOperaciju() throws ServerskiException {

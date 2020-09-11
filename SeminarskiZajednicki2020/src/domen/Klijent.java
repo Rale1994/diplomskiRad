@@ -227,4 +227,15 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
         }
         return klijent;
     }
+
+    @Override
+    public String alijas() {
+        return "k";
+    }
+
+    @Override
+    public String update() {
+        return String.format("Ime='%s',Prezime='%s',Ulica='%s', Broj='%s', KontaktTelefon='%s',PrebivalisteID='%d', AdvokatID='%d'", ime, prezime, ulica, broj, kontaktTelefon, prebivaliste.getPrebivalisteID(), advokat.getAdvokatID());
+    }
+
 }
