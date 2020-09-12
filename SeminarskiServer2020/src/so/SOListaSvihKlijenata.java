@@ -32,7 +32,8 @@ public class SOListaSvihKlijenata extends OpstaSistemskaOperacija {
     }
 
     @Override
-    protected void izvrsiValidaciju(OpstiDomenskiObjkat o) {
+    protected OpstiDomenskiObjkat izvrsiValidaciju(OpstiDomenskiObjkat o) {
+        return null;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -19,7 +19,7 @@ public abstract class OpstiDomenskiObjkat implements Serializable {
 
     public abstract String vratiParametre();
 
-    public abstract OpstiDomenskiObjkat vratiObjekte(ResultSet rs);
+    public abstract OpstiDomenskiObjkat vratiObjekat(ResultSet rs);
 
     public abstract String vratiPk();
 
@@ -27,10 +27,12 @@ public abstract class OpstiDomenskiObjkat implements Serializable {
 
     public abstract String vratiSlozenPK();
 
+    public abstract String vratiKriterijumPretrage();
+
     public abstract ArrayList<OpstiDomenskiObjkat> RSuTabelu(ResultSet rs);
-    
+
     public abstract String alijas();
-    
+
     public abstract String update();
 
 }

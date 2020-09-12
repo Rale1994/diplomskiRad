@@ -30,7 +30,8 @@ public class SOIzmenaKlijenta extends OpstaSistemskaOperacija {
     }
 
     @Override
-    protected void izvrsiValidaciju(OpstiDomenskiObjkat o) throws ServerskiException {
+    protected OpstiDomenskiObjkat izvrsiValidaciju(OpstiDomenskiObjkat o) throws ServerskiException {
+        return null;
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

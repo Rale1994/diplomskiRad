@@ -36,7 +36,8 @@ public class SOUlogujAdvokata extends OpstaSistemskaOperacija {
     }
 
     @Override
-    protected void izvrsiValidaciju(OpstiDomenskiObjkat o) {
+    protected OpstiDomenskiObjkat izvrsiValidaciju(OpstiDomenskiObjkat o) {
+        return null;
         //TODO validacija
     }
 

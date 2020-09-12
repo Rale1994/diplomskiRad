@@ -40,7 +40,7 @@ public abstract class OpstaSistemskaOperacija {
 
     protected abstract void izvrsiKonkretnuOperaciju() throws ServerskiException;
 
-    protected abstract void izvrsiValidaciju(OpstiDomenskiObjkat o)throws ServerskiException;
+    protected abstract OpstiDomenskiObjkat izvrsiValidaciju(OpstiDomenskiObjkat o)throws ServerskiException;
 
     private void potvrdiTransakciju() throws ServerskiException {
         db.commit();

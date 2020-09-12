@@ -238,7 +238,7 @@ public class UnosNovogKlijenta extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Usepsno sacuvano!");
 
             } else {
-                JOptionPane.showMessageDialog(this, "Neuspsseno");
+                JOptionPane.showMessageDialog(this, "Neuspesno sacuvano!");
             }
             /* ArrayList<Klijent> listaKlijenata = KontrolerKlijent.getInstanca().sviKlijenti();
             for (Klijent klijent1 : listaKlijenata) {

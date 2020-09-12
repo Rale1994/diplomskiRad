@@ -202,7 +202,7 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
     }
 
     @Override
-    public OpstiDomenskiObjkat vratiObjekte(ResultSet rs) {
+    public OpstiDomenskiObjkat vratiObjekat(ResultSet rs) {
         Klijent klijent = null;
         try {
             while (rs.next()) {
@@ -236,6 +236,11 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
     @Override
     public String update() {
         return String.format("Ime='%s',Prezime='%s',Ulica='%s', Broj='%s', KontaktTelefon='%s',PrebivalisteID='%d', AdvokatID='%d'", ime, prezime, ulica, broj, kontaktTelefon, prebivaliste.getPrebivalisteID(), advokat.getAdvokatID());
+    }
+
+    @Override
+    public String vratiKriterijumPretrage() {
+        return "JMBG="+jmbg;
     }
 
 }

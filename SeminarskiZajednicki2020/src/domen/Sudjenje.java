@@ -117,7 +117,7 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
     }
 
     @Override
-    public OpstiDomenskiObjkat vratiObjekte(ResultSet rs) {
+    public OpstiDomenskiObjkat vratiObjekat(ResultSet rs) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -128,6 +128,11 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public String update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String vratiKriterijumPretrage() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
