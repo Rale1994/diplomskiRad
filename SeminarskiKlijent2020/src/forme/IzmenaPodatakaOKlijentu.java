@@ -228,7 +228,7 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
             String jmbg = txtJMBG.getText();
             String kontaktTelefon = txtKontaktTelefon.getText();
             if (txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty() || txtJMBG.getText().isEmpty() || txtUlica.getText().isEmpty() || txtBroj.getText().isEmpty() || txtKontaktTelefon.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Sva polja moraju biti popunjena!");
+                JOptionPane.showMessageDialog(this, "Sva polja moraju biti popunjena!","Polja",JOptionPane.ERROR_MESSAGE);
                 return;
             }
             Prebivaliste prebivaliste = (Prebivaliste) comboPrebivaliste.getSelectedItem();

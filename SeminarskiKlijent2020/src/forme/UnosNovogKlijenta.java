@@ -218,12 +218,12 @@ public class UnosNovogKlijenta extends javax.swing.JDialog {
             String broj = txtBroj.getText();
             String kontaktTelefon = txtKontaktTelefon.getText();
             if (txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty() || txtJMBG.getText().isEmpty() || txtUlica.getText().isEmpty() || txtBroj.getText().isEmpty() || txtKontaktTelefon.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Sva polja moraju biti popunjena!");
+                JOptionPane.showMessageDialog(this, "Sva polja moraju biti popunjena!","Polja",JOptionPane.ERROR_MESSAGE);
                 return;
 
             }
             if (JMBG.length() > 13 || JMBG.length() < 13) {
-                JOptionPane.showMessageDialog(this, "Jedinstveni maticni broj mora biti u formatu od 13 cifara!");
+                JOptionPane.showMessageDialog(this, "Jedinstveni maticni broj mora biti u formatu od 13 cifara!","JMBG",JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -241,7 +241,7 @@ public class UnosNovogKlijenta extends javax.swing.JDialog {
             
 
         } catch (ServerskiException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JOptionPane.showMessageDialog(this, ex.getMessage(),"Cuvanje klijenta", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
 
             Logger.getLogger(UnosNovogKlijenta.class.getName()).log(Level.SEVERE, null, ex);

@@ -36,12 +36,12 @@ public class SOSacuvajKlijenta extends OpstaSistemskaOperacija {
             
             Klijent k = (Klijent) opb;
             if (k == null) {
-                klijent.setPoruka("USPESNO SACUVAN!");
+                klijent.setPoruka("Klijent je uspesno sacuvan!");
                 return klijent;
 
             }
             if (klijent.getJmbg().equals(k.getJmbg())) {
-                klijent.setPoruka("Vec postoji klijent");
+                klijent.setPoruka("Klijent sa unetim JMBG vec postoji u bazi!");
                 return klijent;
             }
         } catch (SQLException ex) {

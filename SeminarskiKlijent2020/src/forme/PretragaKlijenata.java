@@ -46,6 +46,7 @@ public class PretragaKlijenata extends javax.swing.JFrame {
         btnOdustani = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Pretraga klijenata ");
 
         jLabel1.setText("Unesi kriterijum pretrage klijenata(ime, prezime, JMBG):");
 
@@ -143,6 +144,11 @@ public class PretragaKlijenata extends javax.swing.JFrame {
                 return;
             }
             ArrayList<Klijent> lista = KontrolerKlijent.getInstanca().listaZaPretragu(pretraga);
+            if (lista.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Sistem ne moze da nadje nijednog klijenta!", "Pretraga", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+             JOptionPane.showMessageDialog(this, "Sistem je nasao klijenta/e.", "Pretraga", JOptionPane.INFORMATION_MESSAGE);
             ModelTabeleKlijenti mtk = new ModelTabeleKlijenti(lista);
             tblKlijenti.setModel(mtk);
         } catch (Exception ex) {
@@ -183,7 +189,7 @@ public class PretragaKlijenata extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnOdustaniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdustaniActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnOdustaniActionPerformed
 
     /**

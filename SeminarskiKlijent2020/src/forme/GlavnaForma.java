@@ -36,6 +36,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Glavna forma");
 
         btnUnosNovogKlijenta.setText("UNOS NOVOG KLIJENTA");
         btnUnosNovogKlijenta.addActionListener(new java.awt.event.ActionListener() {

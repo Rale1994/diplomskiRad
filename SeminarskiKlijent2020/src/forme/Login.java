@@ -47,6 +47,7 @@ public class Login extends javax.swing.JFrame {
         txtLozinka = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Prijavljivanje na sistem");
 
         jLabel1.setText("Korisnicko ime:");
         jLabel1.setToolTipText("");

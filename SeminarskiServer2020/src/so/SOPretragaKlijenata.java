@@ -32,22 +32,22 @@ public class SOPretragaKlijenata extends OpstaSistemskaOperacija {
     }
 
     @Override
+    protected OpstiDomenskiObjkat izvrsiValidaciju(OpstiDomenskiObjkat o) {
+        return null;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
         try {
-            
-            listaOD = db.vratiSveObjektePretrage(new Klijent(),pretraga);
+
+            listaOD = db.vratiSveObjektePretrage(new Klijent(), pretraga);
             for (OpstiDomenskiObjkat opstiDomenskiObjkat : listaOD) {
                 klijenti.add((Klijent) opstiDomenskiObjkat);
             }
         } catch (SQLException ex) {
             Logger.getLogger(SOPretragaKlijenata.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    @Override
-    protected OpstiDomenskiObjkat izvrsiValidaciju(OpstiDomenskiObjkat o) {
-        return null;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public ArrayList<Klijent> getKlijenti() {

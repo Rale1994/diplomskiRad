@@ -70,7 +70,6 @@ public class ObradaKlijentskihZahteva extends Thread {
                         Klijent klijentZaCuvanje = null;
                         try {
                             klijentZaCuvanje = Kontroler.getInstanca().sacuvajKlijenta(klijent);
-                            
                             so.setOdgovor(klijentZaCuvanje);
                         } catch (ServerskiException ex) {
                            klijentZaCuvanje.setPoruka(ex.getMessage());
