@@ -123,6 +123,16 @@ public class DBBroker {
     }
 //ovde za pretragu unutar tabele
 
+    public ArrayList<OpstiDomenskiObjkat> vratiSveObjektePretrage(OpstiDomenskiObjkat o, String pretraga) throws SQLException {
+        String upit = "SELECT * FROM " + o.vratiImeTabele() + " " + o.alijas() + "" + o.vratiJoinUslov() + " " + o.vratiWhereUslov(pretraga.toLowerCase());
+        System.out.println("" + upit);
+        Statement s = konekcija.createStatement();
+        ResultSet rs = s.executeQuery(upit);
+        ArrayList<OpstiDomenskiObjkat> listaObjekata = o.RSuTabelu(rs);
+        s.close();
+        return listaObjekata;
+    }
+
     public ArrayList<OpstiDomenskiObjkat> vratiSveObjekteJoin(OpstiDomenskiObjkat o) throws ServerskiException {
         try {
             String upit = "SELECT * FROM " + o.vratiImeTabele() + " " + o.alijas() + " " + o.vratiJoinUslov();
@@ -146,43 +156,6 @@ public class DBBroker {
         return o;
     }
 
-    public ArrayList<Klijent> pretragaKlijenata(String pretraga) throws SQLException {
-        ArrayList<Klijent> klijenti = new ArrayList<>();
-        String upit = "SELECT * FROM klijent k  join prebivaliste p on k.PrebivalisteID=p.PrebivalisteID join advokat a on k.AdvokatID=a.AdvokatID WHERE k.Ime LIKE '" + pretraga + "' OR k.Prezime LIKE '" + pretraga + "' OR k.JMBG LIKE'" + pretraga + "'";
-        Statement s = konekcija.createStatement();
-        ResultSet rs = s.executeQuery(upit);
-        /*ArrayList<OpstiDomenskiObjkat> lista = new Klijent().RSuTabelu(rs);
-        for (OpstiDomenskiObjkat opstiDomenskiObjkat : lista) {
-            Klijent kl = (Klijent) opstiDomenskiObjkat;
-            klijenti.add(kl);
-        }
-        s.close();
-        return klijenti;*/
-        while (rs.next()) {
-            int klijentId = rs.getInt("k.KlijentID");
-            String jmbg = rs.getString("k.JMBG");
-            String ime = rs.getString("k.Ime");
-            String prezime = rs.getString("k.Prezime");
-            String ulica = rs.getString("k.Ulica");
-            String broj = rs.getString("k.Broj");
-            String telefon = rs.getString("k.KontaktTelefon");
-
-            Prebivaliste prebivaliste = new Prebivaliste();
-            prebivaliste.setPrebivalisteID(rs.getInt("p.PrebivalisteID"));
-            prebivaliste.setNaziv(rs.getString("p.Naziv"));
-
-            Advokat advokat = new Advokat();
-            advokat.setAdvokatID(rs.getInt("a.AdvokatID"));
-            advokat.setIme(rs.getString("a.Ime"));
-            advokat.setPrezime(rs.getString("a.Prezime"));
-
-            Klijent k = new Klijent(klijentId, jmbg, ime, prezime, ulica, broj, telefon, prebivaliste, advokat);
-            klijenti.add(k);
-        }
-        s.close();
-        return klijenti;
-    }
-
     public OpstiDomenskiObjkat vratiObjekat(OpstiDomenskiObjkat o) throws SQLException {
         String upit = "SELECT * FROM " + o.vratiImeTabele() + " WHERE " + o.vratiKriterijumPretrage();
         Statement s = konekcija.createStatement();
@@ -203,16 +176,6 @@ public class DBBroker {
             Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-    }
-
-    public ArrayList<OpstiDomenskiObjkat> vratiSveObjektePretrage(OpstiDomenskiObjkat o, String pretraga) throws SQLException {
-        String upit = "SELECT * FROM " + o.vratiImeTabele() + " " + o.alijas() + "" + o.vratiJoinUslov() + " " + o.vratiWhereUslov(pretraga);
-        System.out.println("" + upit);
-        Statement s = konekcija.createStatement();
-        ResultSet rs = s.executeQuery(upit);
-        ArrayList<OpstiDomenskiObjkat> listaObjekata = o.RSuTabelu(rs);
-        s.close();
-        return listaObjekata;
     }
 
 }

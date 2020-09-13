@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import logika.KontrolerKlijent;
 
 /**
@@ -65,6 +66,8 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
         comboPrebivaliste = new javax.swing.JComboBox();
         btnSacuvajIzmene = new javax.swing.JButton();
         btnOdusani = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtJMBG = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Izmena podataka o klijentu");
@@ -138,6 +141,10 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
             }
         });
 
+        jLabel8.setText("JMBG:");
+
+        txtJMBG.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,25 +156,28 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel8))
                         .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtPrezime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                            .addComponent(txtIme, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                            .addComponent(txtJMBG, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboAdvokat, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(120, 120, 120)
+                            .addComponent(btnOdusani, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(47, 47, 47)
+                            .addComponent(btnSacuvajIzmene)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                        .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(comboAdvokat, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtKontaktTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(btnOdusani, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSacuvajIzmene)))))
+                        .addComponent(txtKontaktTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -181,21 +191,25 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtKontaktTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboAdvokat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(41, 41, 41)
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(comboAdvokat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSacuvajIzmene, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnOdusani, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -211,13 +225,24 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
             String prezime = txtPrezime.getText();
             String ulica = txtUlica.getText();
             String broj = txtBroj.getText();
-            Prebivaliste prebivaliste = (Prebivaliste) comboPrebivaliste.getSelectedItem();
+            String jmbg = txtJMBG.getText();
             String kontaktTelefon = txtKontaktTelefon.getText();
+            if (txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty() || txtJMBG.getText().isEmpty() || txtUlica.getText().isEmpty() || txtBroj.getText().isEmpty() || txtKontaktTelefon.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Sva polja moraju biti popunjena!");
+                return;
+            }
+            Prebivaliste prebivaliste = (Prebivaliste) comboPrebivaliste.getSelectedItem();
+
             Advokat advokat = (Advokat) comboAdvokat.getSelectedItem();
-            
-            klijent = new Klijent(ime, ime, prezime, ulica, broj, kontaktTelefon, prebivaliste, advokat);
-            
+
+            klijent = new Klijent(klijent.getKlijentID(), jmbg, ime, prezime, ulica, broj, kontaktTelefon, prebivaliste, advokat);
+
             Klijent izmenjenKlijent = KontrolerKlijent.getInstanca().izmeniKlijenta(klijent);
+            if (izmenjenKlijent != null) {
+                JOptionPane.showMessageDialog(this, "Podaci o klijentu su uspesno izmenjeni!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Doslo je do greske prilikom izmene podataka!");
+            }
         } catch (Exception ex) {
             Logger.getLogger(IzmenaPodatakaOKlijentu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -278,9 +303,11 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtBroj;
     private javax.swing.JTextField txtIme;
+    private javax.swing.JTextField txtJMBG;
     private javax.swing.JTextField txtKontaktTelefon;
     private javax.swing.JTextField txtPrezime;
     private javax.swing.JTextField txtUlica;
@@ -297,6 +324,7 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
     private void postaviPodatke() {
         txtIme.setText("" + klijent.getIme());
         txtPrezime.setText("" + klijent.getPrezime());
+        txtJMBG.setText("" + klijent.getJmbg());
         txtKontaktTelefon.setText("" + klijent.getKontaktTelefon());
         txtUlica.setText("" + klijent.getUlica());
         txtBroj.setText("" + klijent.getBroj());

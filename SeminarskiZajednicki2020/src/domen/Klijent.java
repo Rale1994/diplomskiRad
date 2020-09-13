@@ -262,6 +262,7 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public String vratiWhereUslov(String pretraga) {
+        
         return " WHERE k.Ime LIKE '" + pretraga + "' OR k.Prezime LIKE '" + pretraga + "' OR k.JMBG LIKE '" + pretraga + "'";
     }
 
