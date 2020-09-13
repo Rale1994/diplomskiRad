@@ -17,14 +17,14 @@ import java.util.ArrayList;
 public class SOListaSvihKlijenata extends OpstaSistemskaOperacija {
 
     private ArrayList<Klijent> listaKlijenata;
-
+OpstiDomenskiObjkat o;
     public SOListaSvihKlijenata() {
         listaKlijenata = new ArrayList<>();
     }
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        ArrayList<OpstiDomenskiObjkat> lista = getDb().vratiSveObjekte(new Klijent());
+        ArrayList<OpstiDomenskiObjkat> lista = getDb().vratiSveObjekteJoin(new Klijent());
         for (OpstiDomenskiObjkat klijenti : lista) {
             listaKlijenata.add((Klijent) klijenti);
         }

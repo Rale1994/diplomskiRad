@@ -122,9 +122,11 @@ public class DBBroker {
 
     }
 //ovde za pretragu unutar tabele
-    /*public ArrayList<OpstiDomenskiObjkat> vratiSveObjekteJoin(OpstiDomenskiObjkat o) throws ServerskiException {
+
+    public ArrayList<OpstiDomenskiObjkat> vratiSveObjekteJoin(OpstiDomenskiObjkat o) throws ServerskiException {
         try {
-           String upit = "SELECT * FROM " + o.vratiImeTabele() + " " + o.vratiJoinUslov();
+            String upit = "SELECT * FROM " + o.vratiImeTabele() + " " + o.alijas() + " " + o.vratiJoinUslov() ;
+            System.out.println("upit je " + upit);
             Statement s = konekcija.createStatement();
             ResultSet rs = s.executeQuery(upit);
             ArrayList<OpstiDomenskiObjkat> listaObjekata = o.RSuTabelu(rs);
@@ -135,7 +137,7 @@ public class DBBroker {
         }
 
     }
-     */
+
     public OpstiDomenskiObjkat sacuvajObjekat(OpstiDomenskiObjkat o) throws SQLException {
         String upit = String.format("INSERT INTO %s VALUES(%s)", o.vratiImeTabele(), o.vratiParametre());
         Statement s = konekcija.createStatement();

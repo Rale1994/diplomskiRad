@@ -21,23 +21,22 @@ import java.util.logging.Logger;
  */
 public class SOPretragaKlijenata extends OpstaSistemskaOperacija {
 
+    private ArrayList<OpstiDomenskiObjkat> listaOD;
     private ArrayList<Klijent> klijenti;
     private String pretraga;
-    OpstiDomenskiObjkat klijent;
-    OpstiDomenskiObjkat advokat;
-    OpstiDomenskiObjkat prebivaliste;
+    OpstiDomenskiObjkat o;
 
     public SOPretragaKlijenata() {
         klijenti = new ArrayList<>();
-        
+
     }
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        try {
-            klijenti = getDb().pretragaKlijenata(pretraga);
-        } catch (SQLException ex) {
-            Logger.getLogger(SOPretragaKlijenata.class.getName()).log(Level.SEVERE, null, ex);
+        // klijenti = getDb().pretragaKlijenata(pretraga);
+        listaOD = db.vratiSveObjekteJoin(o);
+        for (OpstiDomenskiObjkat opstiDomenskiObjkat : listaOD) {
+            klijenti.add((Klijent) opstiDomenskiObjkat);
         }
     }
 

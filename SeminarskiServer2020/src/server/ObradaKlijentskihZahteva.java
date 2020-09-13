@@ -67,11 +67,13 @@ public class ObradaKlijentskihZahteva extends Thread {
                         break;
                     case Operacije.UNSEI_NOVOG_KLIJENTA:
                         klijent = (Klijent) kz.getParametar();
+                        Klijent klijentZaCuvanje = null;
                         try {
-                            Klijent klijentZaCuvanje = Kontroler.getInstanca().sacuvajKlijenta(klijent);
+                            klijentZaCuvanje = Kontroler.getInstanca().sacuvajKlijenta(klijent);
+                            
                             so.setOdgovor(klijentZaCuvanje);
                         } catch (ServerskiException ex) {
-                            so.setPoruka(ex.getMessage());
+                           klijentZaCuvanje.setPoruka(ex.getMessage());
                         }
 
                         break;

@@ -28,6 +28,7 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
     private String kontaktTelefon;
     private Prebivaliste prebivaliste;
     private Advokat advokat;
+    private String poruka;
 
     public Klijent() {
     }
@@ -169,9 +170,12 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
 
                 Prebivaliste prebivaliste = new Prebivaliste();
                 prebivaliste.setPrebivalisteID(rs.getInt("PrebivalisteID"));
+                prebivaliste.setNaziv(rs.getString("Naziv"));
 
                 Advokat advokat = new Advokat();
                 advokat.setAdvokatID(rs.getInt("AdvokatID"));
+                advokat.setIme(rs.getString("Ime"));
+                advokat.setPrezime(rs.getString("Prezime"));
 
                 Klijent klijent = new Klijent(klijentId, jmbg, ime, prezime, ulica, broj, telefon, prebivaliste, advokat);
                 klijenti.add(klijent);
@@ -240,7 +244,25 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public String vratiKriterijumPretrage() {
-        return "JMBG="+jmbg;
+        return "JMBG=" + jmbg;
+    }
+
+    public String getPoruka() {
+        return poruka;
+    }
+
+    public void setPoruka(String poruka) {
+        this.poruka = poruka;
+    }
+
+    @Override
+    public String vratiJoinUslov() {
+        return " join prebivaliste p on k.PrebivalisteID=p.PrebivalisteID join advokat a on k.AdvokatID=a.AdvokatID";
+    }
+
+    @Override
+    public String vratiWhereUslov() {
+        return " WHERE k.Ime LIKE '" + ime + "' OR k.Prezime LIKE '" + prezime + "' OR k.JMBG LIKE '" + jmbg + "'";
     }
 
 }

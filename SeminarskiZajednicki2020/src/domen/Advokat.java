@@ -207,12 +207,22 @@ public class Advokat extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public String update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "";
     }
 
     @Override
     public String vratiKriterijumPretrage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "";
+    }
+
+    @Override
+    public String vratiJoinUslov() {
+        return "";
+    }
+
+    @Override
+    public String vratiWhereUslov() {
+        return "";
     }
 
 }

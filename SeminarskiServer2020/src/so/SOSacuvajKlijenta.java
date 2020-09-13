@@ -33,24 +33,31 @@ public class SOSacuvajKlijenta extends OpstaSistemskaOperacija {
     protected OpstiDomenskiObjkat izvrsiValidaciju(OpstiDomenskiObjkat o) throws ServerskiException {
         try {
             OpstiDomenskiObjkat opb = db.vratiObjekat(klijent);
+            
             Klijent k = (Klijent) opb;
             if (k == null) {
-               return klijent;
+                klijent.setPoruka("USPESNO SACUVAN!");
+                return klijent;
+
             }
             if (klijent.getJmbg().equals(k.getJmbg())) {
-                throw new ServerskiException("Klijent postoji!");
+                klijent.setPoruka("Vec postoji klijent");
+                return klijent;
             }
         } catch (SQLException ex) {
             Logger.getLogger(SOSacuvajKlijenta.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return klijent;
     }
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        try {
 
-            klijent = (Klijent) getDb().sacuvajObjekat(klijent);
+        try {
+            if (!(klijent.getPoruka().equals("Vec postoji klijent"))) {
+                klijent = (Klijent) getDb().sacuvajObjekat(klijent);
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(SOSacuvajKlijenta.class.getName()).log(Level.SEVERE, null, ex);

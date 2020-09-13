@@ -229,36 +229,16 @@ public class UnosNovogKlijenta extends javax.swing.JDialog {
 
             Prebivaliste prebivaliste = (Prebivaliste) comboPrebivaliste.getSelectedItem();
             Advokat advokat = (Advokat) comboAdvokat.getSelectedItem();
-            //int brojac = 0;
-            String poruka;
+            
+            String poruka = null;
             Klijent klijent = new Klijent(JMBG, ime, prezime, ulica, broj, kontaktTelefon, prebivaliste, advokat);
 
             Klijent zaCuvanje = KontrolerKlijent.getInstanca().sacuvajKlijenta(klijent);
             if (zaCuvanje != null) {
-                JOptionPane.showMessageDialog(this, "Usepsno sacuvano!");
-
-            } else {
-                JOptionPane.showMessageDialog(this, "Neuspesno sacuvano!");
-            }
-            /* ArrayList<Klijent> listaKlijenata = KontrolerKlijent.getInstanca().sviKlijenti();
-            for (Klijent klijent1 : listaKlijenata) {
-                if (klijent.getJmbg().equals(klijent1.getJmbg())) {
-                    JOptionPane.showMessageDialog(this, "Klijent sa jmbg vec postoji!");
-                    return;
-                } else {
-                    brojac++;
-                }
+                JOptionPane.showMessageDialog(this, zaCuvanje.getPoruka());
 
             }
-            if (listaKlijenata.size() == brojac) {
-                Klijent zaCuvanje = KontrolerKlijent.getInstanca().sacuvajKlijenta(klijent);
-                if (zaCuvanje != null) {
-                    JOptionPane.showMessageDialog(this, "Usepsno!");
-                    
-                } else {
-                    JOptionPane.showMessageDialog(this, "Neuspesno!!");
-                }
-            }*/
+            
 
         } catch (ServerskiException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());

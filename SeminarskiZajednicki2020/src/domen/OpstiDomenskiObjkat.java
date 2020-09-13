@@ -33,6 +33,10 @@ public abstract class OpstiDomenskiObjkat implements Serializable {
 
     public abstract String alijas();
 
+    public abstract String vratiJoinUslov();
+    
+    public abstract String vratiWhereUslov();
+
     public abstract String update();
 
 }
