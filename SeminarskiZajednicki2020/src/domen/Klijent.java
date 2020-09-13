@@ -174,8 +174,8 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
 
                 Advokat advokat = new Advokat();
                 advokat.setAdvokatID(rs.getInt("AdvokatID"));
-                advokat.setIme(rs.getString("Ime"));
-                advokat.setPrezime(rs.getString("Prezime"));
+                advokat.setIme(rs.getString("a.Ime"));
+                advokat.setPrezime(rs.getString("a.Prezime"));
 
                 Klijent klijent = new Klijent(klijentId, jmbg, ime, prezime, ulica, broj, telefon, prebivaliste, advokat);
                 klijenti.add(klijent);
@@ -261,8 +261,8 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
     }
 
     @Override
-    public String vratiWhereUslov() {
-        return " WHERE k.Ime LIKE '" + ime + "' OR k.Prezime LIKE '" + prezime + "' OR k.JMBG LIKE '" + jmbg + "'";
+    public String vratiWhereUslov(String pretraga) {
+        return " WHERE k.Ime LIKE '" + pretraga + "' OR k.Prezime LIKE '" + pretraga + "' OR k.JMBG LIKE '" + pretraga + "'";
     }
 
 }

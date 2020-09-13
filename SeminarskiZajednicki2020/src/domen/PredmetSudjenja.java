@@ -105,7 +105,7 @@ public class PredmetSudjenja extends OpstiDomenskiObjkat implements Serializable
     }
 
     @Override
-    public String vratiWhereUslov() {
+    public String vratiWhereUslov(String pretraga) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

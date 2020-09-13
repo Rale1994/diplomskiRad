@@ -221,7 +221,7 @@ public class Advokat extends OpstiDomenskiObjkat implements Serializable {
     }
 
     @Override
-    public String vratiWhereUslov() {
+    public String vratiWhereUslov(String pretraga) {
         return "";
     }
 

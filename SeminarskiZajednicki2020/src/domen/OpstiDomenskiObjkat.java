@@ -35,7 +35,7 @@ public abstract class OpstiDomenskiObjkat implements Serializable {
 
     public abstract String vratiJoinUslov();
     
-    public abstract String vratiWhereUslov();
+    public abstract String vratiWhereUslov(String pretraga);
 
     public abstract String update();
 
