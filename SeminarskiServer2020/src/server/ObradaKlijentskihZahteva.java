@@ -9,6 +9,7 @@ import domen.Advokat;
 import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
+import domen.PredmetSudjenja;
 import exception.ServerskiException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -50,6 +51,7 @@ public class ObradaKlijentskihZahteva extends Thread {
                 ArrayList<Advokat> listaAdvokata;
                 ArrayList<Prebivaliste> listaPrebivalista;
                 ArrayList<Klijent> listaKlijenata;
+                ArrayList<PredmetSudjenja> listaPredmetaSudjenja;
                 Klijent klijent;
                 switch (kz.getOperacija()) {
                     case Operacije.ULOGUJ:
@@ -72,9 +74,8 @@ public class ObradaKlijentskihZahteva extends Thread {
                             klijentZaCuvanje = Kontroler.getInstanca().sacuvajKlijenta(klijent);
                             so.setOdgovor(klijentZaCuvanje);
                         } catch (ServerskiException ex) {
-                           klijentZaCuvanje.setPoruka(ex.getMessage());
+                            klijentZaCuvanje.setPoruka(ex.getMessage());
                         }
-
                         break;
                     case Operacije.LISTA_ZA_PRETRAGU_KLIJENATA:
                         String pretraga = (String) kz.getParametar();
@@ -89,6 +90,10 @@ public class ObradaKlijentskihZahteva extends Thread {
                         klijent = (Klijent) kz.getParametar();
                         Klijent zaIzmenu = Kontroler.getInstanca().izmeniKlijenta(klijent);
                         so.setOdgovor(klijent);
+                        break;
+                    case Operacije.LISTA_PREDMETA_SUDJANJA:
+                        listaPredmetaSudjenja = Kontroler.getInstanca().listaPredmetaSudjenja();
+                        so.setOdgovor(listaPredmetaSudjenja);
                         break;
 
                 }

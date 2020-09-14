@@ -7,7 +7,10 @@ package domen;
 
 import java.io.Serializable;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,9 +29,6 @@ public class PredmetSudjenja extends OpstiDomenskiObjkat implements Serializable
         this.nazivPredmetSudjenja = nazivPredmetSudjenja;
     }
 
-
-    
-
     public String getNazivPredmetSudjenja() {
         return nazivPredmetSudjenja;
     }
@@ -45,9 +45,10 @@ public class PredmetSudjenja extends OpstiDomenskiObjkat implements Serializable
         this.predmetSudjenjaID = predmetSudjenjaID;
     }
 
-   
-
-    
+    @Override
+    public String toString() {
+        return "" + nazivPredmetSudjenja;
+    }
 
     @Override
     public String vratiImeTabele() {
@@ -76,7 +77,20 @@ public class PredmetSudjenja extends OpstiDomenskiObjkat implements Serializable
 
     @Override
     public ArrayList<OpstiDomenskiObjkat> RSuTabelu(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<OpstiDomenskiObjkat> lista = new ArrayList<>();
+        try {
+
+            while (rs.next()) {
+
+                int predmetetSudjenjaID = rs.getInt("PredmetSudjenjaID");
+                String naziv = rs.getString("NazivPredmetaSudjenja");
+                PredmetSudjenja predemt = new PredmetSudjenja(predmetetSudjenjaID, naziv);
+                lista.add(predemt);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PredmetSudjenja.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
     }
 
     @Override

@@ -135,8 +135,7 @@ public class DBBroker {
 
     public ArrayList<OpstiDomenskiObjkat> vratiSveObjekteJoin(OpstiDomenskiObjkat o) throws ServerskiException {
         try {
-            String upit = "SELECT * FROM " + o.vratiImeTabele() + " " + o.alijas() + " " + o.vratiJoinUslov();
-            System.out.println("upit je " + upit);
+            String upit = "SELECT * FROM " + o.vratiImeTabele() + " " + o.alijas() + " " + o.vratiJoinUslov();   
             Statement s = konekcija.createStatement();
             ResultSet rs = s.executeQuery(upit);
             ArrayList<OpstiDomenskiObjkat> listaObjekata = o.RSuTabelu(rs);

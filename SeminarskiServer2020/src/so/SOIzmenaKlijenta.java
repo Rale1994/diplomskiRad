@@ -26,7 +26,7 @@ public class SOIzmenaKlijenta extends OpstaSistemskaOperacija {
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        klijent = (Klijent) db.izmeniPodatke(klijent);
+        klijent = (Klijent) getDb().izmeniPodatke(klijent);
     }
 
     @Override

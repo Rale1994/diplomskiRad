@@ -15,12 +15,12 @@ import exception.ServerskiException;
  */
 public abstract class OpstaSistemskaOperacija {
 
-    protected DBBroker db;
+    private DBBroker db;
     private OpstiDomenskiObjkat o;
 
     public OpstaSistemskaOperacija() {
         this.db = new DBBroker();
-        this.o =o;
+        this.o = o;
     }
 
     synchronized public void izvrsiOperaciju() throws ServerskiException {
@@ -38,9 +38,9 @@ public abstract class OpstaSistemskaOperacija {
 
     }
 
-    protected abstract void izvrsiKonkretnuOperaciju() throws ServerskiException;
+    protected abstract OpstiDomenskiObjkat izvrsiValidaciju(OpstiDomenskiObjkat o) throws ServerskiException;
 
-    protected abstract OpstiDomenskiObjkat izvrsiValidaciju(OpstiDomenskiObjkat o)throws ServerskiException;
+    protected abstract void izvrsiKonkretnuOperaciju() throws ServerskiException;
 
     private void potvrdiTransakciju() throws ServerskiException {
         db.commit();

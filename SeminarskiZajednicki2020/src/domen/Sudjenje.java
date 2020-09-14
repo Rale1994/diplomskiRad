@@ -20,6 +20,7 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
     private int sudjenjeID;
     private Date datum;
     private int duzinaTrajanja;
+    private String napomena;
     private PredmetSudjenja predmetSudjenja;
     private Advokat advokat;
     private Klijent klijent;
@@ -27,14 +28,17 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
     public Sudjenje() {
     }
 
-    public Sudjenje(int sudjenjeID, Date datum, int duzinaTrajanja, PredmetSudjenja predmetSudjenja, Advokat advokat, Klijent klijent) {
+    public Sudjenje(int sudjenjeID, Date datum, int duzinaTrajanja, String napomena, PredmetSudjenja predmetSudjenja, Advokat advokat, Klijent klijent) {
         this.sudjenjeID = sudjenjeID;
         this.datum = datum;
         this.duzinaTrajanja = duzinaTrajanja;
+        this.napomena = napomena;
         this.predmetSudjenja = predmetSudjenja;
         this.advokat = advokat;
         this.klijent = klijent;
     }
+
+    
 
     public PredmetSudjenja getPredmetSudjenja() {
         return predmetSudjenja;
@@ -144,6 +148,14 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
     @Override
     public String vratiWhereUslov(String pretraga) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getNapomena() {
+        return napomena;
+    }
+
+    public void setNapomena(String napomena) {
+        this.napomena = napomena;
     }
 
 }

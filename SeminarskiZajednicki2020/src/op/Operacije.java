@@ -18,5 +18,6 @@ public class Operacije {
     public static final int LISTA_SVIH_KLIJENATA = 5;
     public static final int LISTA_ZA_PRETRAGU_KLIJENATA = 6;
     public static final int IZMENI_KLIJENTA = 7;
+    public static final int LISTA_PREDMETA_SUDJANJA = 8;
 
 }

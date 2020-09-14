@@ -10,6 +10,7 @@ import domen.Advokat;
 import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
+import domen.PredmetSudjenja;
 import exception.ServerskiException;
 import java.util.ArrayList;
 import so.SOIzmenaKlijenta;
@@ -18,6 +19,7 @@ import so.SOPretragaKlijenata;
 import so.SOSacuvajKlijenta;
 import so.SOUcitajAdvokate;
 import so.SOUcitajPrebivalista;
+import so.SOUcitajPredmeteSudjenja;
 import so.SOUlogujAdvokata;
 import transfer.ServerskiOdgovor;
 
@@ -85,6 +87,12 @@ public class Kontroler {
         soi.setKlijent(klijent);
         soi.izvrsiOperaciju();
         return soi.getKlijent();
+    }
+
+    public ArrayList<PredmetSudjenja> listaPredmetaSudjenja() throws ServerskiException {
+        SOUcitajPredmeteSudjenja sop= new SOUcitajPredmeteSudjenja();
+        sop.izvrsiOperaciju();
+        return sop.getListaPredmetaSudjenja();
     }
 
 }

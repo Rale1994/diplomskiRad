@@ -41,7 +41,7 @@ public class SOPretragaKlijenata extends OpstaSistemskaOperacija {
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
         try {
 
-            listaOD = db.vratiSveObjektePretrage(new Klijent(), pretraga);
+            listaOD = getDb().vratiSveObjektePretrage(new Klijent(), pretraga);
             for (OpstiDomenskiObjkat opstiDomenskiObjkat : listaOD) {
                 klijenti.add((Klijent) opstiDomenskiObjkat);
             }

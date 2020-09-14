@@ -32,7 +32,7 @@ public class SOSacuvajKlijenta extends OpstaSistemskaOperacija {
     @Override
     protected OpstiDomenskiObjkat izvrsiValidaciju(OpstiDomenskiObjkat o) throws ServerskiException {
         try {
-            OpstiDomenskiObjkat opb = db.vratiObjekat(klijent);
+            OpstiDomenskiObjkat opb = getDb().vratiObjekat(klijent);
             
             Klijent k = (Klijent) opb;
             if (k == null) {
