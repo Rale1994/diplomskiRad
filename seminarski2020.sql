@@ -80,11 +80,11 @@ CREATE TABLE `klijent` (
   KEY `PrebivalisteID` (`PrebivalisteID`),
   CONSTRAINT `klijent_ibfk_1` FOREIGN KEY (`AdvokatID`) REFERENCES `advokat` (`AdvokatID`),
   CONSTRAINT `klijent_ibfk_2` FOREIGN KEY (`PrebivalisteID`) REFERENCES `prebivaliste` (`PrebivalisteID`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `klijent` */
 
-insert  into `klijent`(`KlijentID`,`JMBG`,`Ime`,`Prezime`,`Ulica`,`Broj`,`KontaktTelefon`,`PrebivalisteID`,`AdvokatID`) values (2,'9874561237894','Nikola','Nikolic','Vojvode Stepe','320','064789456',123,1213),(3,'4567891233216','Nikola','Miric','Bulevar Oslobodjenja','210','789456214',125,1213),(14,'1233214566547','qweqwe','qweqweqwe','asdasd','asdasd','asdasdasd',123,1212),(18,'1233214566547','asdasd','asdasd','asdasd','asdasda','123123123123',123,1212),(19,'2009994793416','Rados','Golubovic','Uciteljska ','11','123464612',123,1212),(20,'2009994793417','adsd','adsasdasd','adad','asdasd','sadasdas',123,1212),(21,'2009994793416','sdasd','asdasd','adasd','asdasd','123123123',123,1212),(22,'2009994793416','adsad','asdads','asd','asdasd','asdasd',123,1212),(23,'2009994793416','asdad','asdasd','asdasd','asdasdasd','asdasd123123',123,1212),(24,'7418529633698','adsad','asdadasd','qweqweeq','eqweq','1321314212',123,1212),(25,'2009994793416','adsad','asdadasd','qweqweeq','eqweq','1321314212',123,1212),(26,'2009994793416','sadas','assdasd','asdasd','123','132123123',123,1212);
+insert  into `klijent`(`KlijentID`,`JMBG`,`Ime`,`Prezime`,`Ulica`,`Broj`,`KontaktTelefon`,`PrebivalisteID`,`AdvokatID`) values (2,'9874561237894','Nikola','Nikolic','Vojvode Stepe','320','064789456',123,1212),(3,'4567891233216','Nikola','Miric','Bulevar Oslobodjenja','210','789456214',125,1213),(14,'1233214566547','qweqwe','qweqweqwe','asdasd','asdasd','asdasdasd',123,1212),(18,'1233214566547','asdasd','asdasd','asdasd','asdasda','123123123123',123,1212),(32,'7418529639632','Stefan','Mosurovci','Mihaila Bulgakova','140','123123123',123,1212),(36,'2009994793416','Rados ','Golubovic','Uciteljska','119','0692847350',123,1213);
 
 /*Table structure for table `prebivaliste` */
 
@@ -109,9 +109,11 @@ CREATE TABLE `predmetsudjenja` (
   `PredmetSudjenjaID` int(20) NOT NULL AUTO_INCREMENT,
   `NazivPredmetaSudjenja` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`PredmetSudjenjaID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `predmetsudjenja` */
+
+insert  into `predmetsudjenja`(`PredmetSudjenjaID`,`NazivPredmetaSudjenja`) values (1,'Tuzba'),(2,'Ostavniski postupak'),(3,'Razvod braka'),(4,'Naknada materijalne stete'),(5,'Naknada nemtarijalne stete'),(6,'Raskid ugovora');
 
 /*Table structure for table `sertifikat` */
 
@@ -133,6 +135,7 @@ CREATE TABLE `sudjenje` (
   `SudjenjeID` int(20) NOT NULL AUTO_INCREMENT,
   `Datum` date NOT NULL,
   `DuzinaTrajanja` int(11) NOT NULL,
+  `Napomena` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PredmetSudjenjaID` int(20) NOT NULL,
   `AdvokatID` int(20) NOT NULL,
   `KlijentID` int(20) NOT NULL,
