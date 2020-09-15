@@ -37,6 +37,15 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
         this.advokat = advokat;
         this.klijent = klijent;
     }
+      public Sudjenje(Date datum, int duzinaTrajanja, String napomena, PredmetSudjenja predmetSudjenja, Advokat advokat, Klijent klijent) {
+        
+        this.datum = datum;
+        this.duzinaTrajanja = duzinaTrajanja;
+        this.napomena = napomena;
+        this.predmetSudjenja = predmetSudjenja;
+        this.advokat = advokat;
+        this.klijent = klijent;
+    }
 
     
 
