@@ -10,6 +10,7 @@ import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
 import domen.PredmetSudjenja;
+import domen.Sudjenje;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -93,6 +94,11 @@ public class KontrolerKlijent {
     public ArrayList<PredmetSudjenja> predmetiSudjenja() throws Exception {
         ArrayList<PredmetSudjenja> listaPredmeta = (ArrayList<PredmetSudjenja>) posaljiZahtev(Operacije.LISTA_PREDMETA_SUDJANJA, null);
         return listaPredmeta;
+    }
+
+    public Sudjenje sacuvajSudjenja(Sudjenje sudjenje) throws Exception {
+        Sudjenje zaCuvanje = (Sudjenje) posaljiZahtev(Operacije.SACUVAJ_SUDJENJA, sudjenje);
+        return zaCuvanje;
     }
 
 }

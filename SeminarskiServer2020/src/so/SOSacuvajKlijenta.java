@@ -36,7 +36,7 @@ public class SOSacuvajKlijenta extends OpstaSistemskaOperacija {
             
             Klijent k = (Klijent) opb;
             if (k == null) {
-                klijent.setPoruka("Klijent je uspesno sacuvan!");
+                klijent.setPoruka("Sistem je uspesno sacuvao klijenta!");
                 return klijent;
 
             }

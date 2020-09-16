@@ -49,7 +49,7 @@ public class PretragaKlijenata extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pretraga klijenata ");
 
-        jLabel1.setText("Unesi kriterijum pretrage klijenata(ime, prezime, JMBG):");
+        jLabel1.setText("Unesi kriterijum pretrage klijenata(ime/  prezime/ JMBG):");
 
         btnPretrazi.setText("Pretrazi");
         btnPretrazi.addActionListener(new java.awt.event.ActionListener() {
@@ -210,12 +210,16 @@ public class PretragaKlijenata extends javax.swing.JFrame {
         int red = tblKlijenti.getSelectedRow();
         if (red != -1) {
 
-            ArrayList<Klijent> lista = mtk.getListaKlijenata();
-            Klijent k = lista.get(red);
-            UnosNovogSudjenja uns = new UnosNovogSudjenja(this, k, true);
-            uns.setKlijent(k);
-            uns.setVisible(true);
-            uns.pack();
+            try {
+                ArrayList<Klijent> lista = mtk.getListaKlijenata();
+                Klijent k = lista.get(red);
+                UnosNovogSudjenja uns = new UnosNovogSudjenja(this, k, true);
+                uns.setKlijent(k);
+                uns.setVisible(true);
+                uns.pack();
+            } catch (Exception ex) {
+                Logger.getLogger(PretragaKlijenata.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         } else {
             JOptionPane.showMessageDialog(this, "Morate izabrati klijenta", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);

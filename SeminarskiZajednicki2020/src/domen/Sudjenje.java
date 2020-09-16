@@ -21,6 +21,7 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
     private Date datum;
     private int duzinaTrajanja;
     private String napomena;
+    private String poruka;
     private PredmetSudjenja predmetSudjenja;
     private Advokat advokat;
     private Klijent klijent;
@@ -37,8 +38,9 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
         this.advokat = advokat;
         this.klijent = klijent;
     }
-      public Sudjenje(Date datum, int duzinaTrajanja, String napomena, PredmetSudjenja predmetSudjenja, Advokat advokat, Klijent klijent) {
-        
+
+    public Sudjenje(Date datum, int duzinaTrajanja, String napomena, PredmetSudjenja predmetSudjenja, Advokat advokat, Klijent klijent) {
+
         this.datum = datum;
         this.duzinaTrajanja = duzinaTrajanja;
         this.napomena = napomena;
@@ -46,8 +48,6 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
         this.advokat = advokat;
         this.klijent = klijent;
     }
-
-    
 
     public PredmetSudjenja getPredmetSudjenja() {
         return predmetSudjenja;
@@ -104,9 +104,9 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public String vratiParametre() {
-        SimpleDateFormat sdf= new SimpleDateFormat("dd.MM.yyyy");
-        String datums=sdf.format(datum);
-        return String.format("'%d', '%s', '%d', '%s', '%s', '%s'", sudjenjeID, datums, duzinaTrajanja, predmetSudjenja.getPredmetSudjenjaID(), advokat.getAdvokatID(), klijent.getKlijentID());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        String datums = sdf.format(datum);
+        return String.format("'%d','%s','%d','%s','%d','%d','%d'", sudjenjeID, datums, duzinaTrajanja, napomena, predmetSudjenja.getPredmetSudjenjaID(), advokat.getAdvokatID(), klijent.getKlijentID());
     }
 
     @Override
@@ -131,32 +131,32 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public OpstiDomenskiObjkat vratiObjekat(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public String alijas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "s";
     }
 
     @Override
     public String update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "";
     }
 
     @Override
     public String vratiKriterijumPretrage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "SudjenjeID=" + sudjenjeID;
     }
 
     @Override
     public String vratiJoinUslov() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "";
     }
 
     @Override
     public String vratiWhereUslov(String pretraga) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "";
     }
 
     public String getNapomena() {
@@ -165,6 +165,14 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
 
     public void setNapomena(String napomena) {
         this.napomena = napomena;
+    }
+
+    public String getPoruka() {
+        return poruka;
+    }
+
+    public void setPoruka(String poruka) {
+        this.poruka = poruka;
     }
 
 }

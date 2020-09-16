@@ -11,12 +11,14 @@ import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
 import domen.PredmetSudjenja;
+import domen.Sudjenje;
 import exception.ServerskiException;
 import java.util.ArrayList;
 import so.SOIzmenaKlijenta;
 import so.SOListaSvihKlijenata;
 import so.SOPretragaKlijenata;
 import so.SOSacuvajKlijenta;
+import so.SOSacuvajSudjenja;
 import so.SOUcitajAdvokate;
 import so.SOUcitajPrebivalista;
 import so.SOUcitajPredmeteSudjenja;
@@ -83,16 +85,23 @@ public class Kontroler {
     }
 
     public Klijent izmeniKlijenta(Klijent klijent) throws ServerskiException {
-        SOIzmenaKlijenta soi= new SOIzmenaKlijenta();
+        SOIzmenaKlijenta soi = new SOIzmenaKlijenta();
         soi.setKlijent(klijent);
         soi.izvrsiOperaciju();
         return soi.getKlijent();
     }
 
     public ArrayList<PredmetSudjenja> listaPredmetaSudjenja() throws ServerskiException {
-        SOUcitajPredmeteSudjenja sop= new SOUcitajPredmeteSudjenja();
+        SOUcitajPredmeteSudjenja sop = new SOUcitajPredmeteSudjenja();
         sop.izvrsiOperaciju();
         return sop.getListaPredmetaSudjenja();
+    }
+
+    public Sudjenje sacuvajSudjenja(Sudjenje sudjenje) throws ServerskiException {
+        SOSacuvajSudjenja sos = new SOSacuvajSudjenja();
+        sos.setSudjenje(sudjenje);
+        sos.izvrsiOperaciju();
+        return sos.getSudjenje();
     }
 
 }
