@@ -16,6 +16,7 @@ import exception.ServerskiException;
 public abstract class OpstaSistemskaOperacija {
 
     private DBBroker db;
+    //object
     private OpstiDomenskiObjkat o;
 
     public OpstaSistemskaOperacija() {
@@ -37,7 +38,7 @@ public abstract class OpstaSistemskaOperacija {
         }
 
     }
-
+//object
     protected abstract OpstiDomenskiObjkat izvrsiValidaciju(OpstiDomenskiObjkat o) throws ServerskiException;
 
     protected abstract void izvrsiKonkretnuOperaciju() throws ServerskiException;

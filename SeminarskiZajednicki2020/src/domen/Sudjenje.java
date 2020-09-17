@@ -104,7 +104,7 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public String vratiParametre() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String datums = sdf.format(datum);
         return String.format("'%d','%s','%d','%s','%d','%d','%d'", sudjenjeID, datums, duzinaTrajanja, napomena, predmetSudjenja.getPredmetSudjenjaID(), advokat.getAdvokatID(), klijent.getKlijentID());
     }

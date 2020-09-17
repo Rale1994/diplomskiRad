@@ -239,9 +239,9 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
 
             Klijent izmenjenKlijent = KontrolerKlijent.getInstanca().izmeniKlijenta(klijent);
             if (izmenjenKlijent != null) {
-                JOptionPane.showMessageDialog(this, "Podaci o klijentu su uspesno izmenjeni!");
+                JOptionPane.showMessageDialog(this, "Podaci o klijentu su uspesno izmenjeni!","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Doslo je do greske prilikom izmene podataka!");
+                JOptionPane.showMessageDialog(this, "Doslo je do greske prilikom izmene podataka!","Greska", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
             Logger.getLogger(IzmenaPodatakaOKlijentu.class.getName()).log(Level.SEVERE, null, ex);

@@ -41,8 +41,8 @@ public class SOSacuvajKlijenta extends OpstaSistemskaOperacija {
 
             }
             if (klijent.getJmbg().equals(k.getJmbg())) {
-                klijent.setPoruka("Klijent sa unetim JMBG vec postoji u bazi!");
-                return klijent;
+                klijent.setPoruka("Klijent sa unetim JMBG vec postoji u bazi! GRESKA");
+               return  klijent;
             }
         } catch (SQLException ex) {
             Logger.getLogger(SOSacuvajKlijenta.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,7 +55,7 @@ public class SOSacuvajKlijenta extends OpstaSistemskaOperacija {
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
 
         try {
-            if (!(klijent.getPoruka().equals("Vec postoji klijent"))) {
+            if (!(klijent.getPoruka().equals("Klijent sa unetim JMBG vec postoji u bazi! GRESKA"))) {
                 klijent = (Klijent) getDb().sacuvajObjekat(klijent);
             }
 

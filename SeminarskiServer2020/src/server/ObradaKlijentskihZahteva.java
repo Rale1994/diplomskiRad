@@ -105,6 +105,7 @@ public class ObradaKlijentskihZahteva extends Thread {
                         } catch (ServerskiException e) {
                             zaCuvanje.setPoruka(e.getMessage());
                         }
+                        break;
                 }
                 so.setUspesnost(1);
                 out.writeObject(so);
