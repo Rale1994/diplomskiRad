@@ -125,7 +125,7 @@ public class DBBroker {
 
     public ArrayList<OpstiDomenskiObjkat> vratiSveObjektePretrage(OpstiDomenskiObjkat o, String pretraga) throws SQLException {
         String upit = "SELECT * FROM " + o.vratiImeTabele() + " " + o.alijas() + "" + o.vratiJoinUslov() + " " + o.vratiWhereUslov(pretraga.toLowerCase());
-        System.out.println("" + upit);
+       // System.out.println("" + upit);
         Statement s = konekcija.createStatement();
         ResultSet rs = s.executeQuery(upit);
         ArrayList<OpstiDomenskiObjkat> listaObjekata = o.RSuTabelu(rs);
@@ -135,7 +135,7 @@ public class DBBroker {
 
     public ArrayList<OpstiDomenskiObjkat> vratiSveObjekteJoin(OpstiDomenskiObjkat o) throws ServerskiException {
         try {
-            String upit = "SELECT * FROM " + o.vratiImeTabele() + " " + o.alijas() + " " + o.vratiJoinUslov();   
+            String upit = "SELECT * FROM " + o.vratiImeTabele() + " " + o.alijas() + " " + o.vratiJoinUslov();
             Statement s = konekcija.createStatement();
             ResultSet rs = s.executeQuery(upit);
             ArrayList<OpstiDomenskiObjkat> listaObjekata = o.RSuTabelu(rs);
@@ -155,6 +155,21 @@ public class DBBroker {
         return o;
     }
 
+    public ArrayList<OpstiDomenskiObjkat> sacuvajObjekte(ArrayList<OpstiDomenskiObjkat> listaO) throws SQLException {
+        for (OpstiDomenskiObjkat o : listaO) {
+            try {
+                String upit = String.format("INSERT INTO %s VALUES(%s)", o.vratiImeTabele(), o.vratiParametre());
+                Statement s = konekcija.createStatement();
+                s.execute(upit);
+                s.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        return listaO;
+    }
+
     public OpstiDomenskiObjkat vratiObjekat(OpstiDomenskiObjkat o) throws SQLException {
         String upit = "SELECT * FROM " + o.vratiImeTabele() + " WHERE " + o.vratiKriterijumPretrage();
         Statement s = konekcija.createStatement();
@@ -162,6 +177,15 @@ public class DBBroker {
         o = o.vratiObjekat(rs);
         s.close();
         return o;
+    }
+
+    public ArrayList<OpstiDomenskiObjkat> vratiViseObjeakat(OpstiDomenskiObjkat o) throws SQLException {
+        String upit = "SELECT * FROM " + o.vratiImeTabele() + " WHERE " + o.vratiKriterijumPretrage();
+        Statement s = konekcija.createStatement();
+        ResultSet rs = s.executeQuery(upit);
+        ArrayList<OpstiDomenskiObjkat> listaObjekata = o.RSuTabelu(rs);
+        s.close();
+        return listaObjekata;
     }
 
     public OpstiDomenskiObjkat izmeniPodatke(OpstiDomenskiObjkat o) {

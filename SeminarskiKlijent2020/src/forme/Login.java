@@ -125,7 +125,8 @@ public class Login extends javax.swing.JFrame {
             try {
                 advokat = KontrolerKlijent.getInstanca().ulogujuAdvokata(korisnickoIme, lozinka);
                 if (advokat != null) {
-                    GlavnaForma gf = new GlavnaForma();
+                    GlavnaForma gf = new GlavnaForma(advokat);
+                    gf.setAdvokat(advokat);
                     gf.setVisible(true);
                     this.dispose();
                 }

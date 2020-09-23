@@ -29,6 +29,7 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
     private Prebivaliste prebivaliste;
     private Advokat advokat;
     private String poruka;
+   
 
     public Klijent() {
     }
@@ -128,6 +129,7 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
     public void setKontaktTelefon(String kontaktTelefon) {
         this.kontaktTelefon = kontaktTelefon;
     }
+    
 
     @Override
     public String vratiImeTabele() {
@@ -265,5 +267,8 @@ public class Klijent extends OpstiDomenskiObjkat implements Serializable {
         
         return " WHERE k.Ime LIKE '" + pretraga + "' OR k.Prezime LIKE '" + pretraga + "' OR k.JMBG LIKE '" + pretraga + "'";
     }
+
+    
+    
 
 }

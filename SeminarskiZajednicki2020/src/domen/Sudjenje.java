@@ -146,7 +146,7 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public String vratiKriterijumPretrage() {
-        return "SudjenjeID=" + sudjenjeID;
+        return "AdvokatID=" + advokat.getAdvokatID()+" OR KlijentID="+klijent.getKlijentID();
     }
 
     @Override

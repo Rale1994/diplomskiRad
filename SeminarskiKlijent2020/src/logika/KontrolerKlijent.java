@@ -96,9 +96,14 @@ public class KontrolerKlijent {
         return listaPredmeta;
     }
 
-    public Sudjenje sacuvajSudjenja(Sudjenje sudjenje) throws Exception {
-        Sudjenje zaCuvanje = (Sudjenje) posaljiZahtev(Operacije.SACUVAJ_SUDJENJA, sudjenje);
+    public ArrayList<OpstiDomenskiObjkat> sacuvajSudjenja(ArrayList<Sudjenje> listaSvihSudjenja) throws Exception {
+        ArrayList<OpstiDomenskiObjkat> zaCuvanje = (ArrayList<OpstiDomenskiObjkat>) posaljiZahtev(Operacije.SACUVAJ_SUDJENJA, listaSvihSudjenja);
         return zaCuvanje;
+    }
+
+    public ArrayList<OpstiDomenskiObjkat> vratiSudnjenja(Klijent k) throws Exception {
+        ArrayList<OpstiDomenskiObjkat> lista =(ArrayList<OpstiDomenskiObjkat>) posaljiZahtev(Operacije.VRATI_SUDJENJA_KLIJENTA, k);
+        return lista;
     }
 
 }

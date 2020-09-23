@@ -5,6 +5,7 @@
  */
 package forme;
 
+import domen.Advokat;
 import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,12 +16,19 @@ import java.util.logging.Logger;
  */
 public class GlavnaForma extends javax.swing.JFrame {
 
+    private Advokat advokat;
+
     /**
      * Creates new form GlavnaForma
      */
-    public GlavnaForma() {
+    public GlavnaForma(Advokat advokat) {
         initComponents();
-        
+        this.advokat=advokat;
+
+    }
+
+    private GlavnaForma() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -34,6 +42,7 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         btnUnosNovogKlijenta = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnIzmenaPodatakaAdvkata = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Glavna forma");
@@ -52,6 +61,13 @@ public class GlavnaForma extends javax.swing.JFrame {
             }
         });
 
+        btnIzmenaPodatakaAdvkata.setText("IZMENI MOJE PODATKE");
+        btnIzmenaPodatakaAdvkata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIzmenaPodatakaAdvkataActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -59,18 +75,24 @@ public class GlavnaForma extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnUnosNovogKlijenta, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(btnIzmenaPodatakaAdvkata, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnUnosNovogKlijenta, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUnosNovogKlijenta, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66)
+                .addComponent(btnIzmenaPodatakaAdvkata, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,22 +100,29 @@ public class GlavnaForma extends javax.swing.JFrame {
 
     private void btnUnosNovogKlijentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnosNovogKlijentaActionPerformed
         try {
-            UnosNovogKlijenta unk= new UnosNovogKlijenta(this, true);
+            UnosNovogKlijenta unk = new UnosNovogKlijenta(this, true);
             unk.setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(GlavnaForma.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btnUnosNovogKlijentaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            PretragaKlijenata pk= new PretragaKlijenata();
+            PretragaKlijenata pk = new PretragaKlijenata();
             pk.setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(GlavnaForma.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnIzmenaPodatakaAdvkataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmenaPodatakaAdvkataActionPerformed
+        IzmenaPodatakaOAdvokatu iza = new IzmenaPodatakaOAdvokatu(this, true, advokat);
+        iza.setAdvokat(advokat);
+        iza.setVisible(true);
+        iza.pack();
+    }//GEN-LAST:event_btnIzmenaPodatakaAdvkataActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,10 +159,18 @@ public class GlavnaForma extends javax.swing.JFrame {
         });
     }
 
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnIzmenaPodatakaAdvkata;
     private javax.swing.JButton btnUnosNovogKlijenta;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
+
+    public Advokat getAdvokat() {
+        return advokat;
+    }
+
+    public void setAdvokat(Advokat advokat) {
+        this.advokat = advokat;
+    }
 }

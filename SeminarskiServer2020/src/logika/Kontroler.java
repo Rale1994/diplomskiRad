@@ -19,6 +19,7 @@ import so.SOListaSvihKlijenata;
 import so.SOPretragaKlijenata;
 import so.SOSacuvajKlijenta;
 import so.SOSacuvajSudjenja;
+import so.SOSudjenjaKlijenta;
 import so.SOUcitajAdvokate;
 import so.SOUcitajPrebivalista;
 import so.SOUcitajPredmeteSudjenja;
@@ -97,11 +98,18 @@ public class Kontroler {
         return sop.getListaPredmetaSudjenja();
     }
 
-    public Sudjenje sacuvajSudjenja(Sudjenje sudjenje) throws ServerskiException {
+    public ArrayList<OpstiDomenskiObjkat> sacuvajSudjenja(ArrayList<OpstiDomenskiObjkat> lista) throws ServerskiException {
         SOSacuvajSudjenja sos = new SOSacuvajSudjenja();
-        sos.setSudjenje(sudjenje);
+        sos.setListaSudjenja(lista);
         sos.izvrsiOperaciju();
-        return sos.getSudjenje();
+        return sos.getListaSudjenja();
+    }
+
+    public ArrayList<OpstiDomenskiObjkat> listaSudjnjaKlijenta(Klijent klijent) throws ServerskiException {
+        SOSudjenjaKlijenta sk= new SOSudjenjaKlijenta();
+        sk.setO(klijent);
+        sk.izvrsiOperaciju();
+        return sk.getListaOd();
     }
 
 }

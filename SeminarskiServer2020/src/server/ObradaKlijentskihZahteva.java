@@ -53,6 +53,8 @@ public class ObradaKlijentskihZahteva extends Thread {
                 ArrayList<Prebivaliste> listaPrebivalista;
                 ArrayList<Klijent> listaKlijenata;
                 ArrayList<PredmetSudjenja> listaPredmetaSudjenja;
+                ArrayList<OpstiDomenskiObjkat> listaSudjenja;
+                
                 Klijent klijent;
                 Sudjenje sudjenje;
                 switch (kz.getOperacija()) {
@@ -98,14 +100,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                         so.setOdgovor(listaPredmetaSudjenja);
                         break;
                     case Operacije.SACUVAJ_SUDJENJA:
-                        sudjenje = (Sudjenje) kz.getParametar();
-                        Sudjenje zaCuvanje = null;
-                        try {
-                            zaCuvanje = Kontroler.getInstanca().sacuvajSudjenja(sudjenje);
-                        } catch (ServerskiException e) {
-                            zaCuvanje.setPoruka(e.getMessage());
-                        }
+                        listaSudjenja = (ArrayList<OpstiDomenskiObjkat>) kz.getParametar();
+                        ArrayList<OpstiDomenskiObjkat> zaCuvanje = Kontroler.getInstanca().sacuvajSudjenja(listaSudjenja);
+                        so.setOdgovor(zaCuvanje);
                         break;
+                    case Operacije.VRATI_SUDJENJA_KLIJENTA:
+                        klijent = (Klijent) kz.getParametar();
+                        listaSudjenja = Kontroler.getInstanca().listaSudjnjaKlijenta(klijent);
+                        so.setOdgovor(listaSudjenja);
+                    
                 }
                 so.setUspesnost(1);
                 out.writeObject(so);

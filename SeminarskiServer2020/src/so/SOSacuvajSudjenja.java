@@ -10,6 +10,7 @@ import domen.Sudjenje;
 import exception.ServerskiException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,11 +21,11 @@ import java.util.logging.Logger;
  */
 public class SOSacuvajSudjenja extends OpstaSistemskaOperacija {
 
-    private Sudjenje sudjenje;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private ArrayList<OpstiDomenskiObjkat> listaSudjenja;
+   
 
     public SOSacuvajSudjenja() {
-        this.sudjenje = sudjenje;
+        
     }
 
     @Override
@@ -40,26 +41,35 @@ public class SOSacuvajSudjenja extends OpstaSistemskaOperacija {
 //        } catch (SQLException ex) {
 //            Logger.getLogger(SOSacuvajSudjenja.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        return sudjenje;
+        return null;
     }
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
         try {
-            String datum = sdf.format(sudjenje.getDatum());
-            //  sudjenje.setDatum(datum);
-            sudjenje = (Sudjenje) getDb().sacuvajObjekat(sudjenje);
+
+            listaSudjenja=getDb().sacuvajObjekte(listaSudjenja);
         } catch (SQLException ex) {
             Logger.getLogger(SOSacuvajSudjenja.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public Sudjenje getSudjenje() {
-        return sudjenje;
+    public ArrayList<OpstiDomenskiObjkat> getListaSudjenja() {
+        return listaSudjenja;
     }
 
-    public void setSudjenje(Sudjenje sudjenje) {
-        this.sudjenje = sudjenje;
+    public void setListaSudjenja(ArrayList<OpstiDomenskiObjkat> listaSudjenja) {
+        this.listaSudjenja = listaSudjenja;
     }
+
+  
+
+   
+
+   
+
+    
+
+   
 
 }

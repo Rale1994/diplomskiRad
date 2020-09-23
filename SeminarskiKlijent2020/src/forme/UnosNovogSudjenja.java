@@ -7,6 +7,7 @@ package forme;
 
 import domen.Advokat;
 import domen.Klijent;
+import domen.OpstiDomenskiObjkat;
 import domen.PredmetSudjenja;
 import domen.Sudjenje;
 import java.text.ParseException;
@@ -25,7 +26,7 @@ import modeli.ModelTabeleSudjenje;
  * @author Rados
  */
 public class UnosNovogSudjenja extends javax.swing.JDialog {
-    
+
     private Klijent klijent;
 
     /**
@@ -40,7 +41,7 @@ public class UnosNovogSudjenja extends javax.swing.JDialog {
         comboPredmetSudjnjea();
         postaviTabelu();
     }
-    
+
     private UnosNovogSudjenja(JFrame jFrame, boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -256,7 +257,7 @@ public class UnosNovogSudjenja extends javax.swing.JDialog {
         try {
             Advokat advokat = (Advokat) comboAdvokat.getSelectedItem();
             PredmetSudjenja predmetSudjenja = (PredmetSudjenja) comboPredmetSudjnjea.getSelectedItem();
-            
+
             String datum = txtDatum.getText();
             String duzina = txtDuzinaTrajanja.getText();
             String napomena = txtNapomena.getText();
@@ -267,18 +268,22 @@ public class UnosNovogSudjenja extends javax.swing.JDialog {
             int duzinaTrajnja = Integer.parseInt(duzina);
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             Date datumSudjenja = sdf.parse(datum);
-            
+            if (datumSudjenja.before(new Date())) {
+                JOptionPane.showMessageDialog(this, "Datum mora biti unesen od danasnjeg!", "Greška!", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             Sudjenje sudjenje = new Sudjenje(datumSudjenja, duzinaTrajnja, napomena, predmetSudjenja, advokat, klijent);
             ModelTabeleSudjenje mts = (ModelTabeleSudjenje) tblSudjenje.getModel();
             mts.dodajSudjenje(sudjenje);
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(UnosNovogSudjenja.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-        
+
         int red = tblSudjenje.getSelectedRow();
         if (red != -1) {
             ModelTabeleSudjenje mts = (ModelTabeleSudjenje) tblSudjenje.getModel();
@@ -296,16 +301,16 @@ public class UnosNovogSudjenja extends javax.swing.JDialog {
     private void bntSacuvajSudjenjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSacuvajSudjenjaActionPerformed
         ModelTabeleSudjenje mts = (ModelTabeleSudjenje) tblSudjenje.getModel();
         ArrayList<Sudjenje> listaSvihSudjenja = mts.getLista();
-        for (Sudjenje sudjenje : listaSvihSudjenja) {
-            try {
-                Sudjenje zaCuvanje = KontrolerKlijent.getInstanca().sacuvajSudjenja(sudjenje);
-                if (zaCuvanje != null) {
-                    JOptionPane.showMessageDialog(this, zaCuvanje.getPoruka());
-                }
-            } catch (Exception ex) {
-                Logger.getLogger(UnosNovogSudjenja.class.getName()).log(Level.SEVERE, null, ex);
+
+        try {
+            ArrayList<OpstiDomenskiObjkat> zaCuvanje = KontrolerKlijent.getInstanca().sacuvajSudjenja(listaSvihSudjenja);
+            if (zaCuvanje != null) {
+                JOptionPane.showMessageDialog(this, "Uspesno sacuvano!");
             }
+        } catch (Exception ex) {
+            Logger.getLogger(UnosNovogSudjenja.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_bntSacuvajSudjenjaActionPerformed
 
     /**
@@ -376,11 +381,11 @@ public class UnosNovogSudjenja extends javax.swing.JDialog {
 public Klijent getKlijent() {
         return klijent;
     }
-    
+
     public void setKlijent(Klijent klijent) {
         this.klijent = klijent;
     }
-    
+
     private void comboAdvokat() throws Exception {
         ArrayList<Advokat> listaAdvokata = KontrolerKlijent.getInstanca().sviAdvokati();
         comboAdvokat.removeAllItems();
@@ -388,7 +393,7 @@ public Klijent getKlijent() {
             comboAdvokat.addItem(advokat);
         }
     }
-    
+
     private void comboPredmetSudjnjea() throws Exception {
         ArrayList<PredmetSudjenja> listaPredmetaSudjenja = KontrolerKlijent.getInstanca().predmetiSudjenja();
         comboPredmetSudjnjea.removeAllItems();
@@ -396,7 +401,7 @@ public Klijent getKlijent() {
             comboPredmetSudjnjea.addItem(predmetSudjenja);
         }
     }
-    
+
     private void postaviTabelu() {
         ModelTabeleSudjenje mts = new ModelTabeleSudjenje();
         tblSudjenje.setModel(mts);
