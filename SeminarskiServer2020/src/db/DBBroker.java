@@ -125,7 +125,7 @@ public class DBBroker {
 
     public ArrayList<OpstiDomenskiObjkat> vratiSveObjektePretrage(OpstiDomenskiObjkat o, String pretraga) throws SQLException {
         String upit = "SELECT * FROM " + o.vratiImeTabele() + " " + o.alijas() + "" + o.vratiJoinUslov() + " " + o.vratiWhereUslov(pretraga.toLowerCase());
-       // System.out.println("" + upit);
+        // System.out.println("" + upit);
         Statement s = konekcija.createStatement();
         ResultSet rs = s.executeQuery(upit);
         ArrayList<OpstiDomenskiObjkat> listaObjekata = o.RSuTabelu(rs);
@@ -180,7 +180,7 @@ public class DBBroker {
     }
 
     public ArrayList<OpstiDomenskiObjkat> vratiViseObjeakat(OpstiDomenskiObjkat o) throws SQLException {
-        String upit = "SELECT * FROM " + o.vratiImeTabele() + " WHERE " + o.vratiKriterijumPretrage();
+        String upit = "SELECT * FROM " + o.vratiImeTabele() + " " + o.alijas() + " " + o.vratiJoinUslov() + " WHERE" + o.vratiKriterijumPretrage();
         Statement s = konekcija.createStatement();
         ResultSet rs = s.executeQuery(upit);
         ArrayList<OpstiDomenskiObjkat> listaObjekata = o.RSuTabelu(rs);

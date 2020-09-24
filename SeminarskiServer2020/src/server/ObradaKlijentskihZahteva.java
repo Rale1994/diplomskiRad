@@ -10,6 +10,7 @@ import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
 import domen.PredmetSudjenja;
+import domen.Sertifikat;
 import domen.Sudjenje;
 import exception.ServerskiException;
 import java.io.IOException;
@@ -29,18 +30,18 @@ import transfer.ServerskiOdgovor;
  * @author Rados
  */
 public class ObradaKlijentskihZahteva extends Thread {
-    
+
     private Socket socket;
     private ArrayList<ObradaKlijentskihZahteva> klijenti;
     private ObjectInputStream in;
     private ObjectOutputStream out;
-    
+
     public ObradaKlijentskihZahteva(Socket socket, ArrayList<ObradaKlijentskihZahteva> klijenti) {
         this.socket = socket;
         this.klijenti = klijenti;
-        
+
     }
-    
+
     @Override
     public void run() {
         try {
@@ -54,7 +55,8 @@ public class ObradaKlijentskihZahteva extends Thread {
                 ArrayList<Klijent> listaKlijenata;
                 ArrayList<PredmetSudjenja> listaPredmetaSudjenja;
                 ArrayList<OpstiDomenskiObjkat> listaSudjenja;
-                
+                ArrayList<Sudjenje> sudjenjea;
+                ArrayList<Sertifikat> listaSertifikata;
                 Klijent klijent;
                 Sudjenje sudjenje;
                 switch (kz.getOperacija()) {
@@ -106,13 +108,18 @@ public class ObradaKlijentskihZahteva extends Thread {
                         break;
                     case Operacije.VRATI_SUDJENJA_KLIJENTA:
                         klijent = (Klijent) kz.getParametar();
-                        listaSudjenja = Kontroler.getInstanca().listaSudjnjaKlijenta(klijent);
-                        so.setOdgovor(listaSudjenja);
-                    
+                        sudjenjea = Kontroler.getInstanca().listaSudjnjaKlijenta(klijent);
+                        so.setOdgovor(sudjenjea);
+                        break;
+                    case Operacije.VRATI_SERTIFIKATE:
+                        listaSertifikata=Kontroler.getInstanca().vratiSertifikate();
+                        so.setOdgovor(listaSertifikata);
+                        break;
+
                 }
                 so.setUspesnost(1);
                 out.writeObject(so);
-                
+
             }
         } catch (IOException ex) {
             Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);
@@ -122,37 +129,37 @@ public class ObradaKlijentskihZahteva extends Thread {
             Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public Socket getSocket() {
         return socket;
     }
-    
+
     public void setSocket(Socket socket) {
         this.socket = socket;
     }
-    
+
     public ArrayList<ObradaKlijentskihZahteva> getKlijenti() {
         return klijenti;
     }
-    
+
     public void setKlijenti(ArrayList<ObradaKlijentskihZahteva> klijenti) {
         this.klijenti = klijenti;
     }
-    
+
     public ObjectInputStream getIn() {
         return in;
     }
-    
+
     public void setIn(ObjectInputStream in) {
         this.in = in;
     }
-    
+
     public ObjectOutputStream getOut() {
         return out;
     }
-    
+
     public void setOut(ObjectOutputStream out) {
         this.out = out;
     }
-    
+
 }

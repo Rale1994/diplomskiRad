@@ -7,9 +7,12 @@ package domen;
 
 import java.io.Serializable;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -126,7 +129,35 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public ArrayList<OpstiDomenskiObjkat> RSuTabelu(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<OpstiDomenskiObjkat> listaSudjenja = new ArrayList<>();
+        try {
+
+            while (rs.next()) {
+                int sudjenjeId = rs.getInt("s.SudjenjeID");
+                Date datum = rs.getDate("s.Datum");
+                int duzina = rs.getInt("s.DuzinaTrajanja");
+                String napomena = rs.getString("s.Napomena");
+
+                PredmetSudjenja ps = new PredmetSudjenja();
+                ps.setPredmetSudjenjaID(rs.getInt("ps.PredmetSudjenjaID"));
+                ps.setNazivPredmetSudjenja(rs.getString("ps.NazivPredmetaSudjenja"));
+
+                Advokat advokat = new Advokat();
+                advokat.setAdvokatID(rs.getInt("a.AdvokatID"));
+                advokat.setIme(rs.getString("a.Ime"));
+                advokat.setPrezime(rs.getString("a.Prezime"));
+                Klijent klijent = new Klijent();
+                klijent.setKlijentID(rs.getInt("KlijentID"));
+
+                Sudjenje sudjenje = new Sudjenje(sudjenjeId, datum, duzina, napomena, ps, advokat, klijent);
+
+                listaSudjenja.add(sudjenje);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Sudjenje.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaSudjenja;
     }
 
     @Override
@@ -146,12 +177,12 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public String vratiKriterijumPretrage() {
-        return "AdvokatID=" + advokat.getAdvokatID()+" OR KlijentID="+klijent.getKlijentID();
+        return " k.KlijentID=" + klijent.getKlijentID();
     }
 
     @Override
     public String vratiJoinUslov() {
-        return "";
+        return " JOIN advokat a ON s.AdvokatID=a.AdvokatID JOIN klijent k ON s.KlijentID=k.KlijentID JOIN predmetsudjenja ps ON s.PredmetSudjenjaID=ps.PredmetSudjenjaID";
     }
 
     @Override

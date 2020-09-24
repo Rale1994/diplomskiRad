@@ -18,14 +18,17 @@ import modeli.ModelTabeleSudjenje;
 public class PrikazSvihSudjenja extends javax.swing.JDialog {
 
     private ArrayList<Sudjenje> listaSudjneja;
+    private Klijent klijent;
 
     /**
      * Creates new form PrikazSvihSudjenja
      */
-    public PrikazSvihSudjenja(java.awt.Frame parent, ArrayList<Sudjenje> listaSudjneja, boolean modal) {
+    public PrikazSvihSudjenja(java.awt.Frame parent, ArrayList<Sudjenje> listaSudjneja, Klijent klijent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setTitle("Sudjenja za klijenta: " +klijent.getIme()+" "+klijent.getPrezime());
         this.listaSudjneja = listaSudjneja;
+        this.klijent=klijent;
         postaviTabelu();
     }
 
@@ -128,7 +131,7 @@ public class PrikazSvihSudjenja extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void postaviTabelu() {
-        
+
         ModelTabeleSudjenje mts = new ModelTabeleSudjenje();
         mts.setLista(listaSudjneja);
         tblSujdneje.setModel(mts);
@@ -142,5 +145,4 @@ public class PrikazSvihSudjenja extends javax.swing.JDialog {
         this.listaSudjneja = listaSudjneja;
     }
 
-   
 }

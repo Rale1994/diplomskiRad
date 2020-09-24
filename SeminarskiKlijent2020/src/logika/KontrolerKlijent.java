@@ -10,6 +10,7 @@ import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
 import domen.PredmetSudjenja;
+import domen.Sertifikat;
 import domen.Sudjenje;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -101,8 +102,13 @@ public class KontrolerKlijent {
         return zaCuvanje;
     }
 
-    public ArrayList<OpstiDomenskiObjkat> vratiSudnjenja(Klijent k) throws Exception {
-        ArrayList<OpstiDomenskiObjkat> lista =(ArrayList<OpstiDomenskiObjkat>) posaljiZahtev(Operacije.VRATI_SUDJENJA_KLIJENTA, k);
+    public ArrayList<Sudjenje> vratiSudnjenja(Klijent k) throws Exception {
+        ArrayList<Sudjenje> listaSudjenja = (ArrayList<Sudjenje>) posaljiZahtev(Operacije.VRATI_SUDJENJA_KLIJENTA, k);
+        return listaSudjenja;
+    }
+
+    public ArrayList<Sertifikat> vratiSertifikate() throws Exception {
+        ArrayList<Sertifikat> lista = (ArrayList<Sertifikat>) posaljiZahtev(Operacije.VRATI_SERTIFIKATE, null);
         return lista;
     }
 

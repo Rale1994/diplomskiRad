@@ -11,10 +11,12 @@ import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
 import domen.PredmetSudjenja;
+import domen.Sertifikat;
 import domen.Sudjenje;
 import exception.ServerskiException;
 import java.util.ArrayList;
 import so.SOIzmenaKlijenta;
+import so.SOListaSertifikata;
 import so.SOListaSvihKlijenata;
 import so.SOPretragaKlijenata;
 import so.SOSacuvajKlijenta;
@@ -105,11 +107,17 @@ public class Kontroler {
         return sos.getListaSudjenja();
     }
 
-    public ArrayList<OpstiDomenskiObjkat> listaSudjnjaKlijenta(Klijent klijent) throws ServerskiException {
-        SOSudjenjaKlijenta sk= new SOSudjenjaKlijenta();
+    public ArrayList<Sudjenje> listaSudjnjaKlijenta(Klijent klijent) throws ServerskiException {
+        SOSudjenjaKlijenta sk = new SOSudjenjaKlijenta();
         sk.setO(klijent);
         sk.izvrsiOperaciju();
-        return sk.getListaOd();
+        return sk.getListaSudjnjea();
+    }
+
+    public ArrayList<Sertifikat> vratiSertifikate() throws ServerskiException {
+        SOListaSertifikata sos = new SOListaSertifikata();
+        sos.izvrsiOperaciju();
+        return sos.getListaSertifikata();
     }
 
 }

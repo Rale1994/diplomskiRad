@@ -7,7 +7,10 @@ package domen;
 
 import java.io.Serializable;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,10 +29,6 @@ public class Sertifikat extends OpstiDomenskiObjkat implements Serializable {
         this.nazivSertifikata = nazivSertifikata;
     }
 
-   
-
-  
-
     public String getNazivSertifikata() {
         return nazivSertifikata;
     }
@@ -45,9 +44,6 @@ public class Sertifikat extends OpstiDomenskiObjkat implements Serializable {
     public void setSertifikatID(int sertifikatID) {
         this.sertifikatID = sertifikatID;
     }
-
- 
-   
 
     @Override
     public String toString() {
@@ -81,7 +77,23 @@ public class Sertifikat extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public ArrayList<OpstiDomenskiObjkat> RSuTabelu(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<OpstiDomenskiObjkat> lisatSertifikata = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                try {
+                    int id = rs.getInt("SertifikatID");
+                    String naziv = rs.getString("NazivSertifikata");
+
+                    Sertifikat sertifikat = new Sertifikat(id, naziv);
+                    lisatSertifikata.add(sertifikat);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Sertifikat.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Sertifikat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lisatSertifikata;
     }
 
     @Override

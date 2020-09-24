@@ -21,5 +21,6 @@ public class Operacije {
     public static final int LISTA_PREDMETA_SUDJANJA = 8;
     public static final int SACUVAJ_SUDJENJA = 9;
     public static final int VRATI_SUDJENJA_KLIJENTA = 10;
+    public static final int VRATI_SERTIFIKATE = 11;
 
 }

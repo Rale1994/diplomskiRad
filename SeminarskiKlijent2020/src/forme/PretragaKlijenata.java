@@ -252,9 +252,12 @@ public class PretragaKlijenata extends javax.swing.JFrame {
                 ArrayList<Klijent> lista = mtk.getListaKlijenata();
                 Klijent k = lista.get(red);
 
-                ArrayList<OpstiDomenskiObjkat> listaS = KontrolerKlijent.getInstanca().vratiSudnjenja(k);
-                ArrayList<Sudjenje>listaSudjenja= new ArrayList<>();
-                PrikazSvihSudjenja ps = new PrikazSvihSudjenja(this, listaSudjenja, true);
+                ArrayList<Sudjenje> listaSudjenja = KontrolerKlijent.getInstanca().vratiSudnjenja(k);
+                if (listaSudjenja.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Ovaj klijent nema unesenih sudjenja!", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+                PrikazSvihSudjenja ps = new PrikazSvihSudjenja(this, listaSudjenja, k, true);
                 ps.setListaSudjneja(listaSudjenja);
                 ps.setVisible(true);
                 ps.pack();
