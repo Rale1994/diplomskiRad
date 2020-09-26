@@ -36,7 +36,7 @@ public class UnosNovogSudjenja extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.klijent = klijent;
-        txtKlijent.setText("" + klijent.getIme() + "" + klijent.getPrezime());
+        txtKlijent.setText("" + klijent.getIme() + " " + klijent.getPrezime());
         comboAdvokat();
         comboPredmetSudjnjea();
         postaviTabelu();
@@ -262,9 +262,10 @@ public class UnosNovogSudjenja extends javax.swing.JDialog {
             String duzina = txtDuzinaTrajanja.getText();
             String napomena = txtNapomena.getText();
             if (txtDatum.getText().isEmpty() || txtDuzinaTrajanja.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Polja za unos datuma i duzine trajanja su obavezna!", "Greška!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Sistem ne može da zapamti suđenje.", "Greška!", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+
             int duzinaTrajnja = Integer.parseInt(duzina);
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             Date datumSudjenja = sdf.parse(datum);
@@ -299,6 +300,10 @@ public class UnosNovogSudjenja extends javax.swing.JDialog {
     }//GEN-LAST:event_btnOdustaniActionPerformed
 
     private void bntSacuvajSudjenjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSacuvajSudjenjaActionPerformed
+        if (txtDatum.getText().isEmpty() || txtDuzinaTrajanja.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Sistem ne može da zapamti suđenje.", "Greška!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         ModelTabeleSudjenje mts = (ModelTabeleSudjenje) tblSudjenje.getModel();
         ArrayList<Sudjenje> listaSvihSudjenja = mts.getLista();
 

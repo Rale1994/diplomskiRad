@@ -28,12 +28,13 @@ public class Advokat extends OpstiDomenskiObjkat implements Serializable {
     private String korisnickoIme;
     private String lozinka;
     private Prebivaliste prebivaliste;
-    private Arhiva arhiva;
+   
 
     public Advokat() {
     }
 
-    public Advokat(int advokatID, String jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, String korisnickoIme, String lozinka, Prebivaliste prebivaliste, Arhiva arhiva) {
+
+    public Advokat(int advokatID, String jmbg, String ime, String prezime, String ulica, String broj, String kontaktTelefon, String korisnickoIme, String lozinka, Prebivaliste prebivaliste) {
         this.advokatID = advokatID;
         this.jmbg = jmbg;
         this.ime = ime;
@@ -44,16 +45,11 @@ public class Advokat extends OpstiDomenskiObjkat implements Serializable {
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
         this.prebivaliste = prebivaliste;
-        this.arhiva = arhiva;
+        
     }
 
-    public Arhiva getArhiva() {
-        return arhiva;
-    }
 
-    public void setArhiva(Arhiva arhiva) {
-        this.arhiva = arhiva;
-    }
+   
 
     public String getJmbg() {
         return jmbg;
@@ -134,7 +130,7 @@ public class Advokat extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public String vratiParametre() {
-        return String.format("'%d','%s','%s','%s','%s','%s','%s','%s','%s','%d','%d'", advokatID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, korisnickoIme, lozinka, prebivaliste.getPrebivalisteID(), arhiva.getArhivaID());
+        return String.format("'%d','%s','%s','%s','%s','%s','%s','%s','%s','%d'", advokatID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, korisnickoIme, lozinka, prebivaliste.getPrebivalisteID());
     }
 
     @Override
@@ -183,10 +179,9 @@ public class Advokat extends OpstiDomenskiObjkat implements Serializable {
                 Prebivaliste prebivaliste = new Prebivaliste();
                 prebivaliste.setPrebivalisteID(rs.getInt("PrebivalisteID"));
 
-                Arhiva arhiva = new Arhiva();
-                arhiva.setArhivaID(rs.getInt("ArhivaID"));
+              
 
-                Advokat advokat = new Advokat(advokatID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, korisnickoIme, lozinka, prebivaliste, arhiva);
+                Advokat advokat = new Advokat(advokatID, jmbg, ime, prezime, ulica, broj, kontaktTelefon, korisnickoIme, lozinka, prebivaliste);
                 advokati.add(advokat);
             }
         } catch (SQLException ex) {
@@ -207,7 +202,7 @@ public class Advokat extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public String update() {
-        return "";
+       return String.format("Ime='%s',Prezime='%s',Ulica='%s', Broj='%s', KontaktTelefon='%s',PrebivalisteID='%d'", ime, prezime, ulica, broj, kontaktTelefon, prebivaliste.getPrebivalisteID());
     }
 
     @Override

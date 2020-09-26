@@ -78,33 +78,32 @@ public class DBBroker {
 
     public Advokat ulogujAdvokata(Advokat advokat) throws SQLException {
 
-        String upit = "SELECT * FROM advokat where KorisnickoIme=? and Lozinka=?";
+        String upit = "SELECT * FROM advokat a join prebivaliste p on a.PrebivalisteID= p.PrebivalisteID where KorisnickoIme=? and Lozinka=?";
         PreparedStatement ps = konekcija.prepareStatement(upit);
         ps.setString(1, advokat.getKorisnickoIme());
         ps.setString(2, advokat.getLozinka());
         ResultSet rs = ps.executeQuery();
+        Advokat advokt=null;
         while (rs.next()) {
-            advokat.setAdvokatID(rs.getInt("AdvokatID"));
-            advokat.setJmbg(rs.getString("JMBG"));
-            advokat.setIme(rs.getString("Ime"));
-            advokat.setPrezime(rs.getString("Prezime"));
-            advokat.setUlica(rs.getString("Ulica"));
-            advokat.setBroj(rs.getString("Broj"));
-            advokat.setKontaktTelefon(rs.getString("KontaktTelefon"));
-            advokat.setKorisnickoIme(rs.getString("KorisnickoIme"));
-            advokat.setLozinka(rs.getString("Lozinka"));
+            advokt= new Advokat();
+            advokt.setAdvokatID(rs.getInt("a.AdvokatID"));
+            advokt.setJmbg(rs.getString("a.JMBG"));
+            advokt.setIme(rs.getString("a.Ime"));
+            advokt.setPrezime(rs.getString("a.Prezime"));
+            advokt.setUlica(rs.getString("a.Ulica"));
+            advokt.setBroj(rs.getString("a.Broj"));
+            advokt.setKontaktTelefon(rs.getString("a.KontaktTelefon"));
+            advokt.setKorisnickoIme(rs.getString("a.KorisnickoIme"));
+            advokt.setLozinka(rs.getString("a.Lozinka"));
 
             Prebivaliste prebivaliste = new Prebivaliste();
-            prebivaliste.setPrebivalisteID(rs.getInt("PrebivalisteID"));
+            prebivaliste.setPrebivalisteID(rs.getInt("p.PrebivalisteID"));
 
-            Arhiva arhiva = new Arhiva();
-            arhiva.setArhivaID(rs.getInt("ArhivaID"));
-
-            advokat.setPrebivaliste(prebivaliste);
-            advokat.setArhiva(arhiva);
+            
+            
 
         }
-        return advokat;
+        return advokt;
 
     }
 
@@ -190,6 +189,7 @@ public class DBBroker {
 
     public OpstiDomenskiObjkat izmeniPodatke(OpstiDomenskiObjkat o) {
         String upit = String.format("UPDATE %s SET %s WHERE %s = '%d'", o.vratiImeTabele(), o.update(), o.vratiPk(), o.vratiVrednostPK());
+        System.out.println(upit);
         try {
             Statement s = konekcija.createStatement();
             s.executeUpdate(upit);

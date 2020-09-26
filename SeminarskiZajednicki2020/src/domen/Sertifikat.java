@@ -80,7 +80,7 @@ public class Sertifikat extends OpstiDomenskiObjkat implements Serializable {
         ArrayList<OpstiDomenskiObjkat> lisatSertifikata = new ArrayList<>();
         try {
             while (rs.next()) {
-                try {
+                try  {
                     int id = rs.getInt("SertifikatID");
                     String naziv = rs.getString("NazivSertifikata");
 

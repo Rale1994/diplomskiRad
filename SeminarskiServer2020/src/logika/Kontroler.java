@@ -7,6 +7,7 @@ package logika;
 
 import db.DBBroker;
 import domen.Advokat;
+import domen.Arhiva;
 import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
@@ -16,9 +17,11 @@ import domen.Sudjenje;
 import exception.ServerskiException;
 import java.util.ArrayList;
 import so.SOIzmenaKlijenta;
+import so.SOIzmeniAdvokata;
 import so.SOListaSertifikata;
 import so.SOListaSvihKlijenata;
 import so.SOPretragaKlijenata;
+import so.SOSacuvajArhivu;
 import so.SOSacuvajKlijenta;
 import so.SOSacuvajSudjenja;
 import so.SOSudjenjaKlijenta;
@@ -50,7 +53,7 @@ public class Kontroler {
 
     public Advokat uloguj(Advokat advokat) throws ServerskiException {
         SOUlogujAdvokata so = new SOUlogujAdvokata();
-        so.setParametar(advokat);
+        so.setAdvokat(advokat);
         so.izvrsiOperaciju();
         return so.getAdvokat();
     }
@@ -119,5 +122,20 @@ public class Kontroler {
         sos.izvrsiOperaciju();
         return sos.getListaSertifikata();
     }
+
+    public Advokat izmeniAdvokata(Advokat advokat) throws ServerskiException {
+        SOIzmeniAdvokata soia = new SOIzmeniAdvokata();
+        soia.setAdvokat(advokat);
+        soia.izvrsiOperaciju();
+        return soia.getAdvokat();
+    }
+
+    public Arhiva sacuvajArhivu(Arhiva arhiva) throws ServerskiException {
+        SOSacuvajArhivu soa= new SOSacuvajArhivu();
+        soa.setArhiva(arhiva);
+        soa.izvrsiOperaciju();
+        return soa.getArhiva();
+    }
+    
 
 }

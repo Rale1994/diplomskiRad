@@ -36,12 +36,12 @@ public class SOSacuvajKlijenta extends OpstaSistemskaOperacija {
             
             Klijent k = (Klijent) opb;
             if (k == null) {
-                klijent.setPoruka("Sistem je uspesno sacuvao klijenta!");
+                klijent.setPoruka("Sistem je uspešno sacuvao klijenta!");
                 return klijent;
 
             }
             if (klijent.getJmbg().equals(k.getJmbg())) {
-                klijent.setPoruka("Klijent sa unetim JMBG vec postoji u bazi! GRESKA");
+                klijent.setPoruka("Sistme ne može da sačuva klijenta.");
                return  klijent;
             }
         } catch (SQLException ex) {
@@ -55,7 +55,7 @@ public class SOSacuvajKlijenta extends OpstaSistemskaOperacija {
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
 
         try {
-            if (!(klijent.getPoruka().equals("Klijent sa unetim JMBG vec postoji u bazi! GRESKA"))) {
+            if (!(klijent.getPoruka().equals("Sistme ne može da sačuva klijenta."))) {
                 klijent = (Klijent) getDb().sacuvajObjekat(klijent);
             }
 

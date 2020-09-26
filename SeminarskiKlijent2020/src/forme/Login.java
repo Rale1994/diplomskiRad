@@ -122,17 +122,24 @@ public class Login extends javax.swing.JFrame {
             txtLozinka.setBorder(new LineBorder(Color.RED));
         }
         if (!korisnickoIme.isEmpty() && !lozinka.isEmpty()) {
+          
+
             try {
                 advokat = KontrolerKlijent.getInstanca().ulogujuAdvokata(korisnickoIme, lozinka);
                 if (advokat != null) {
                     GlavnaForma gf = new GlavnaForma(advokat);
                     gf.setAdvokat(advokat);
+                    JOptionPane.showMessageDialog(this, "Advokat je uspešno prijavljen na sistem.", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
                     gf.setVisible(true);
                     this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Sistem ne može da nađe advokata na osnovu unetih vrednosti za prijavljivanje.", "Greška", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
             } catch (Exception ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
 
         }
     }//GEN-LAST:event_btnPrijaviSeActionPerformed

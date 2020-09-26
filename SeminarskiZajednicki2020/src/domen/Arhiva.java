@@ -18,9 +18,9 @@ import java.util.Date;
 public class Arhiva extends OpstiDomenskiObjkat implements Serializable {
 
     private int arhivaID;
+    private Date datumDobijanjaSertifikata;
     private Sertifikat sertifikatID;
     private Advokat advokat;
-    private Date datumDobijanjaSertifikata;
 
     public Arhiva() {
     }
@@ -32,7 +32,12 @@ public class Arhiva extends OpstiDomenskiObjkat implements Serializable {
         this.datumDobijanjaSertifikata = datumDobijanjaSertifikata;
     }
 
-   
+    public Arhiva(Sertifikat sertifikatID, Advokat advokat, Date datumDobijanjaSertifikata) {
+
+        this.sertifikatID = sertifikatID;
+        this.advokat = advokat;
+        this.datumDobijanjaSertifikata = datumDobijanjaSertifikata;
+    }
 
     public Date getDatumDobijanjaSertifikata() {
         return datumDobijanjaSertifikata;
@@ -58,8 +63,6 @@ public class Arhiva extends OpstiDomenskiObjkat implements Serializable {
         this.sertifikatID = sertifikatID;
     }
 
-  
-
     public int getArhivaID() {
         return arhivaID;
     }
@@ -75,9 +78,9 @@ public class Arhiva extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public String vratiParametre() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String datum = sdf.format(datumDobijanjaSertifikata);
-        return String.format("'%d','%d','%d','%s'", advokat.getAdvokatID(), sertifikatID, arhivaID, datum);
+        return String.format("'%d','%s','%d','%d'",arhivaID, datum, sertifikatID.getSertifikatID(), advokat.getAdvokatID());
     }
 
     @Override
@@ -99,8 +102,6 @@ public class Arhiva extends OpstiDomenskiObjkat implements Serializable {
     public ArrayList<OpstiDomenskiObjkat> RSuTabelu(ResultSet rs) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-   
 
     @Override
     public String alijas() {

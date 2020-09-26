@@ -22,12 +22,12 @@ public class SOUlogujAdvokata extends OpstaSistemskaOperacija {
 
     private OpstiDomenskiObjkat od;
     private Advokat advokat;
-    private Advokat parametar;
+    
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
         try {
-            advokat = getDb().ulogujAdvokata(parametar);
+            advokat = getDb().ulogujAdvokata(advokat);
             
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -49,12 +49,6 @@ public class SOUlogujAdvokata extends OpstaSistemskaOperacija {
         this.advokat = advokat;
     }
 
-    public Advokat getParametar() {
-        return parametar;
-    }
-
-    public void setParametar(Advokat parametar) {
-        this.parametar = parametar;
-    }
+    
 
 }

@@ -174,7 +174,7 @@ public class PretragaKlijenata extends javax.swing.JFrame {
             }
             ArrayList<Klijent> lista = KontrolerKlijent.getInstanca().listaZaPretragu(pretraga);
             if (lista.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Sistem ne može da nađe nijednog klijenta!", "Greška", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Sistem ne može da nađe klijenta po zadatoj vrednosti.", "Greška", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             JOptionPane.showMessageDialog(this, "Sistem je našao klijenta/e.", "Pretraga", JOptionPane.INFORMATION_MESSAGE);
@@ -204,6 +204,7 @@ public class PretragaKlijenata extends javax.swing.JFrame {
                 Klijent k = lista.get(red);
                 IzmenaPodatakaOKlijentu izmena = new IzmenaPodatakaOKlijentu(this, k, true);
                 izmena.setKlijent(k);
+               JOptionPane.showMessageDialog(this, "Sistem je prikazao podatke o klijentu.", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
                 izmena.setVisible(true);
                 izmena.pack();
             } catch (Exception ex) {
@@ -229,8 +230,10 @@ public class PretragaKlijenata extends javax.swing.JFrame {
             try {
                 ArrayList<Klijent> lista = mtk.getListaKlijenata();
                 Klijent k = lista.get(red);
+                
                 UnosNovogSudjenja uns = new UnosNovogSudjenja(this, k, true);
                 uns.setKlijent(k);
+                JOptionPane.showMessageDialog(this, "Sistem je kreirao formu za unos novog suđenja.", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
                 uns.setVisible(true);
                 uns.pack();
             } catch (Exception ex) {
@@ -238,7 +241,7 @@ public class PretragaKlijenata extends javax.swing.JFrame {
             }
 
         } else {
-            JOptionPane.showMessageDialog(this, "Morate izabrati klijenta", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Sistem ne može da učita formu za unos novog suđenja.", "Greška", JOptionPane.ERROR_MESSAGE);
             return;
         }
     }//GEN-LAST:event_btnDodajSudjenjeActionPerformed
@@ -254,11 +257,12 @@ public class PretragaKlijenata extends javax.swing.JFrame {
 
                 ArrayList<Sudjenje> listaSudjenja = KontrolerKlijent.getInstanca().vratiSudnjenja(k);
                 if (listaSudjenja.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Ovaj klijent nema unesenih sudjenja!", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Sistem ne može da nađe suđenja za izabranog klijenta.", "Greška", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 PrikazSvihSudjenja ps = new PrikazSvihSudjenja(this, listaSudjenja, k, true);
                 ps.setListaSudjneja(listaSudjenja);
+                JOptionPane.showMessageDialog(this, "Sistem je našao sva suđenja klijenta.", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
                 ps.setVisible(true);
                 ps.pack();
             } catch (Exception ex) {

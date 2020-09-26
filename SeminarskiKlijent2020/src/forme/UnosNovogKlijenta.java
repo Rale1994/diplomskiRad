@@ -125,7 +125,7 @@ public class UnosNovogKlijenta extends javax.swing.JDialog {
 
         comboAdvokat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btnSacuvaj.setText("Sacuvaj");
+        btnSacuvaj.setText("Sačuvaj");
         btnSacuvaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSacuvajActionPerformed(evt);
@@ -235,7 +235,7 @@ public class UnosNovogKlijenta extends javax.swing.JDialog {
 
             Klijent zaCuvanje = KontrolerKlijent.getInstanca().sacuvajKlijenta(klijent);
             if (zaCuvanje != null) {
-                JOptionPane.showMessageDialog(this, zaCuvanje.getPoruka());
+                JOptionPane.showMessageDialog(this, zaCuvanje.getPoruka(),"Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
 
             }
             

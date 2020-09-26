@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModelTabeleArhiva extends AbstractTableModel {
 
-    ArrayList<Arhiva> lista;
+    private ArrayList<Arhiva> lista;
     String[] kolone = {"Naziv sertifikata", "Datum dobijanja"};
     SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
@@ -50,6 +50,24 @@ public class ModelTabeleArhiva extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         return kolone[column];
+    }
+
+    public void dodajUTabelu(Arhiva arhiva) {
+        lista.add(arhiva);
+        fireTableDataChanged();
+    }
+
+    public ArrayList<Arhiva> getLista() {
+        return lista;
+    }
+
+    public void setLista(ArrayList<Arhiva> lista) {
+        this.lista = lista;
+    }
+
+    public void izbrisi(int red) {
+        lista.remove(red);
+        fireTableDataChanged();
     }
 
 }

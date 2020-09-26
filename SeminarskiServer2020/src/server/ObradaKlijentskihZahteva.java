@@ -6,6 +6,7 @@
 package server;
 
 import domen.Advokat;
+import domen.Arhiva;
 import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
@@ -50,7 +51,7 @@ public class ObradaKlijentskihZahteva extends Thread {
             while (true) {
                 KlijentskiZahtev kz = (KlijentskiZahtev) in.readUnshared();
                 ServerskiOdgovor so = new ServerskiOdgovor();
-                ArrayList<Advokat> listaAdvokata;
+                ArrayList<Advokat> listaAdvokata= new ArrayList<>();
                 ArrayList<Prebivaliste> listaPrebivalista;
                 ArrayList<Klijent> listaKlijenata;
                 ArrayList<PredmetSudjenja> listaPredmetaSudjenja;
@@ -58,10 +59,12 @@ public class ObradaKlijentskihZahteva extends Thread {
                 ArrayList<Sudjenje> sudjenjea;
                 ArrayList<Sertifikat> listaSertifikata;
                 Klijent klijent;
+                Advokat advokat;
                 Sudjenje sudjenje;
+                Arhiva arhiva;
                 switch (kz.getOperacija()) {
                     case Operacije.ULOGUJ:
-                        Advokat advokat = (Advokat) kz.getParametar();
+                        advokat = (Advokat) kz.getParametar();
                         Advokat ulogovaniAdvokat = Kontroler.getInstanca().uloguj(advokat);
                         so.setOdgovor(ulogovaniAdvokat);
                         break;
@@ -112,10 +115,19 @@ public class ObradaKlijentskihZahteva extends Thread {
                         so.setOdgovor(sudjenjea);
                         break;
                     case Operacije.VRATI_SERTIFIKATE:
-                        listaSertifikata=Kontroler.getInstanca().vratiSertifikate();
+                        listaSertifikata = Kontroler.getInstanca().vratiSertifikate();
                         so.setOdgovor(listaSertifikata);
                         break;
-
+                    case Operacije.IZMENI_ADVOKATA:
+                        advokat = (Advokat) kz.getParametar();
+                        Advokat izmenjen = Kontroler.getInstanca().izmeniAdvokata(advokat);
+                        so.setOdgovor(izmenjen);
+                        break;
+                    case Operacije.SACUVAJ_ARHIVU:
+                        arhiva= (Arhiva) kz.getParametar();
+                        Arhiva zaCuvanjearhiva= Kontroler.getInstanca().sacuvajArhivu(arhiva);
+                        so.setOdgovor(zaCuvanjearhiva);
+                        break;
                 }
                 so.setUspesnost(1);
                 out.writeObject(so);

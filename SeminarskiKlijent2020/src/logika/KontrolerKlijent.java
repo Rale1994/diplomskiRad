@@ -6,6 +6,7 @@
 package logika;
 
 import domen.Advokat;
+import domen.Arhiva;
 import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Prebivaliste;
@@ -110,6 +111,16 @@ public class KontrolerKlijent {
     public ArrayList<Sertifikat> vratiSertifikate() throws Exception {
         ArrayList<Sertifikat> lista = (ArrayList<Sertifikat>) posaljiZahtev(Operacije.VRATI_SERTIFIKATE, null);
         return lista;
+    }
+
+    public Advokat izmeniAdvokata(Advokat izmenjenAdvokat) throws Exception {
+        Advokat zaIzmenu = (Advokat) posaljiZahtev(Operacije.IZMENI_ADVOKATA, izmenjenAdvokat);
+        return zaIzmenu;
+    }
+
+    public Arhiva sacuvajArhivu(Arhiva novaArhiva) throws Exception {
+        Arhiva arhiva = (Arhiva) posaljiZahtev(Operacije.SACUVAJ_ARHIVU, novaArhiva);
+        return arhiva;
     }
 
 }

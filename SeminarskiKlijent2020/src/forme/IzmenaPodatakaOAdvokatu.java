@@ -6,12 +6,20 @@
 package forme;
 
 import domen.Advokat;
+import domen.Arhiva;
 import domen.Prebivaliste;
 import domen.Sertifikat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import logika.KontrolerKlijent;
 import modeli.ModelTabeleArhiva;
+import modeli.ModelTabeleSudjenje;
 
 /**
  *
@@ -71,8 +79,10 @@ public class IzmenaPodatakaOAdvokatu extends javax.swing.JDialog {
         btnDodaj = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         txtDatumDobijanja = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Izmena podataka o advokatu");
 
         jLabel1.setText("Ime:");
 
@@ -138,7 +148,12 @@ public class IzmenaPodatakaOAdvokatu extends javax.swing.JDialog {
 
         txtJMBG.setEnabled(false);
 
-        btnSacuvaj.setText("Sacuvaj izmene");
+        btnSacuvaj.setText("Sačuvaj izmene");
+        btnSacuvaj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSacuvajActionPerformed(evt);
+            }
+        });
 
         btnOdustani.setText("Odustani");
         btnOdustani.addActionListener(new java.awt.event.ActionListener() {
@@ -167,30 +182,44 @@ public class IzmenaPodatakaOAdvokatu extends javax.swing.JDialog {
         comboSertifikat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnDodaj.setText("Dodaj");
+        btnDodaj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodajActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Datum dobijanja sertifikata:");
+
+        jButton1.setText("Obriši");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(26, 26, 26)
                                 .addComponent(txtDatumDobijanja, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
                                 .addComponent(comboSertifikat, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDodaj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addGap(43, 43, 43)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,12 +233,12 @@ public class IzmenaPodatakaOAdvokatu extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(txtDatumDobijanja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 5, Short.MAX_VALUE))
-                    .addComponent(btnDodaj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                            .addComponent(txtDatumDobijanja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,28 +247,29 @@ public class IzmenaPodatakaOAdvokatu extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnOdustani, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(104, 104, 104)
+                        .addGap(181, 181, 181)
                         .addComponent(btnSacuvaj, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtKontatkTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtIme)
-                            .addComponent(txtPrezime)
-                            .addComponent(txtJMBG, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtKontatkTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3))
+                            .addGap(41, 41, 41)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtIme)
+                                .addComponent(txtPrezime)
+                                .addComponent(txtJMBG, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,13 +292,13 @@ public class IzmenaPodatakaOAdvokatu extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtKontatkTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSacuvaj, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(btnOdustani, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, 0))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnOdustani, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSacuvaj, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -281,6 +311,76 @@ public class IzmenaPodatakaOAdvokatu extends javax.swing.JDialog {
     private void btnOdustaniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdustaniActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnOdustaniActionPerformed
+
+    private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
+        try {
+            Sertifikat sertifikat = (Sertifikat) comboSertifikat.getSelectedItem();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            String dat = txtDatumDobijanja.getText();
+            if (txtDatumDobijanja.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Morate uneti datum dobijanja sertifikata!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            Date datum = sdf.parse(dat);
+            Arhiva arhiva = new Arhiva(sertifikat, advokat, datum);
+            ModelTabeleArhiva mta = (ModelTabeleArhiva) tblArhiva.getModel();
+            mta.dodajUTabelu(arhiva);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(IzmenaPodatakaOAdvokatu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnDodajActionPerformed
+
+    private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajActionPerformed
+        try {
+            Advokat izmenjenAdvokat = new Advokat();
+
+            String ime = txtIme.getText();
+            String prezime = txtPrezime.getText();
+            String ulica = txtUlica.getText();
+            String broj = txtBroj.getText();
+            String jmbg = txtJMBG.getText();
+            String kontaktTelefon = txtKontatkTelefon.getText();
+            if (txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty() || txtJMBG.getText().isEmpty() || txtUlica.getText().isEmpty() || txtBroj.getText().isEmpty() || txtKontatkTelefon.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Sistem ne može da zapamti izmene nad podacima.", "Greška", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            Prebivaliste prebivaliste = (Prebivaliste) comboPrebivaliste.getSelectedItem();
+            ModelTabeleArhiva mta = (ModelTabeleArhiva) tblArhiva.getModel();
+            ArrayList<Arhiva> lista = mta.getLista();
+            izmenjenAdvokat = new Advokat(advokat.getAdvokatID(), jmbg, ime, prezime, ulica, broj, kontaktTelefon, prezime, ulica, prebivaliste);
+            for (Arhiva arhiva : lista) {
+                try {
+                    Arhiva novaArhiva = new Arhiva(arhiva.getSertifikatID(), izmenjenAdvokat, arhiva.getDatumDobijanjaSertifikata());
+                    novaArhiva = KontrolerKlijent.getInstanca().sacuvajArhivu(novaArhiva);
+                
+                    //izmenjenAdvokat = new Advokat(advokat.getAdvokatID(), jmbg, ime, prezime, ulica, broj, kontaktTelefon, prezime, ulica, prebivaliste, arhiva);
+                } catch (Exception ex) {
+                    Logger.getLogger(IzmenaPodatakaOAdvokatu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            Advokat izmenjen = KontrolerKlijent.getInstanca().izmeniAdvokata(izmenjenAdvokat);
+            if (izmenjen != null) {
+                JOptionPane.showMessageDialog(this, "Sistem je zapamtio podatke.", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(IzmenaPodatakaOAdvokatu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnSacuvajActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+          int red = tblArhiva.getSelectedRow();
+        if (red != -1) {
+            ModelTabeleArhiva mta =  (ModelTabeleArhiva) tblArhiva.getModel();
+            mta.izbrisi(red);
+        } else {
+            JOptionPane.showMessageDialog(this, "Morate izabrati stavku za brisanje!", "Greška!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,6 +430,7 @@ public class IzmenaPodatakaOAdvokatu extends javax.swing.JDialog {
     private javax.swing.JButton btnSacuvaj;
     private javax.swing.JComboBox comboPrebivaliste;
     private javax.swing.JComboBox comboSertifikat;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -375,7 +476,7 @@ public class IzmenaPodatakaOAdvokatu extends javax.swing.JDialog {
     }
 
     private void popuniComboSertifikata() throws Exception {
-        ArrayList<Sertifikat> listaSertifikata= KontrolerKlijent.getInstanca().vratiSertifikate();
+        ArrayList<Sertifikat> listaSertifikata = KontrolerKlijent.getInstanca().vratiSertifikate();
         comboSertifikat.removeAllItems();
         for (Sertifikat sertifikat : listaSertifikata) {
             comboSertifikat.addItem(sertifikat);
@@ -383,11 +484,11 @@ public class IzmenaPodatakaOAdvokatu extends javax.swing.JDialog {
     }
 
     private void popuniComboPrebivaliste() throws Exception {
-        ArrayList<Prebivaliste> listaPrebivalista=KontrolerKlijent.getInstanca().svaPrebivalista();
+        ArrayList<Prebivaliste> listaPrebivalista = KontrolerKlijent.getInstanca().svaPrebivalista();
         comboPrebivaliste.removeAllItems();
         for (Prebivaliste prebivaliste : listaPrebivalista) {
             comboPrebivaliste.addItem(prebivaliste);
         }
     }
-    
+
 }

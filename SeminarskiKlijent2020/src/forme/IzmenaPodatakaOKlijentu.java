@@ -228,7 +228,7 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
             String jmbg = txtJMBG.getText();
             String kontaktTelefon = txtKontaktTelefon.getText();
             if (txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty() || txtJMBG.getText().isEmpty() || txtUlica.getText().isEmpty() || txtBroj.getText().isEmpty() || txtKontaktTelefon.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Sva polja moraju biti popunjena!","Polja",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Sistem ne može da zapamti podatke o klijentu.","Greska", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             Prebivaliste prebivaliste = (Prebivaliste) comboPrebivaliste.getSelectedItem();
@@ -239,9 +239,9 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
 
             Klijent izmenjenKlijent = KontrolerKlijent.getInstanca().izmeniKlijenta(klijent);
             if (izmenjenKlijent != null) {
-                JOptionPane.showMessageDialog(this, "Podaci o klijentu su uspesno izmenjeni!","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Sistem je zapamtio izmene","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Doslo je do greske prilikom izmene podataka!","Greska", JOptionPane.ERROR_MESSAGE);
+                
             }
         } catch (Exception ex) {
             Logger.getLogger(IzmenaPodatakaOKlijentu.class.getName()).log(Level.SEVERE, null, ex);
