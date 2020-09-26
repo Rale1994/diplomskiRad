@@ -123,4 +123,9 @@ public class KontrolerKlijent {
         return arhiva;
     }
 
+    public Sudjenje obrisiSudjenje(Sudjenje zaBrisanje) throws Exception {
+        Sudjenje sudjenje = (Sudjenje) posaljiZahtev(Operacije.OBRISI_SUDJENJE, zaBrisanje);
+        return sudjenje;
+    }
+
 }

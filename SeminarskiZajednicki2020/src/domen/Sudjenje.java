@@ -119,7 +119,7 @@ public class Sudjenje extends OpstiDomenskiObjkat implements Serializable {
 
     @Override
     public String vratiPk() {
-        return "sudjenjeID";
+        return "SudjenjeID";
     }
 
     @Override

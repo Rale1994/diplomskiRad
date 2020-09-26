@@ -20,6 +20,7 @@ import so.SOIzmenaKlijenta;
 import so.SOIzmeniAdvokata;
 import so.SOListaSertifikata;
 import so.SOListaSvihKlijenata;
+import so.SOObrisiSudjenje;
 import so.SOPretragaKlijenata;
 import so.SOSacuvajArhivu;
 import so.SOSacuvajKlijenta;
@@ -131,11 +132,17 @@ public class Kontroler {
     }
 
     public Arhiva sacuvajArhivu(Arhiva arhiva) throws ServerskiException {
-        SOSacuvajArhivu soa= new SOSacuvajArhivu();
+        SOSacuvajArhivu soa = new SOSacuvajArhivu();
         soa.setArhiva(arhiva);
         soa.izvrsiOperaciju();
         return soa.getArhiva();
     }
-    
+
+    public Sudjenje obrisiSudnjenje(Sudjenje sudjenje) throws ServerskiException {
+        SOObrisiSudjenje sob = new SOObrisiSudjenje();
+        sob.setSudjenje(sudjenje);
+        sob.izvrsiOperaciju();
+        return sob.getSudjenje();
+    }
 
 }

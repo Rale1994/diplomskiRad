@@ -51,7 +51,7 @@ public class ObradaKlijentskihZahteva extends Thread {
             while (true) {
                 KlijentskiZahtev kz = (KlijentskiZahtev) in.readUnshared();
                 ServerskiOdgovor so = new ServerskiOdgovor();
-                ArrayList<Advokat> listaAdvokata= new ArrayList<>();
+                ArrayList<Advokat> listaAdvokata = new ArrayList<>();
                 ArrayList<Prebivaliste> listaPrebivalista;
                 ArrayList<Klijent> listaKlijenata;
                 ArrayList<PredmetSudjenja> listaPredmetaSudjenja;
@@ -124,9 +124,14 @@ public class ObradaKlijentskihZahteva extends Thread {
                         so.setOdgovor(izmenjen);
                         break;
                     case Operacije.SACUVAJ_ARHIVU:
-                        arhiva= (Arhiva) kz.getParametar();
-                        Arhiva zaCuvanjearhiva= Kontroler.getInstanca().sacuvajArhivu(arhiva);
+                        arhiva = (Arhiva) kz.getParametar();
+                        Arhiva zaCuvanjearhiva = Kontroler.getInstanca().sacuvajArhivu(arhiva);
                         so.setOdgovor(zaCuvanjearhiva);
+                        break;
+                    case Operacije.OBRISI_SUDJENJE:
+                        sudjenje = (Sudjenje) kz.getParametar();
+                        Sudjenje obrisano= Kontroler.getInstanca().obrisiSudnjenje(sudjenje);
+                        so.setOdgovor(obrisano);
                         break;
                 }
                 so.setUspesnost(1);

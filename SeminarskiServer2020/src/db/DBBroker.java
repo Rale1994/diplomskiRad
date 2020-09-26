@@ -83,9 +83,9 @@ public class DBBroker {
         ps.setString(1, advokat.getKorisnickoIme());
         ps.setString(2, advokat.getLozinka());
         ResultSet rs = ps.executeQuery();
-        Advokat advokt=null;
+        Advokat advokt = null;
         while (rs.next()) {
-            advokt= new Advokat();
+            advokt = new Advokat();
             advokt.setAdvokatID(rs.getInt("a.AdvokatID"));
             advokt.setJmbg(rs.getString("a.JMBG"));
             advokt.setIme(rs.getString("a.Ime"));
@@ -98,9 +98,6 @@ public class DBBroker {
 
             Prebivaliste prebivaliste = new Prebivaliste();
             prebivaliste.setPrebivalisteID(rs.getInt("p.PrebivalisteID"));
-
-            
-            
 
         }
         return advokt;
@@ -201,4 +198,11 @@ public class DBBroker {
         return null;
     }
 
+    public OpstiDomenskiObjkat obrisiObjekat(OpstiDomenskiObjkat o) throws SQLException {
+        String upit = String.format("DELETE FROM %s WHERE %s = %s", o.vratiImeTabele(), o.vratiPk(), o.vratiVrednostPK());
+        Statement s = konekcija.createStatement();
+        s.executeUpdate(upit);
+        s.close();
+        return o;
+    }
 }
