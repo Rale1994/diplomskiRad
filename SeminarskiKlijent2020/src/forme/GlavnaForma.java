@@ -108,7 +108,8 @@ public class GlavnaForma extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            PretragaKlijenata pk = new PretragaKlijenata();
+            PretragaKlijenata pk = new PretragaKlijenata(advokat);
+            pk.setAdvokat(advokat);
             pk.setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(GlavnaForma.class.getName()).log(Level.SEVERE, null, ex);

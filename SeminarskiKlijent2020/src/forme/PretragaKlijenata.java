@@ -5,6 +5,7 @@
  */
 package forme;
 
+import domen.Advokat;
 import domen.Klijent;
 import domen.OpstiDomenskiObjkat;
 import domen.Sudjenje;
@@ -21,12 +22,20 @@ import modeli.ModelTabeleKlijenti;
  */
 public class PretragaKlijenata extends javax.swing.JFrame {
 
+    private Advokat advokat;
+
     /**
      * Creates new form PretragaKlijenata
      */
-    public PretragaKlijenata() throws Exception {
+    public PretragaKlijenata(Advokat advokat) throws Exception {
         initComponents();
+        this.advokat = advokat;
+        lblUlogovani.setText("Advokat koji je trenutno ulogovan: " + advokat.getIme() + " " + advokat.getPrezime());
         podesiTabelu();
+    }
+
+    private PretragaKlijenata() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -48,6 +57,7 @@ public class PretragaKlijenata extends javax.swing.JFrame {
         btnOdustani = new javax.swing.JButton();
         btnDodajSudjenje = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        lblUlogovani = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pretraga klijenata ");
@@ -109,13 +119,18 @@ public class PretragaKlijenata extends javax.swing.JFrame {
             }
         });
 
+        lblUlogovani.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnOdustani, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -134,24 +149,26 @@ public class PretragaKlijenata extends javax.swing.JFrame {
                                 .addComponent(btnDodajSudjenje, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(64, 64, 64)
                                 .addComponent(jButton3)))
-                        .addGap(0, 38, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnOdustani, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 38, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblUlogovani, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(lblUlogovani)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(txtPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPretrazi)
-                    .addComponent(jButton2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPretrazi)
+                        .addComponent(jButton2)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -202,9 +219,15 @@ public class PretragaKlijenata extends javax.swing.JFrame {
             try {
                 ArrayList<Klijent> lista = mtk.getListaKlijenata();
                 Klijent k = lista.get(red);
-                IzmenaPodatakaOKlijentu izmena = new IzmenaPodatakaOKlijentu(this, k, true);
+                if (k.getAdvokat().getAdvokatID()!=advokat.getAdvokatID()) {
+                    JOptionPane.showMessageDialog(this, "Podatke o ovom klijentu može da menja advokat koji zastupa ovog klijenta.", "Greška", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                IzmenaPodatakaOKlijentu izmena = new IzmenaPodatakaOKlijentu(this, k, advokat, true);
                 izmena.setKlijent(k);
-               JOptionPane.showMessageDialog(this, "Sistem je prikazao podatke o klijentu.", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+                izmena.setAdvokat(advokat);
+
+                JOptionPane.showMessageDialog(this, "Sistem je prikazao podatke o klijentu.", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
                 izmena.setVisible(true);
                 izmena.pack();
             } catch (Exception ex) {
@@ -230,7 +253,7 @@ public class PretragaKlijenata extends javax.swing.JFrame {
             try {
                 ArrayList<Klijent> lista = mtk.getListaKlijenata();
                 Klijent k = lista.get(red);
-                
+
                 UnosNovogSudjenja uns = new UnosNovogSudjenja(this, k, true);
                 uns.setKlijent(k);
                 JOptionPane.showMessageDialog(this, "Sistem je kreirao formu za unos novog suđenja.", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
@@ -314,6 +337,7 @@ public class PretragaKlijenata extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodajSudjenje;
     private javax.swing.JButton btnOdustani;
@@ -323,6 +347,7 @@ public class PretragaKlijenata extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblUlogovani;
     private javax.swing.JTable tblKlijenti;
     private javax.swing.JTextField txtPretraga;
     // End of variables declaration//GEN-END:variables
@@ -331,5 +356,13 @@ public class PretragaKlijenata extends javax.swing.JFrame {
         ArrayList<Klijent> lisaKlijenata = KontrolerKlijent.getInstanca().sviKlijenti();
         ModelTabeleKlijenti mtk = new ModelTabeleKlijenti(lisaKlijenata);
         tblKlijenti.setModel(mtk);
+    }
+
+    public Advokat getAdvokat() {
+        return advokat;
+    }
+
+    public void setAdvokat(Advokat advokat) {
+        this.advokat = advokat;
     }
 }

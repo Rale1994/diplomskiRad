@@ -220,4 +220,29 @@ public class Advokat extends OpstiDomenskiObjkat implements Serializable {
         return "";
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + this.advokatID;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Advokat other = (Advokat) obj;
+        if (this.advokatID != other.advokatID) {
+            return false;
+        }
+        return true;
+    }
+
 }

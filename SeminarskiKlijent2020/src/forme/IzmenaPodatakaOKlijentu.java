@@ -22,14 +22,16 @@ import logika.KontrolerKlijent;
 public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
 
     private Klijent klijent;
+    private Advokat advokat;
 
     /**
      * Creates new form IzmenaPodatakaOKlijentu
      */
-    public IzmenaPodatakaOKlijentu(java.awt.Frame parent, Klijent klijent, boolean modal) throws Exception {
+    public IzmenaPodatakaOKlijentu(java.awt.Frame parent, Klijent klijent, Advokat advokat, boolean modal) throws Exception {
         super(parent, modal);
         initComponents();
         this.klijent = klijent;
+        this.advokat = advokat;
         postaviPodatke();
         comboAdvokat();
         comboPrebivaliste();
@@ -40,6 +42,7 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -166,14 +169,14 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboAdvokat, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(120, 120, 120)
                             .addComponent(btnOdusani, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(47, 47, 47)
-                            .addComponent(btnSacuvajIzmene)))
+                            .addComponent(btnSacuvajIzmene))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboAdvokat, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
@@ -228,7 +231,7 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
             String jmbg = txtJMBG.getText();
             String kontaktTelefon = txtKontaktTelefon.getText();
             if (txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty() || txtJMBG.getText().isEmpty() || txtUlica.getText().isEmpty() || txtBroj.getText().isEmpty() || txtKontaktTelefon.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Sistem ne može da zapamti podatke o klijentu.","Greska", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Sistem ne može da zapamti podatke o klijentu.", "Greska", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             Prebivaliste prebivaliste = (Prebivaliste) comboPrebivaliste.getSelectedItem();
@@ -239,9 +242,9 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
 
             Klijent izmenjenKlijent = KontrolerKlijent.getInstanca().izmeniKlijenta(klijent);
             if (izmenjenKlijent != null) {
-                JOptionPane.showMessageDialog(this, "Sistem je zapamtio izmene","Obavestenje",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Sistem je zapamtio izmene", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                
+
             }
         } catch (Exception ex) {
             Logger.getLogger(IzmenaPodatakaOKlijentu.class.getName()).log(Level.SEVERE, null, ex);
@@ -345,4 +348,13 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
             comboPrebivaliste.addItem(prebivaliste);
         }
     }
+
+    public Advokat getAdvokat() {
+        return advokat;
+    }
+
+    public void setAdvokat(Advokat advokat) {
+        this.advokat = advokat;
+    }
+
 }
