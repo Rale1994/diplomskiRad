@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -151,6 +152,7 @@ public class PodesavanjePodataka extends javax.swing.JDialog {
             pw.println("username="+user);
             pw.println("password="+password);
             pw.println("driver="+driver);
+            JOptionPane.showMessageDialog(this, "Sistem je izmenio podatke za konfiguraciju baze.","Obaveštenje",JOptionPane.INFORMATION_MESSAGE);
             pw.close();
         } catch (IOException ex) {
             Logger.getLogger(PodesavanjePodataka.class.getName()).log(Level.SEVERE, null, ex);
