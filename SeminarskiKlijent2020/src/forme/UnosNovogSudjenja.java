@@ -267,6 +267,10 @@ public class UnosNovogSudjenja extends javax.swing.JDialog {
             }
 
             int duzinaTrajnja = Integer.parseInt(duzina);
+            if(duzinaTrajnja<0){
+                JOptionPane.showMessageDialog(this, "Dužina trajanja ne sme biti negativan broj!", "Greška!", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             Date datumSudjenja = sdf.parse(datum);
             if (datumSudjenja.before(new Date())) {
