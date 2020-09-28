@@ -6,6 +6,9 @@
 package forme;
 
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import server.PokretanjeServera;
 
@@ -40,6 +43,9 @@ public class ServerskaForma extends javax.swing.JFrame {
         btnZaustaviServer = new javax.swing.JToggleButton();
         lblPokretanjeServera = new javax.swing.JLabel();
         lblZaustavi = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Server forma");
@@ -64,6 +70,20 @@ public class ServerskaForma extends javax.swing.JFrame {
         lblZaustavi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblZaustavi.setForeground(new java.awt.Color(255, 102, 102));
 
+        jMenu1.setText("Konfiguracija baze");
+
+        jMenuItem1.setText("Prikaži podatke");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,7 +105,7 @@ public class ServerskaForma extends javax.swing.JFrame {
                 .addComponent(btnPokreniServer, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblPokretanjeServera, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addComponent(btnZaustaviServer, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblZaustavi)
@@ -107,6 +127,16 @@ public class ServerskaForma extends javax.swing.JFrame {
 
         zaustaviServer();
     }//GEN-LAST:event_btnZaustaviServerActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        try {
+            PodesavanjePodataka pd= new PodesavanjePodataka(this, true);
+            pd.setVisible(true);
+            pd.pack();
+        } catch (IOException ex) {
+            Logger.getLogger(ServerskaForma.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,6 +203,9 @@ public class ServerskaForma extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnPokreniServer;
     private javax.swing.JToggleButton btnZaustaviServer;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lblPokretanjeServera;
     private javax.swing.JLabel lblZaustavi;
     // End of variables declaration//GEN-END:variables

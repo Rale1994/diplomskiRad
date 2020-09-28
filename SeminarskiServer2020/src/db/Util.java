@@ -46,4 +46,7 @@ public class Util {
     public String getPassword() {
         return properties.getProperty("password");
     }
+    public void setURL(String url){
+        
+    }
 }
