@@ -314,7 +314,7 @@ public class UnosNovogSudjenja extends javax.swing.JDialog {
         try {
             ArrayList<OpstiDomenskiObjkat> zaCuvanje = KontrolerKlijent.getInstanca().sacuvajSudjenja(listaSvihSudjenja);
             if (zaCuvanje != null) {
-                JOptionPane.showMessageDialog(this, "Uspesno sacuvano!");
+                JOptionPane.showMessageDialog(this, "Sistem je zapamtio suđenje.","Obaveštenje",JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (Exception ex) {
             Logger.getLogger(UnosNovogSudjenja.class.getName()).log(Level.SEVERE, null, ex);

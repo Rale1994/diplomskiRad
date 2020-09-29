@@ -30,7 +30,7 @@ public class PretragaKlijenata extends javax.swing.JFrame {
     public PretragaKlijenata(Advokat advokat) throws Exception {
         initComponents();
         this.advokat = advokat;
-        lblUlogovani.setText("Advokat koji je trenutno ulogovan: " + advokat.getIme() + " " + advokat.getPrezime());
+        //lblUlogovani.setText("Advokat koji je trenutno ulogovan: " + advokat.getIme() + " " + advokat.getPrezime());
         podesiTabelu();
     }
 
@@ -57,7 +57,6 @@ public class PretragaKlijenata extends javax.swing.JFrame {
         btnOdustani = new javax.swing.JButton();
         btnDodajSudjenje = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        lblUlogovani = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pretraga klijenata ");
@@ -119,8 +118,6 @@ public class PretragaKlijenata extends javax.swing.JFrame {
             }
         });
 
-        lblUlogovani.setText("jLabel2");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,15 +148,11 @@ public class PretragaKlijenata extends javax.swing.JFrame {
                                 .addComponent(jButton3)))
                         .addGap(0, 38, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblUlogovani, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(lblUlogovani)
-                .addGap(28, 28, 28)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -347,7 +340,6 @@ public class PretragaKlijenata extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblUlogovani;
     private javax.swing.JTable tblKlijenti;
     private javax.swing.JTextField txtPretraga;
     // End of variables declaration//GEN-END:variables
