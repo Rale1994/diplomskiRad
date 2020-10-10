@@ -58,19 +58,19 @@ public class PretragaKlijenata extends javax.swing.JFrame {
         btnDodajSudjenje = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pretraga klijenata ");
 
         jLabel1.setText("Unesi kriterijum pretrage klijenata(ime/  prezime/ JMBG):");
 
-        btnPretrazi.setText("Pretrazi");
+        btnPretrazi.setText("Pretraži");
         btnPretrazi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPretraziActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Ponisti");
+        jButton2.setText("Poništi");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -104,14 +104,14 @@ public class PretragaKlijenata extends javax.swing.JFrame {
             }
         });
 
-        btnDodajSudjenje.setText("Dodaj sudjenje");
+        btnDodajSudjenje.setText("Dodaj suđenje");
         btnDodajSudjenje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDodajSudjenjeActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Prikazi sva sudjenja klijenta");
+        jButton3.setText("Prikaži sva sudjenja klijenta");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -172,7 +172,8 @@ public class PretragaKlijenata extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(931, 443));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretraziActionPerformed

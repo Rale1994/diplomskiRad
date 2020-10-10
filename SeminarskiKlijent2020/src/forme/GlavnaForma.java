@@ -93,7 +93,8 @@ public class GlavnaForma extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(516, 343));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUnosNovogKlijentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnosNovogKlijentaActionPerformed

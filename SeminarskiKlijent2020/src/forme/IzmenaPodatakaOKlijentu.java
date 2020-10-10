@@ -91,7 +91,7 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
 
         jLabel4.setText("Broj:");
 
-        jLabel7.setText("Prebivaliste:");
+        jLabel7.setText("Prebivalište:");
 
         comboPrebivaliste.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -130,7 +130,7 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
                     .addComponent(comboPrebivaliste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        btnSacuvajIzmene.setText("Sacuvaj izmene");
+        btnSacuvajIzmene.setText("Sačuvaj izmene");
         btnSacuvajIzmene.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSacuvajIzmeneActionPerformed(evt);
@@ -215,7 +215,8 @@ public class IzmenaPodatakaOKlijentu extends javax.swing.JDialog {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(458, 495));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOdusaniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdusaniActionPerformed

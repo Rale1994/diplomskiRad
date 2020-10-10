@@ -40,6 +40,11 @@ public class KomunikacijaSaServerom {
 
     public  void setSocket(Socket socket) throws IOException {
         KomunikacijaSaServerom.socket = socket;
+       // out = new ObjectOutputStream(KomunikacijaSaServerom.socket.getOutputStream());
+        //in = new ObjectInputStream(KomunikacijaSaServerom.socket.getInputStream());
+    }
+    public  void setStreams() throws IOException {
+       
         out = new ObjectOutputStream(KomunikacijaSaServerom.socket.getOutputStream());
         in = new ObjectInputStream(KomunikacijaSaServerom.socket.getInputStream());
     }

@@ -44,7 +44,7 @@ public class ObradaKlijentskihZahteva extends Thread {
     }
 
     @Override
-    public void run() {
+    public void run()  {
         try {
             in = new ObjectInputStream(socket.getInputStream());
             out = new ObjectOutputStream(socket.getOutputStream());

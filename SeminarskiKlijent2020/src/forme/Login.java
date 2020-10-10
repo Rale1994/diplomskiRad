@@ -102,14 +102,15 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(353, 347));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrijaviSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrijaviSeActionPerformed
         try {
             uspostaviKomunikaciju();
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Konekcija nije uspela!");
+            JOptionPane.showMessageDialog(this, "Konekcija nije uspela!","Greška", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String korisnickoIme = txtKorisnickoIme.getText();
@@ -125,6 +126,7 @@ public class Login extends javax.swing.JFrame {
           
 
             try {
+                KomunikacijaSaServerom.getInstanca().setStreams();
                 advokat = KontrolerKlijent.getInstanca().ulogujuAdvokata(korisnickoIme, lozinka);
                 if (advokat != null) {
                     GlavnaForma gf = new GlavnaForma(advokat);
@@ -190,6 +192,7 @@ public class Login extends javax.swing.JFrame {
     private void uspostaviKomunikaciju() throws IOException {
         if (KomunikacijaSaServerom.getInstanca().getSocket() == null) {
             Socket socket = new Socket("localhost", 9000);
+            
             KomunikacijaSaServerom.getInstanca().setSocket(socket);
         }
 

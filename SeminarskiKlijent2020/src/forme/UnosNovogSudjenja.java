@@ -89,11 +89,11 @@ public class UnosNovogSudjenja extends javax.swing.JDialog {
 
         jLabel3.setText("Datum(dd.MM.yyyy):");
 
-        jLabel4.setText("Predmet sudjenja:");
+        jLabel4.setText("Predmet suđenja:");
 
         comboPredmetSudjnjea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel5.setText("Duzina trajanja(u minutima):");
+        jLabel5.setText("Dužina trajanja(u minutima):");
 
         jLabel6.setText("Napomena:");
 
@@ -140,7 +140,7 @@ public class UnosNovogSudjenja extends javax.swing.JDialog {
             }
         });
 
-        bntSacuvajSudjenja.setText("Sacuvaj sudjenja");
+        bntSacuvajSudjenja.setText("Sačuvaj sudjenja");
         bntSacuvajSudjenja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntSacuvajSudjenjaActionPerformed(evt);
@@ -250,7 +250,8 @@ public class UnosNovogSudjenja extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        pack();
+        setSize(new java.awt.Dimension(500, 664));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
@@ -274,7 +275,7 @@ public class UnosNovogSudjenja extends javax.swing.JDialog {
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             Date datumSudjenja = sdf.parse(datum);
             if (datumSudjenja.before(new Date())) {
-                JOptionPane.showMessageDialog(this, "Datum mora biti unesen od danasnjeg!", "Greška!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Datum mora biti unesen od današnjeg!", "Greška!", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 

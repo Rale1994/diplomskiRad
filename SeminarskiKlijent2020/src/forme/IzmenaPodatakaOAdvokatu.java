@@ -96,7 +96,7 @@ public class IzmenaPodatakaOAdvokatu extends javax.swing.JDialog {
 
         jLabel5.setText("Broj:");
 
-        jLabel6.setText("Prebivaliste:");
+        jLabel6.setText("Prebivalište:");
 
         comboPrebivaliste.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboPrebivaliste.addActionListener(new java.awt.event.ActionListener() {
@@ -301,7 +301,8 @@ public class IzmenaPodatakaOAdvokatu extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(641, 839));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboPrebivalisteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPrebivalisteActionPerformed

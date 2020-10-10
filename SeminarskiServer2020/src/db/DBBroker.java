@@ -42,11 +42,11 @@ public class DBBroker {
             konekcija = DriverManager.getConnection(url, user, password);
             konekcija.setAutoCommit(false);
         } catch (IOException ex) {
-            throw new ServerskiException("Greska prilikom ucitavanja propreties fajla!");
+            throw new ServerskiException("Greška prilikom učitavanja propreties fajla!");
         } catch (ClassNotFoundException ex) {
-            throw new ServerskiException("Driver nije pronadjen!");
+            throw new ServerskiException("Driver nije pronađen!");
         } catch (SQLException ex) {
-            throw new ServerskiException("Konekcija na bazu neuspsna!");
+            throw new ServerskiException("Konekcija na bazu neuspešna!");
         }
 
     }

@@ -74,7 +74,7 @@ public class PodesavanjePodataka extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setText("Drvier:");
+        jLabel4.setText("Driver:");
 
         txtDriver.setToolTipText("e");
 

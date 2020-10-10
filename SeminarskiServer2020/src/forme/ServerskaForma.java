@@ -5,6 +5,7 @@
  */
 package forme;
 
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -26,6 +27,7 @@ public class ServerskaForma extends javax.swing.JFrame {
      */
     public ServerskaForma() {
         initComponents();
+    
        
         
     }
@@ -112,7 +114,8 @@ public class ServerskaForma extends javax.swing.JFrame {
                 .addGap(44, 44, 44))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(478, 425));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPokreniServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPokreniServerActionPerformed
